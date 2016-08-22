@@ -1,2 +1,2 @@
-# jp-wordpress-dev-tools
+# JP WordPress Dev Tools
 JP WordPress Dev Tools
