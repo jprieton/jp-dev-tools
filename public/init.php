@@ -19,7 +19,14 @@ add_action( 'wp_enqueue_scripts', function() {
    * Localize public script
    */
   $localize_script = array(
-      'ajax_url' => admin_url( 'admin-ajax.php' )
+      'ajax_url' => admin_url( 'admin-ajax.php' ),
+      'button'   => array(
+          'success' => __( 'Success!', 'jpwp' ),
+          'fail'    => __( 'Fail!', 'jpwp' ),
+          'error'   => __( 'Error!', 'jpwp' ),
+          'send'    => __( 'Send', 'jpwp' ),
+          'sent'    => __( 'Sent!', 'jpwp' ),
+      )
   );
   wp_localize_script( 'jpwp-public', 'jpwp', $localize_script );
 } );
