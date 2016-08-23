@@ -10,12 +10,12 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Error class
+ * Breadcrumb class
  *
  * @package Core
  * @since 0.0.1
  * @author jprieton
  */
-class Error {
+class Breadcrumb {
 
 }
