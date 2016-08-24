@@ -9,6 +9,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 /**
  * Plugin Name:    JP WordPress Dev Tools
+ * Description:    
  * Version:        0.0.1
  * Author:         Javier Prieto
  * License:        GPL-3.0+
