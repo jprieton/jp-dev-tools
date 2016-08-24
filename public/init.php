@@ -20,7 +20,7 @@ add_action( 'wp_enqueue_scripts', function() {
    */
   $localize_script = array(
       'ajax_url' => admin_url( 'admin-ajax.php' ),
-      'button'   => array(
+      'messages' => array(
           'success' => __( 'Success!', 'jpwp' ),
           'fail'    => __( 'Fail!', 'jpwp' ),
           'error'   => __( 'Error!', 'jpwp' ),
