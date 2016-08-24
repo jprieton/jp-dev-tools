@@ -28,5 +28,5 @@ add_action( 'wp_enqueue_scripts', function() {
           'sent'    => __( 'Sent!', 'jpwp' ),
       )
   );
-  wp_localize_script( 'jpwp-public', 'jpwp', $localize_script );
+  wp_localize_script( 'jpwp-public', 'JPDevTools', $localize_script );
 } );
