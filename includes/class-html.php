@@ -12,9 +12,14 @@ if ( !defined( 'ABSPATH' ) ) {
 /**
  * HTML class
  *
+ * Based on Laravel Forms & HTML
+ *
  * @package Core
- * @since 0.0.1
- * @author jprieton
+ *
+ * @since   0.0.1
+ * @see     https://laravelcollective.com/docs/master/html
+ *
+ * @author  jprieton
  */
 class HTML {
 
@@ -24,10 +29,10 @@ class HTML {
    * @since 0.0.1
    *
    * @param   string              $src
-   * @param   string|array        $attributes 
+   * @param   string|array        $attributes
    *
    * @see     http://png-pixel.com/
-   * 
+   *
    * @return  string
    */
   public static function image( $src, $attributes = array() ) {
@@ -46,7 +51,7 @@ class HTML {
    * @since 0.0.1
    *
    * @param   string              $src
-   * @param   string|array        $attributes 
+   * @param   string|array        $attributes
    *
    * @return  string
    */
@@ -62,12 +67,12 @@ class HTML {
    * @since 0.0.1
    *
    * @param   string              $href
-   * @param   string|array        $attributes 
+   * @param   string|array        $attributes
    *
    * @return  string
    */
   public static function style( $href, $attributes = array() ) {
-    $defaults = array(
+    $defaults   = array(
         'href'  => $href,
         'rel'   => 'stylesheet',
         'type'  => 'text/css',
@@ -83,9 +88,9 @@ class HTML {
    *
    * @since   0.0.1
    *
-   * @param   string         $href
-   * @param   string         $text
-   * @param   array          $attributes 
+   * @param   string              $href
+   * @param   string              $text
+   * @param   array|string        $attributes
    * @return  string
    */
   public static function link( $href, $text = '', $attributes = array() ) {
@@ -100,7 +105,7 @@ class HTML {
    *
    * @since   0.0.1
    *
-   * @param   string|array        $attributes 
+   * @param   array|string        $attributes
    * @return  string
    */
   public static function _attributes( $attributes = array() ) {
@@ -121,9 +126,9 @@ class HTML {
    *
    * @since   0.0.1
    *
-   * @param   string         $tag
-   * @param   string         $text
-   * @param   array          $attributes 
+   * @param   string              $tag
+   * @param   string              $text
+   * @param   array|string        $attributes
    * @return  string
    */
   public static function _tag( $tag, $text = '', $attributes = array() ) {
@@ -138,6 +143,72 @@ class HTML {
     }
 
     return $html;
+  }
+
+  /**
+   * Generate a HTML link to an email address.
+   *
+   * @since   0.0.1
+   *
+   * @param   string              $email
+   * @param   string              $text
+   * @param   array|string        $attributes
+   * @return  string
+   */
+  public function mailto( $email, $text = null, $attributes = array() ) {
+    $email = self::email( $email );
+    $text  = $text ?: $email;
+    $email = self::obfuscate( 'mailto:' ) . $email;
+
+    $defaults   = array(
+        'href' => $email
+    );
+    $attributes = wp_parse_args( $attributes, $defaults );
+
+    return self::_tag( 'a', $text, $attributes );
+  }
+
+  /**
+   * Obfuscate an e-mail address to prevent spam-bots from sniffing it.
+   *
+   * @since   0.0.1
+   *
+   * @param   string              $email
+   * @return  string
+   */
+  public function email( $email ) {
+    return str_replace( '@', '&#64;', self::obfuscate( $email ) );
+  }
+
+  /**
+   * Obfuscate a string to prevent spam-bots from sniffing it.
+   *
+   * @since   0.0.1
+   *
+   * @param   string              $text
+   * @return  string
+   */
+  public static function obfuscate( $text ) {
+    $safe = '';
+    foreach ( str_split( $text ) as $letter ) {
+      if ( ord( $letter ) > 128 ) {
+        return $letter;
+      }
+      // To properly obfuscate the value, we will randomly convert each letter to
+      // its entity or hexadecimal representation, keeping a bot from sniffing
+      // the randomly obfuscated letters out of the string on the responses.
+      switch ( rand( 1, 3 ) ) {
+        case 1:
+          $safe .= '&#' . ord( $letter ) . ';';
+          break;
+        case 2:
+          $safe .= '&#x' . dechex( ord( $letter ) ) . ';';
+          break;
+        case 3:
+          $safe .= $letter;
+      }
+    }
+    return $safe;
   }
 
 }

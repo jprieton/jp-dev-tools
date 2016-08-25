@@ -12,27 +12,62 @@ if ( !defined( 'ABSPATH' ) ) {
 /**
  * Form class
  *
+ * Based on Laravel Forms & HTML
+ *
  * @package Core
- * @since 0.0.1
- * @author jprieton
+ *
+ * @since   0.0.1
+ * @see     https://laravelcollective.com/docs/master/html
+ *
+ * @author  jprieton
  */
 class Form {
 
   /**
-   * Retrieve a text input
+   * Open up a new HTML form.
+   *
+   * @since 0.0.1
+   *
+   * @param   array|string        $attributes
+   *
+   * @see     https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
+   *
+   * @return  string
+   */
+  public static function open( $attributes = array() ) {
+    $defaults   = array();
+    $attributes = wp_parse_args( $attributes, $defaults );
+    $attributes = HTML::_attributes( $attributes );
+
+    return sprintf( '<%s>', trim( 'form ' . $attributes ) );
+  }
+
+  /**
+   * Close the HTML form.
+   *
+   * @since 0.0.1
+   *
+   * @return  string
+   */
+  public static function close() {
+    return '</form>';
+  }
+
+  /**
+   * Create a form input field.
    *
    * @since 0.0.1
    *
    * @param   string              $name
    * @param   string              $value
-   * @param   string|array        $attributes 
+   * @param   array|string        $attributes
    * @return  string
    */
-  public static function text( $name, $value = '', $attributes = array() ) {
+  public static function input( $type, $name, $value = '', $attributes = array() ) {
     $defaults   = array(
         'name'  => $name,
         'value' => $value,
-        'type'  => 'text'
+        'type'  => $type
     );
     $attributes = wp_parse_args( $attributes, $defaults );
 
@@ -40,13 +75,30 @@ class Form {
   }
 
   /**
-   * Retrieve a textarea input
+   * Create a text input field.
+   *
+   * @since 0.0.1
+   *
+   * @param   string              $name
+   * @param   string              $value
+   * @param   array|string        $attributes
+   * @return  string
+   */
+  public static function text( $name, $value = '', $attributes = array() ) {
+    $defaults   = array();
+    $attributes = wp_parse_args( $attributes, $defaults );
+
+    return self::input( 'text', $name, $value, $attributes );
+  }
+
+  /**
+   * Create a textarea input field.
    *
    * @since 0.0.1
    *
    * @param   string              $name
    * @param   string              $text
-   * @param   string|array        $attributes 
+   * @param   array|string        $attributes
    * @return  string
    */
   public static function textarea( $name, $text = '', $attributes = array() ) {
@@ -59,75 +111,96 @@ class Form {
   }
 
   /**
-   * Retrieve a hidden input
+   * Create a hidden input field.
    *
    * @since 0.0.1
    *
    * @param   string              $name
    * @param   string              $value
-   * @param   string|array        $attributes 
+   * @param   array|string        $attributes
    * @return  string
    */
   public static function hidden( $name, $value = '', $attributes = array() ) {
-    $attributes ['type'] = 'hidden';
+    $defaults   = array();
+    $attributes = wp_parse_args( $attributes, $defaults );
 
-    return self::text( $name, $value, $attributes );
+    return self::input( 'hidden', $name, $value, $attributes );
   }
 
   /**
-   * Retrieve a email input
+   * Create a email input field.
    *
    * @since 0.0.1
    *
    * @param   string              $name
    * @param   string              $value
-   * @param   string|array        $attributes 
+   * @param   array|string        $attributes
    * @return  string
    */
   public static function email( $name, $value = '', $attributes = array() ) {
-    $attributes ['type'] = 'email';
+    $defaults   = array();
+    $attributes = wp_parse_args( $attributes, $defaults );
 
-    return self::text( $name, $value, $attributes );
+    return self::input( 'email', $name, $value, $attributes );
   }
 
   /**
-   * Retrieve a password input
+   * Create a email input field.
    *
    * @since 0.0.1
    *
    * @param   string              $name
-   * @param   string|array        $attributes 
+   * @param   string              $value
+   * @param   array|string        $attributes
+   * @return  string
+   */
+  public static function url( $name, $value = '', $attributes = array() ) {
+    $defaults   = array();
+    $attributes = wp_parse_args( $attributes, $defaults );
+
+    return self::input( 'url', $name, $value, $attributes );
+  }
+
+  /**
+   * Create a password input field.
+   *
+   * @since 0.0.1
+   *
+   * @param   string              $name
+   * @param   array|string        $attributes
    * @return  string
    */
   public static function password( $name, $attributes = array() ) {
-    $attributes ['type'] = 'password';
+    $defaults   = array();
+    $attributes = wp_parse_args( $attributes, $defaults );
 
-    return self::text( $name, '', $attributes );
+    return self::input( 'password', $name, null, $attributes );
   }
 
   /**
-   * Retrieve a file input
+   * Create a file input field.
    *
    * @since 0.0.1
    *
    * @param   string              $name
-   * @param   string|array        $attributes 
+   * @param   array|string        $attributes
    * @return  string
    */
   public static function file( $name, $attributes = array() ) {
-    $attributes ['type'] = 'file';
+    $defaults   = array();
+    $attributes = wp_parse_args( $attributes, $defaults );
 
-    return self::text( $name, '', $attributes );
+    return self::input( 'file', $name, null, $attributes );
   }
 
   /**
-   * Retrieve a label element
+   * Create a label element field.
    *
    * @since 0.0.1
    *
    * @param   string              $name
    * @param   string              $text
-   * @param   string|array        $attributes 
+   * @param   array|string        $attributes
    * @return  string
    */
   public static function label( $name, $text, $attributes = array() ) {
@@ -137,30 +210,30 @@ class Form {
   }
 
   /**
-   * Retrieve a button
+   * Create a button
    *
    * @since 0.0.1
    *
    * @param   string              $text
-   * @param   string|array        $attributes 
+   * @param   array|string        $attributes
    * @return  string
    */
   public static function button( $text, $attributes = array() ) {
     $defaults   = array(
         'type' => 'button'
     );
-    $attributes = wp_parse_args( $defaults, $attributes );
+    $attributes = wp_parse_args( $attributes, $defaults );
 
     return HTML::_tag( 'button', $text, $attributes );
   }
 
   /**
-   * Retrieve a submit button
+   * Create a submit button
    *
    * @since 0.0.1
    *
    * @param   string              $text
-   * @param   string|array        $attributes 
+   * @param   array|string        $attributes
    * @return  string
    */
   public static function submit( $text = '', $attributes = array() ) {
@@ -174,20 +247,17 @@ class Form {
   }
 
   /**
-   * Retrieve a checkbox input
+   * Create a checkbox input field.
    *
    * @since 0.0.1
    *
    * @param   string              $name
    * @param   string              $value
-   * @param   string|array        $attributes 
+   * @param   array|string        $attributes
    * @return  string
    */
   public static function checkbox( $name, $value, $attributes = array() ) {
     $defaults   = array(
-        'type'    => 'checkbox',
-        'name'    => $name,
-        'value'   => $value,
         'checked' => is_bool( $attributes ) ? $attributes : false
     );
     $attributes = wp_parse_args( $attributes, $defaults );
@@ -198,24 +268,21 @@ class Form {
       unset( $attributes['checked'] );
     }
 
-    return HTML::_tag( 'input', null, $attributes );
+    return self::input( 'checkbox', $name, $value, $attributes );
   }
 
   /**
-   * Retrieve a radio input
+   * Create a radio input field.
    *
    * @since 0.0.1
    *
    * @param   string              $name
    * @param   string              $value
-   * @param   string|array        $attributes 
+   * @param   array|string        $attributes
    * @return  string
    */
   public static function radio( $name, $value, $attributes = array() ) {
     $defaults   = array(
-        'type'    => 'radio',
-        'name'    => $name,
-        'value'   => $value,
         'checked' => is_bool( $attributes ) ? $attributes : false
     );
     $attributes = wp_parse_args( $attributes, $defaults );
@@ -226,14 +293,14 @@ class Form {
       unset( $attributes['checked'] );
     }
 
-    return HTML::_tag( 'input', null, $attributes );
+    return self::input( 'radio', $name, $value, $attributes );
   }
 
   /**
-   * Retrieve nonce hidden field and action hidden field for forms.
-   * 
+   * Create a nonce hidden field and action hidden field for forms.
+   *
    * @since 0.0.1
-   * 
+   *
    * @param   string              $action
    * @param   string              $name
    * @param   bool                $referer
@@ -241,7 +308,7 @@ class Form {
    */
   public static function nonce( $action, $name = '_wpnonce', $referer = true ) {
     $field = self::hidden( 'action', $action );
-    $field.= wp_nonce_field( $action, $name, $referer, false );
+    $field .= wp_nonce_field( $action, $name, $referer, false );
 
     return $field;
   }

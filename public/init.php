@@ -7,6 +7,8 @@ if ( !defined( 'ABSPATH' ) ) {
   die( 'Direct access is forbidden.' );
 }
 
+require_once plugin_dir_path( __FILE__ ) . 'class-breadcrumb.php';
+
 add_action( 'wp_enqueue_scripts', function() {
 
   /**
