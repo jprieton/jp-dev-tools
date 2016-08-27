@@ -7,8 +7,8 @@ if ( !defined( 'ABSPATH' ) ) {
   die( 'Direct access is forbidden.' );
 }
 
-require_once __DIR__ . '/class-html.php';
-require_once __DIR__ . '/class-form.php';
+require_once __DIR__ . '/core/class-html.php';
+require_once __DIR__ . '/core/class-form.php';
 
 add_action( 'init', function() {
 

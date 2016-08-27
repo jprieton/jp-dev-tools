@@ -1,6 +1,6 @@
 <?php
 
-namespace JPDevTools;
+namespace JPDevTools\Core;
 
 /**
  * If this file is called directly, abort.
@@ -109,12 +109,16 @@ class HTML {
    * @return  string
    */
   public static function _attributes( $attributes = array() ) {
+    $attributes  = wp_parse_args( $attributes );
     $_attributes = array();
+
     foreach ( (array) $attributes as $key => $value ) {
       if ( is_numeric( $key ) ) {
-        $_attributes[] = esc_attr( trim( $value ) );
-      } else {
-        $_attributes[] = trim( $key ) . '="' . trim( esc_attr( $value ) ) . '"';
+        $key = $value;
+      }
+
+      if ( !is_null( $value ) ) {
+        $_attributes[] = sprintf( '%s="%s"', trim( esc_attr( $key ) ), trim( esc_attr( $value ) ) );
       }
     }
 
@@ -134,8 +138,11 @@ class HTML {
   public static function _tag( $tag, $text = '', $attributes = array() ) {
     $self_closing = array( 'area', 'base', 'basefont', 'br', 'hr', 'input', 'img', 'link', 'meta' );
 
-    $attributes = self::_attributes( $attributes );
+    $attributes = wp_parse_args( $attributes, self::_parse_shorthand( $tag ) );
+    $tag        = $attributes['tag'];
+    unset( $attributes['tag'] );
 
+    $attributes = self::_attributes( $attributes );
     if ( in_array( $tag, $self_closing ) ) {
       $html = sprintf( '<%s />', trim( $tag . ' ' . $attributes ) );
     } else {
@@ -157,7 +164,7 @@ class HTML {
    */
   public function mailto( $email, $text = null, $attributes = array() ) {
     $email = self::email( $email );
-    $text  = $text ?: $email;
+    $text  = $text ? : $email;
     $email = self::obfuscate( 'mailto:' ) . $email;
 
     $defaults   = array(
@@ -197,7 +204,7 @@ class HTML {
       // To properly obfuscate the value, we will randomly convert each letter to
       // its entity or hexadecimal representation, keeping a bot from sniffing
       // the randomly obfuscated letters out of the string on the responses.
-      switch ( rand( 1, 3 ) ) {
+      switch (rand( 1, 3 )) {
         case 1:
           $safe .= '&#' . ord( $letter ) . ';';
           break;
@@ -209,6 +216,33 @@ class HTML {
       }
     }
     return $safe;
+  }
+
+  /**
+   * Parse a shorthand tag.
+   *
+   * @since   0.0.1
+   *
+   * @param   string              $text
+   * @return  array
+   */
+  public static function _parse_shorthand( $shorthand ) {
+    $items = str_replace( array( '.', '#' ), array( ' .', ' #' ), $shorthand );
+    $items = explode( ' ', $items );
+
+    $tag   = $items[0];
+    $id    = null;
+    $class = null;
+
+    foreach ( $items as $item ) {
+      if ( strpos( $item, '#' ) !== false ) {
+        $id = trim( str_replace( '#', '', $item ) );
+      } elseif ( strpos( $item, '.' ) !== false ) {
+        $class .= ' ' . trim( str_replace( '.', '', $item ) );
+      }
+    }
+
+    return compact( 'tag', 'id', 'class' );
   }
 
 }

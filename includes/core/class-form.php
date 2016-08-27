@@ -1,6 +1,6 @@
 <?php
 
-namespace JPDevTools;
+namespace JPDevTools\Core;
 
 /**
  * If this file is called directly, abort.
