@@ -2,7 +2,7 @@
 
 namespace JPDevTools\Vendor\Bootstrap;
 
-use JPDevTools\Core\Html;
+use JPDevTools\Helpers\Html_Helper as Html;
 use JPDevTools\Vendor\Bootstrap\Misc;
 
 /**
@@ -20,7 +20,7 @@ if ( !defined( 'ABSPATH' ) ) {
  *
  * @since          0.0.1
  * @see            http://getbootstrap.com/javascript/#modals
- * 
+ *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
 class Modal {
@@ -84,6 +84,7 @@ class Modal {
    *
    * @since   0.0.1
    *
+   * @param   bool                $echo
    * @return  string
    */
   public function render( $echo = false ) {
@@ -97,6 +98,10 @@ class Modal {
       $content .= Html::tag( 'div.modal-content', $modal_content );
       $content .= Html::close_tag( 'div' );
       $content .= Html::close_tag( 'div' );
+    }
+
+    if ( $echo ) {
+      echo $content;
     }
 
     return $content;

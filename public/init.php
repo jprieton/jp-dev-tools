@@ -8,7 +8,11 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 require_once plugin_dir_path( __FILE__ ) . 'class-breadcrumb.php';
+
+require_once plugin_dir_path( __DIR__ ) . 'includes/vendor/bootstrap/class-misc.php';
 require_once plugin_dir_path( __DIR__ ) . 'includes/vendor/bootstrap/class-alert.php';
+require_once plugin_dir_path( __DIR__ ) . 'includes/vendor/bootstrap/class-modal.php';
+require_once plugin_dir_path( __DIR__ ) . 'includes/vendor/bootstrap/class-input-group.php';
 
 add_action( 'wp_enqueue_scripts', function() {
 

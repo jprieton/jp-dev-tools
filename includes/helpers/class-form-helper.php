@@ -1,6 +1,8 @@
 <?php
 
-namespace JPDevTools\Core;
+namespace JPDevTools\Helpers;
+
+use JPDevTools\Helpers\Html_Helper as Html;
 
 /**
  * If this file is called directly, abort.
@@ -21,7 +23,7 @@ if ( !defined( 'ABSPATH' ) ) {
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
-class Form extends Singleton {
+class Form {
 
   /**
    * Open up a new HTML form.

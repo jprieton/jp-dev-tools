@@ -7,8 +7,17 @@ if ( !defined( 'ABSPATH' ) ) {
   die( 'Direct access is forbidden.' );
 }
 
-require_once __DIR__ . '/core/class-html.php';
-require_once __DIR__ . '/core/class-form.php';
+/**
+ * Abstract classes
+ */
+require_once __DIR__ . '/abstracts/class-singleton.php';
+
+/**
+ * Core classes
+ */
+require_once __DIR__ . '/helpers/class-array-helper.php';
+require_once __DIR__ . '/helpers/class-html-helper.php';
+require_once __DIR__ . '/helpers/class-form-helper.php';
 
 add_action( 'init', function() {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace JPDevTools\Core;
+namespace JPDevTools\Helpers;
 
 /**
  * If this file is called directly, abort.
@@ -10,7 +10,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 /**
- * HTML class
+ * HtmlHelper class
  *
  * Based on Laravel Forms & HTML helper and Yii Framework BaseHtml helper
  *
@@ -22,7 +22,7 @@ if ( !defined( 'ABSPATH' ) ) {
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
-class Html {
+class Html_Helper {
 
   /**
    * @see http://w3c.github.io/html/syntax.html#void-elements
@@ -176,7 +176,7 @@ class Html {
 
     $attributes = self::attributes( $attributes );
 
-    if ( in_array( $tag, self::void ) ) {
+    if ( in_array( $tag, self::$void ) ) {
       $html = sprintf( '<%s />', trim( $tag . ' ' . $attributes ) );
     } else {
       $html = sprintf( '<%s>%s</%s>', trim( $tag . ' ' . $attributes ), $text, $tag );
@@ -197,7 +197,7 @@ class Html {
    */
   public static function mailto( $email, $text = null, $attributes = array() ) {
     $email = self::email( $email );
-    $text  = $text ? : $email;
+    $text  = $text ?: $email;
     $email = self::obfuscate( 'mailto:' ) . $email;
 
     $defaults   = array(
@@ -237,7 +237,7 @@ class Html {
       // To properly obfuscate the value, we will randomly convert each letter to
       // its entity or hexadecimal representation, keeping a bot from sniffing
       // the randomly obfuscated letters out of the string on the responses.
-      switch (rand( 1, 3 )) {
+      switch ( rand( 1, 3 ) ) {
         case 1:
           $safe .= '&#' . ord( $letter ) . ';';
           break;
@@ -260,15 +260,13 @@ class Html {
    * @param   string              $class
    */
   public static function add_css_class( &$attributes = array(), $class ) {
+
     if ( !isset( $attributes['class'] ) ) {
       $attributes['class'] = $class;
     }
-
-    $classes = explode( ' ', $attributes['class'] );
-    if ( !in_array( $class, $classes ) ) {
-      $classes[] = $class;
-    }
-
+    $current             = explode( ' ', $attributes['class'] );
+    $class               = explode( ' ', $class );
+    $classes             = array_unique( array_merge( $current, $class ) );
     $attributes['class'] = trim( implode( ' ', $classes ) );
   }
 
@@ -282,7 +280,12 @@ class Html {
    * @return  string
    */
   public static function open_tag( $tag, $attributes = array() ) {
+
     $attributes = wp_parse_args( $attributes );
+    self::parse_shorthand( $tag, $attributes );
+    $attributes = self::attributes( $attributes );
+
+    return sprintf( '<%s>', trim( $tag . ' ' . $attributes ) );
   }
 
   /**
@@ -294,6 +297,7 @@ class Html {
    * @return  string
    */
   public static function close_tag( $tag ) {
+
     return sprintf( '</$s>', trim( esc_attr( $tag ) ) );
   }
 
@@ -305,16 +309,16 @@ class Html {
    * @param   string              $text
    * @return  array
    */
-  private function parse_shorthand( &$tag, &$attributes = array() ) {
+  public static function parse_shorthand( &$tag, &$attributes = array() ) {
     $matches = array();
     preg_match( '(#|\.)', $tag, $matches );
 
     if ( empty( $matches ) ) {
-      // isn't shorthand, do nothing 
+      // isn't shorthand, do nothing
       return;
     }
 
-    $items = str_replace( array( '.', '#' ), array( ' .', ' #' ), $shorthand );
+    $items = str_replace( array( '.', '#' ), array( ' .', ' #' ), $tag );
     $items = explode( ' ', $items );
 
     $tag   = $items[0];
@@ -336,6 +340,40 @@ class Html {
     if ( $class ) {
       self::add_css_class( $attributes, $class );
     }
+  }
+
+  public static function ul( $items, $attributes = array() ) {
+    $html = '';
+
+    if ( !is_array( $items ) || count( $items ) == 0 ) {
+      return $html;
+    }
+
+    foreach ( $items as $key => $value ) {
+      if ( is_array( $value ) ) {
+        $value = $key . self::ul( $value );
+      }
+      $html .= self::tag( 'li', $value );
+    }
+
+    return self::tag( 'ul', $html, $attributes );
+  }
+
+  public static function ol( $items, $attributes = array() ) {
+    $html = '';
+
+    if ( count( $items ) == 0 ) {
+      return $html;
+    }
+
+    foreach ( $items as $key => $value ) {
+      if ( is_array( $value ) ) {
+        $value = $key . self::ul( $value );
+      }
+      $html .= self::tag( 'li', $value );
+    }
+
+    return self::tag( 'ul', $html, $attributes );
   }
 
 }

@@ -23,5 +23,14 @@ if ( !defined( 'ABSPATH' ) ) {
  * @author         Javier Prieto <jprieton@gmail.com>
  */
 class Breadcrumb {
-  
+
+  public static function render( $echo = false ) {
+
+    if ( $echo ) {
+      echo $content;
+    }
+
+    return $content;
+  }
+
 }

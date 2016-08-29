@@ -2,7 +2,7 @@
 
 namespace JPDevTools\Vendor\Bootstrap;
 
-use JPDevTools\Core\Html;
+use JPDevTools\Helpers\Html_Helper as Html;
 use JPDevTools\Vendor\Bootstrap\Misc;
 
 /**
@@ -40,6 +40,7 @@ class Alert {
         'dismiss' => true,
         'role'    => 'alert',
         'class'   => '',
+        'icon'    => '',
     );
 
     $attributes = wp_parse_args( $attributes, $defaults );
