@@ -2,7 +2,8 @@
 
 namespace JPDevTools\Vendor\Bootstrap;
 
-use JPDevTools\Core\HTML;
+use JPDevTools\Core\Html;
+use JPDevTools\Vendor\Bootstrap\Misc;
 
 /**
  * If this file is called directly, abort.
@@ -14,12 +15,13 @@ if ( !defined( 'ABSPATH' ) ) {
 /**
  * Alert class
  *
- * @package Vendor\Bootstrap
+ * @package        Vendor
+ * @subpackage     Bootstrap
  *
- * @since   0.0.1
- * @see     http://getbootstrap.com/components/#alerts
+ * @since          0.0.1
+ * @see            http://getbootstrap.com/components/#alerts
  *
- * @author  jprieton
+ * @author         Javier Prieto <jprieton@gmail.com>
  */
 class Alert {
 
@@ -35,9 +37,9 @@ class Alert {
    */
   public static function _alert( $content, $attributes = array() ) {
     $defaults = array(
-        'dimissible' => true,
-        'role'       => 'alert',
-        'class'      => '',
+        'dismiss' => true,
+        'role'    => 'alert',
+        'class'   => '',
     );
 
     $attributes = wp_parse_args( $attributes, $defaults );
@@ -45,23 +47,20 @@ class Alert {
     // Alert icon span
     $icon = '';
     if ( $attributes['icon'] ) {
-      $icon = HTML::_tag( 'span', null, array( 'aria-hidden' => 'true', 'class' => $attributes['icon'] ) );
+      $icon = Html::tag( 'span', null, array( 'aria-hidden' => 'true', 'class' => $attributes['icon'] ) );
     }
     unset( $attributes['icon'] );
 
     // Dimissible button
-    $dimissible = '';
-    if ( $attributes['dimissible'] ) {
-      $_span      = HTML::_tag( 'span', '&times;', 'aria-hidden=true' );
-      $dimissible = HTML::_tag( 'button.close', $span, array( 'type' => 'button', 'data-dismiss' => 'alert', 'aria-label' => __( 'Close', 'jpwp' ) ) );
-
-      $attributes['class'] .= ' alert-dismissible';
+    $dismiss = '';
+    if ( $attributes['dismiss'] ) {
+      $dismiss = Misc::dismiss_button( 'modal' );
     }
-    unset( $attributes['dimissible'] );
+    unset( $attributes['dismiss'] );
 
     $attributes['class'] .= ' alert';
 
-    return HTML::_tag( 'div', $icon . $dimissible . $content, $attributes );
+    return Html::tag( 'div', $icon . $dismiss . $content, $attributes );
   }
 
   /**
