@@ -2,7 +2,7 @@
 
 namespace JPDevTools\Vendor\Bootstrap;
 
-use JPDevTools\Core\HTML;
+use JPDevTools\Core\Html;
 
 /**
  * If this file is called directly, abort.
@@ -14,12 +14,13 @@ if ( !defined( 'ABSPATH' ) ) {
 /**
  * Breadcrumb class
  *
- * @package Vendor\Bootstrap
+ * @package        Vendor
+ * @subpackage     Bootstrap
  *
- * @since   0.0.1
- * @see     http://getbootstrap.com/components/#breadcrumbs
+ * @since          0.0.1
+ * @see            http://getbootstrap.com/components/#breadcrumbs
  *
- * @author  jprieton
+ * @author         Javier Prieto <jprieton@gmail.com>
  */
 class Breadcrumb {
   

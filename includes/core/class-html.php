@@ -12,16 +12,38 @@ if ( !defined( 'ABSPATH' ) ) {
 /**
  * HTML class
  *
- * Based on Laravel Forms & HTML
+ * Based on Laravel Forms & HTML helper and Yii Framework BaseHtml helper
  *
  * @package Core
  *
  * @since   0.0.1
  * @see     https://laravelcollective.com/docs/master/html
+ * @see     http://www.yiiframework.com/doc-2.0/yii-helpers-basehtml.html
  *
- * @author  jprieton
+ * @author         Javier Prieto <jprieton@gmail.com>
  */
-class HTML {
+class Html {
+
+  /**
+   * @see http://w3c.github.io/html/syntax.html#void-elements
+   *
+   * @var array List of void elements.
+   */
+  public static $void = array(
+      'area', 'base', 'br', 'col', 'embed', 'hr',
+      'img', 'input', 'link', 'menuitem', 'meta', 'param',
+      'source', 'track', 'wbr'
+  );
+
+  /**
+   * @var array The preferred order of attributes in a tag.
+   */
+  public static $attribute_order = array(
+      'type', 'id', 'class', 'name', 'value', 'href',
+      'src', 'action', 'method', 'selected', 'checked', 'readonly',
+      'disabled', 'multiple', 'size', 'maxlength', 'width', 'height',
+      'rows', 'cols', 'alt', 'title', 'rel', 'media',
+  );
 
   /**
    * Retrieve an HTML img element
@@ -37,12 +59,11 @@ class HTML {
    */
   public static function image( $src, $attributes = array() ) {
     if ( 'pixel' == $src ) {
-      $src        = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
-      $attributes = array_merge( array( 'alt' => 'Pixel' ), (array) $attributes );
+      $src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
     }
     $attributes = wp_parse_args( $attributes, compact( 'src' ) );
 
-    return self::_tag( 'img', null, $attributes );
+    return self::tag( 'img', null, $attributes );
   }
 
   /**
@@ -58,7 +79,7 @@ class HTML {
   public static function script( $src, $attributes = array() ) {
     $attributes = wp_parse_args( $attributes, compact( 'src' ) );
 
-    return self::_tag( 'script', null, $attributes );
+    return self::tag( 'script', null, $attributes );
   }
 
   /**
@@ -80,7 +101,7 @@ class HTML {
     );
     $attributes = wp_parse_args( $attributes, $defaults );
 
-    return self::_tag( 'link', null, $attributes );
+    return self::tag( 'link', null, $attributes );
   }
 
   /**
@@ -93,11 +114,11 @@ class HTML {
    * @param   array|string        $attributes
    * @return  string
    */
-  public static function link( $href, $text = '', $attributes = array() ) {
+  public static function a( $href, $text = '', $attributes = array() ) {
     $text                = is_null( $text ) ? esc_url( $href ) : trim( $text );
     $attributes ['href'] = $href;
 
-    return self::_tag( 'a', $text, $attributes );
+    return self::tag( 'a', $text, $attributes );
   }
 
   /**
@@ -108,12 +129,27 @@ class HTML {
    * @param   array|string        $attributes
    * @return  string
    */
-  public static function _attributes( $attributes = array() ) {
-    $attributes  = wp_parse_args( $attributes );
+  public static function attributes( $attributes = array() ) {
+    $attributes = wp_parse_args( $attributes );
+
+    if ( count( $attributes ) > 1 ) {
+      $sorted = [ ];
+      foreach ( static::$attribute_order as $name ) {
+        if ( isset( $attributes[$name] ) ) {
+          $sorted[$name] = $attributes[$name];
+        }
+      }
+      $attributes = array_merge( $sorted, $attributes );
+    }
+
     $_attributes = array();
 
     foreach ( (array) $attributes as $key => $value ) {
       if ( is_numeric( $key ) ) {
+        $key = $value;
+      }
+
+      if ( is_bool( $value ) && $value ) {
         $key = $value;
       }
 
@@ -126,7 +162,7 @@ class HTML {
   }
 
   /**
-   * Retrieve a HTML tag
+   * Retrieve a HTML complete tag
    *
    * @since   0.0.1
    *
@@ -135,15 +171,12 @@ class HTML {
    * @param   array|string        $attributes
    * @return  string
    */
-  public static function _tag( $tag, $text = '', $attributes = array() ) {
-    $self_closing = array( 'area', 'base', 'basefont', 'br', 'hr', 'input', 'img', 'link', 'meta' );
+  public static function tag( $tag, $text = '', $attributes = array() ) {
+    self::parse_shorthand( $tag, $attributes );
 
-    $attributes = wp_parse_args( $attributes, self::_parse_shorthand( $tag ) );
-    $tag        = $attributes['tag'];
-    unset( $attributes['tag'] );
+    $attributes = self::attributes( $attributes );
 
-    $attributes = self::_attributes( $attributes );
-    if ( in_array( $tag, $self_closing ) ) {
+    if ( in_array( $tag, self::void ) ) {
       $html = sprintf( '<%s />', trim( $tag . ' ' . $attributes ) );
     } else {
       $html = sprintf( '<%s>%s</%s>', trim( $tag . ' ' . $attributes ), $text, $tag );
@@ -162,7 +195,7 @@ class HTML {
    * @param   array|string        $attributes
    * @return  string
    */
-  public function mailto( $email, $text = null, $attributes = array() ) {
+  public static function mailto( $email, $text = null, $attributes = array() ) {
     $email = self::email( $email );
     $text  = $text ? : $email;
     $email = self::obfuscate( 'mailto:' ) . $email;
@@ -172,7 +205,7 @@ class HTML {
     );
     $attributes = wp_parse_args( $attributes, $defaults );
 
-    return self::_tag( 'a', $text, $attributes );
+    return self::tag( 'a', $text, $attributes );
   }
 
   /**
@@ -183,7 +216,7 @@ class HTML {
    * @param   string              $email
    * @return  string
    */
-  public function email( $email ) {
+  public static function email( $email ) {
     return str_replace( '@', '&#64;', self::obfuscate( $email ) );
   }
 
@@ -219,6 +252,52 @@ class HTML {
   }
 
   /**
+   * Check if exists a class in atts, if not then add to string.
+   *
+   * @since   0.0.1
+   *
+   * @param   array               $attributes
+   * @param   string              $class
+   */
+  public static function add_css_class( &$attributes = array(), $class ) {
+    if ( !isset( $attributes['class'] ) ) {
+      $attributes['class'] = $class;
+    }
+
+    $classes = explode( ' ', $attributes['class'] );
+    if ( !in_array( $class, $classes ) ) {
+      $classes[] = $class;
+    }
+
+    $attributes['class'] = trim( implode( ' ', $classes ) );
+  }
+
+  /**
+   * Retrieve a HTML open tag
+   *
+   * @since   0.0.1
+   *
+   * @param   string              $tag
+   * @param   array|string        $attributes
+   * @return  string
+   */
+  public static function open_tag( $tag, $attributes = array() ) {
+    $attributes = wp_parse_args( $attributes );
+  }
+
+  /**
+   * Retrieve a HTML close tag
+   *
+   * @since   0.0.1
+   *
+   * @param   string              $tag
+   * @return  string
+   */
+  public static function close_tag( $tag ) {
+    return sprintf( '</$s>', trim( esc_attr( $tag ) ) );
+  }
+
+  /**
    * Parse a shorthand tag.
    *
    * @since   0.0.1
@@ -226,7 +305,15 @@ class HTML {
    * @param   string              $text
    * @return  array
    */
-  public static function _parse_shorthand( $shorthand ) {
+  private function parse_shorthand( &$tag, &$attributes = array() ) {
+    $matches = array();
+    preg_match( '(#|\.)', $tag, $matches );
+
+    if ( empty( $matches ) ) {
+      // isn't shorthand, do nothing 
+      return;
+    }
+
     $items = str_replace( array( '.', '#' ), array( ' .', ' #' ), $shorthand );
     $items = explode( ' ', $items );
 
@@ -242,7 +329,13 @@ class HTML {
       }
     }
 
-    return compact( 'tag', 'id', 'class' );
+    if ( $id && empty( $attributes['id'] ) ) {
+      $attributes['id'] = $id;
+    }
+
+    if ( $class ) {
+      self::add_css_class( $attributes, $class );
+    }
   }
 
 }

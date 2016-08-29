@@ -19,9 +19,9 @@ if ( !defined( 'ABSPATH' ) ) {
  * @since   0.0.1
  * @see     https://laravelcollective.com/docs/master/html
  *
- * @author  jprieton
+ * @author         Javier Prieto <jprieton@gmail.com>
  */
-class Form {
+class Form extends Singleton {
 
   /**
    * Open up a new HTML form.
@@ -35,11 +35,7 @@ class Form {
    * @return  string
    */
   public static function open( $attributes = array() ) {
-    $defaults   = array();
-    $attributes = wp_parse_args( $attributes, $defaults );
-    $attributes = HTML::_attributes( $attributes );
-
-    return sprintf( '<%s>', trim( 'form ' . $attributes ) );
+    return Html::open_tag( 'form', $attributes );
   }
 
   /**
@@ -71,7 +67,7 @@ class Form {
     );
     $attributes = wp_parse_args( $attributes, $defaults );
 
-    return HTML::_tag( 'input', null, $attributes );
+    return Html::tag( 'input', null, $attributes );
   }
 
   /**
@@ -85,9 +81,6 @@ class Form {
    * @return  string
    */
   public static function text( $name, $value = '', $attributes = array() ) {
-    $defaults   = array();
-    $attributes = wp_parse_args( $attributes, $defaults );
-
     return self::input( 'text', $name, $value, $attributes );
   }
 
@@ -121,9 +114,6 @@ class Form {
    * @return  string
    */
   public static function hidden( $name, $value = '', $attributes = array() ) {
-    $defaults   = array();
-    $attributes = wp_parse_args( $attributes, $defaults );
-
     return self::input( 'hidden', $name, $value, $attributes );
   }
 
@@ -138,9 +128,6 @@ class Form {
    * @return  string
    */
   public static function email( $name, $value = '', $attributes = array() ) {
-    $defaults   = array();
-    $attributes = wp_parse_args( $attributes, $defaults );
-
     return self::input( 'email', $name, $value, $attributes );
   }
 
@@ -155,9 +142,6 @@ class Form {
    * @return  string
    */
   public static function url( $name, $value = '', $attributes = array() ) {
-    $defaults   = array();
-    $attributes = wp_parse_args( $attributes, $defaults );
-
     return self::input( 'url', $name, $value, $attributes );
   }
 
@@ -171,9 +155,6 @@ class Form {
    * @return  string
    */
   public static function password( $name, $attributes = array() ) {
-    $defaults   = array();
-    $attributes = wp_parse_args( $attributes, $defaults );
-
     return self::input( 'password', $name, null, $attributes );
   }
 
@@ -187,9 +168,6 @@ class Form {
    * @return  string
    */
   public static function file( $name, $attributes = array() ) {
-    $defaults   = array();
-    $attributes = wp_parse_args( $attributes, $defaults );
-
     return self::input( 'file', $name, null, $attributes );
   }
 
@@ -204,9 +182,8 @@ class Form {
    * @return  string
    */
   public static function label( $name, $text, $attributes = array() ) {
-    $attributes ['for'] = $name;
-
-    return HTML::_tag( 'label', $text, $attributes );
+    $attributes = wp_parse_args( $attributes, array( 'for' => $name ) );
+    return Html::tag( 'label', $text, $attributes );
   }
 
   /**
@@ -224,7 +201,7 @@ class Form {
     );
     $attributes = wp_parse_args( $attributes, $defaults );
 
-    return HTML::_tag( 'button', $text, $attributes );
+    return Html::tag( 'button', $text, $attributes );
   }
 
   /**
