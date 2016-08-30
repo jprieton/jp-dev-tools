@@ -13,7 +13,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Modal class
+ * Bootstrap modal class
  *
  * @package        Vendor
  * @subpackage     Bootstrap
@@ -25,9 +25,40 @@ if ( !defined( 'ABSPATH' ) ) {
  */
 class Modal {
 
+  /**
+   * Modal attributes
+   *
+   * @since   0.0.1
+   *
+   * @var array
+   */
   private $attributes;
+
+  /**
+   * Modal header text
+   *
+   * @since   0.0.1
+   *
+   * @var string
+   */
   private $header;
+
+  /**
+   * Modal footer text
+   *
+   * @since   0.0.1
+   *
+   * @var string
+   */
   private $footer;
+
+  /**
+   * Modal body text
+   *
+   * @since   0.0.1
+   *
+   * @var string
+   */
   private $body;
 
   /**
@@ -38,10 +69,19 @@ class Modal {
    * @param   array|string        $attributes
    */
   public function __construct( $attributes = array() ) {
+    static $id;
+
+    if ( is_null( $id ) ) {
+      $id = 1;
+    } else {
+      $id++;
+    }
+
     $defaults         = array(
         'class'    => 'modal',
         'tabindex' => '-1',
         'role'     => 'dialog',
+        'id'       => "modal-{$id}",
     );
     $this->attributes = wp_parse_args( $attributes, $defaults );
   }
@@ -137,9 +177,8 @@ class Modal {
     if ( empty( $this->footer ) ) {
       return '';
     }
-    $footer = Html::tag( 'div.modal-footer', $this->footer );
-
-    return $footer;
+    
+    return Html::tag( 'div.modal-footer', $this->footer );
   }
 
   /**
@@ -155,9 +194,50 @@ class Modal {
     }
 
     $body = apply_filters( 'the_content', $this->body );
-    $body = Html::tag( 'div.modal-body', $body );
 
-    return $body;
+    return Html::tag( 'div.modal-body', $body );
+  }
+
+  /**
+   * Retrieve a Bootstrap modal button trigger
+   *
+   * @since   0.0.1
+   *
+   * @param   string              $src
+   * @param   string|array        $attributes
+   * 
+   * @return  string
+   */
+  public function get_button_trigger( $text, $attributes = array() ) {
+    $defaults   = array(
+        'class'       => 'btn btn-default',
+        'data-toogle' => 'modal',
+        'data-target' => $this->attributes['id'],
+    );
+    $attributes = wp_parse_args( $attributes, $defaults );
+
+    return Html::tag( 'button', $text, $attributes );
+  }
+
+  /**
+   * Retrieve a Bootstrap modal button trigger
+   *
+   * @since   0.0.1
+   *
+   * @param   string              $src
+   * @param   string|array        $attributes
+   * 
+   * @return  string
+   */
+  public function get_link_trigger( $text, $attributes = array() ) {
+    $defaults   = array(
+        'href'        => '#',
+        'data-toogle' => 'modal',
+        'data-target' => $this->attributes['id'],
+    );
+    $attributes = wp_parse_args( $attributes, $defaults );
+
+    return Html::tag( 'a', $text, $attributes );
   }
 
 }
