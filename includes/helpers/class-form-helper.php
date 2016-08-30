@@ -216,9 +216,28 @@ class Form {
    * @return  string
    */
   public static function submit( $text = '', $attributes = array() ) {
-    $text       = empty( $text ) ? __( 'Send', 'jpwp' ) : $text;
+    $text       = empty( $text ) ? __( 'Submit', 'jpwp' ) : $text;
     $defaults   = array(
         'type' => 'submit'
+    );
+    $attributes = wp_parse_args( $attributes, $defaults );
+
+    return self::button( $text, $attributes );
+  }
+
+  /**
+   * Create a reset button
+   *
+   * @since 0.0.1
+   *
+   * @param   string              $text
+   * @param   array|string        $attributes
+   * @return  string
+   */
+  public static function reset( $text = '', $attributes = array() ) {
+    $text       = empty( $text ) ? __( 'Reset', 'jpwp' ) : $text;
+    $defaults   = array(
+        'type' => 'reset'
     );
     $attributes = wp_parse_args( $attributes, $defaults );
 
@@ -276,7 +295,7 @@ class Form {
   }
 
   /**
-   * Create a nonce hidden field and action hidden field for forms.
+   * Create a action hidden field and nonce hidden field for forms.
    *
    * @since 0.0.1
    *
@@ -285,7 +304,7 @@ class Form {
    * @param   bool                $referer
    * @return  string
    */
-  public static function nonce( $action, $name = '_wpnonce', $referer = true ) {
+  public static function action_nonce( $action, $name = '_wpnonce', $referer = true ) {
     $field = self::hidden( 'action', $action );
     $field .= wp_nonce_field( $action, $name, $referer, false );
 

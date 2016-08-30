@@ -2,7 +2,7 @@
 
 namespace JPDevTools\Vendor\Bootstrap;
 
-use JPDevTools\Core\Html;
+use JPDevTools\Helpers\Html_Helper as Html;
 use JPDevTools\Core\Form;
 
 /**

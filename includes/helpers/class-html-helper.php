@@ -57,7 +57,7 @@ class Html_Helper {
    *
    * @return  string
    */
-  public static function image( $src, $attributes = array() ) {
+  public static function img( $src, $attributes = array() ) {
     if ( 'pixel' == $src ) {
       $src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
     }
@@ -92,7 +92,7 @@ class Html_Helper {
    *
    * @return  string
    */
-  public static function style( $href, $attributes = array() ) {
+  public static function link_css( $href, $attributes = array() ) {
     $defaults   = array(
         'href'  => $href,
         'rel'   => 'stylesheet',
@@ -102,6 +102,23 @@ class Html_Helper {
     $attributes = wp_parse_args( $attributes, $defaults );
 
     return self::tag( 'link', null, $attributes );
+  }
+
+  /**
+   * Retrieve an HTML meta element
+   *
+   * @since 0.0.1
+   *
+   * @param   string              $href
+   * @param   string|array        $attributes
+   *
+   * @return  string
+   */
+  public static function meta( $name, $content, $attributes = array() ) {
+    $defaults   = compact( 'name', 'content' );
+    $attributes = wp_parse_args( $attributes, $defaults );
+
+    return self::tag( 'meta', null, $attributes );
   }
 
   /**
@@ -197,7 +214,7 @@ class Html_Helper {
    */
   public static function mailto( $email, $text = null, $attributes = array() ) {
     $email = self::email( $email );
-    $text  = $text ?: $email;
+    $text  = $text ? : $email;
     $email = self::obfuscate( 'mailto:' ) . $email;
 
     $defaults   = array(
@@ -237,7 +254,7 @@ class Html_Helper {
       // To properly obfuscate the value, we will randomly convert each letter to
       // its entity or hexadecimal representation, keeping a bot from sniffing
       // the randomly obfuscated letters out of the string on the responses.
-      switch ( rand( 1, 3 ) ) {
+      switch (rand( 1, 3 )) {
         case 1:
           $safe .= '&#' . ord( $letter ) . ';';
           break;
@@ -342,6 +359,16 @@ class Html_Helper {
     }
   }
 
+  /**
+   * Generate an un-ordered list of items.
+   *
+   * @since   0.0.1
+   *
+   * @param   array               $items
+   * @param   array|string        $attributes
+   * 
+   * @return  string
+   */
   public static function ul( $items, $attributes = array() ) {
     $html = '';
 
@@ -359,6 +386,16 @@ class Html_Helper {
     return self::tag( 'ul', $html, $attributes );
   }
 
+  /**
+   * Generate an ordered list of items.
+   *
+   * @since   0.0.1
+   *
+   * @param   array               $items
+   * @param   array|string        $attributes
+   * 
+   * @return  string
+   */
   public static function ol( $items, $attributes = array() ) {
     $html = '';
 
