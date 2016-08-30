@@ -10,7 +10,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Array_Helper class
+ * ArrayHelper class
  *
  * @package Helpers
  *
@@ -19,7 +19,6 @@ if ( !defined( 'ABSPATH' ) ) {
  * @author         Javier Prieto <jprieton@gmail.com>
  */
 class ArrayHelper {
-
 
   /**
    * Removes an item from an array and returns the value.
@@ -33,14 +32,14 @@ class ArrayHelper {
    * @return  mixed
    */
   public static function remove( &$array, $key, $default = null ) {
-    if ( is_array( $array ) && (isset( $array[$key] ) || array_key_exists( $key, $array )) ) {
-      $value = $array[$key];
-      unset( $array[$key] );
+    $response = $default;
 
-      return $value;
+    if ( is_array( $array ) && array_key_exists( $key, $array ) ) {
+      $response = $array[$key];
+      unset( $array[$key] );
     }
 
-    return $default;
+    return $response;
   }
 
 }

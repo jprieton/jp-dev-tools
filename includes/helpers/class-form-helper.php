@@ -2,7 +2,7 @@
 
 namespace JPDevTools\Helpers;
 
-use JPDevTools\Helpers\Html_Helper as Html;
+use JPDevTools\Helpers\HtmlHelper as Html;
 
 /**
  * If this file is called directly, abort.
@@ -12,7 +12,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Form class
+ * Form_Helper class
  *
  * Based on Laravel Forms & HTML
  *
@@ -23,7 +23,7 @@ if ( !defined( 'ABSPATH' ) ) {
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
-class Form {
+class FormHelper {
 
   /**
    * Open up a new HTML form.

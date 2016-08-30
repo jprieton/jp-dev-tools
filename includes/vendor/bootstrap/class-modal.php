@@ -2,7 +2,7 @@
 
 namespace JPDevTools\Vendor\Bootstrap;
 
-use JPDevTools\Helpers\Html_Helper as Html;
+use JPDevTools\Helpers\HtmlHelper as Html;
 use JPDevTools\Vendor\Bootstrap\Misc;
 
 /**
@@ -159,7 +159,7 @@ class Modal {
       return '';
     }
 
-    $dismiss = Misc::dismiss_button( 'modal' );
+    $dismiss = Misc::dismiss( 'modal' );
     $title   = Html::tag( 'h4.modal-title', $this->header );
     $header  = Html::tag( 'div.modal-header', $dismiss . $title );
 

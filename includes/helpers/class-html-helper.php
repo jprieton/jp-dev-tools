@@ -10,7 +10,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 /**
- * HtmlHelper class
+ * Html_Helper class
  *
  * Based on Laravel Forms & HTML helper and Yii Framework BaseHtml helper
  *
@@ -22,7 +22,7 @@ if ( !defined( 'ABSPATH' ) ) {
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
-class Html_Helper {
+class HtmlHelper {
 
   /**
    * @see http://w3c.github.io/html/syntax.html#void-elements
@@ -366,7 +366,7 @@ class Html_Helper {
    *
    * @param   array               $items
    * @param   array|string        $attributes
-   * 
+   *
    * @return  string
    */
   public static function ul( $items, $attributes = array() ) {
@@ -393,7 +393,7 @@ class Html_Helper {
    *
    * @param   array               $items
    * @param   array|string        $attributes
-   * 
+   *
    * @return  string
    */
   public static function ol( $items, $attributes = array() ) {

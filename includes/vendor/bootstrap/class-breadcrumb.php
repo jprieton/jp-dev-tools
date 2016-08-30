@@ -2,7 +2,7 @@
 
 namespace JPDevTools\Vendor\Bootstrap;
 
-use JPDevTools\Helpers\Html_Helper as Html;
+use JPDevTools\Helpers\HtmlHelper as Html;
 
 /**
  * If this file is called directly, abort.

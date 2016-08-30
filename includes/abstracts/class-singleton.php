@@ -1,6 +1,6 @@
 <?php
 
-namespace JPDevTools\Core;
+namespace JPDevTools\Abstracts;
 
 /**
  * If this file is called directly, abort.
@@ -12,9 +12,10 @@ if ( !defined( 'ABSPATH' ) ) {
 /**
  * Singleton abstract class
  *
- * @package Core\Abstract
+ * @package        Core
+ * @subpackage     Abstracts
  *
- * @since   0.0.1
+ * @since          0.0.1
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
@@ -39,7 +40,7 @@ abstract class Singleton {
    * @return  static
    */
   protected function __construct() {
-    
+
   }
 
   /**
@@ -48,7 +49,7 @@ abstract class Singleton {
    * @return  static
    */
   private function __clone() {
-    
+
   }
 
   /**
@@ -57,7 +58,7 @@ abstract class Singleton {
    * @return  static
    */
   private function __wakeup() {
-    
+
   }
 
 }

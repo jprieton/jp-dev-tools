@@ -2,7 +2,7 @@
 
 namespace JPDevTools\Vendor\Bootstrap;
 
-use JPDevTools\Helpers\Html_Helper as Html;
+use JPDevTools\Helpers\HtmlHelper as Html;
 use JPDevTools\Vendor\Bootstrap\Misc;
 
 /**
@@ -55,7 +55,7 @@ class Alert {
     // Dimissible button
     $dismiss = '';
     if ( $attributes['dismiss'] ) {
-      $dismiss = Misc::dismiss_button( 'modal' );
+      $dismiss = Misc::dismiss( 'modal' );
     }
     unset( $attributes['dismiss'] );
 
