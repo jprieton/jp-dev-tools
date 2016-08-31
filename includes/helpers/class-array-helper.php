@@ -12,9 +12,9 @@ if ( !defined( 'ABSPATH' ) ) {
 /**
  * ArrayHelper class
  *
- * @package Helpers
+ * @package        Helpers
  *
- * @since   0.0.1
+ * @since          0.0.1
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
@@ -25,9 +25,9 @@ class ArrayHelper {
    *
    * @since 0.0.1
    *
-   * @param   array               $array
-   * @param   string              $key
-   * @param   mixed               $default
+   * @param   array    $array
+   * @param   string   $key
+   * @param   mixed    $default
    *
    * @return  mixed
    */

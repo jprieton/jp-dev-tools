@@ -35,7 +35,7 @@ class Alert {
    *
    * @return  string
    */
-  public static function _alert( $content, $attributes = array() ) {
+  public static function alert( $content, $attributes = array() ) {
     $defaults = array(
         'dismiss' => true,
         'role'    => 'alert',
@@ -80,7 +80,7 @@ class Alert {
     );
     $attributes = wp_parse_args( $attributes, $defaults );
 
-    return self::_alert( $content, $attributes );
+    return self::alert( $content, $attributes );
   }
 
   /**
@@ -99,7 +99,7 @@ class Alert {
     );
     $attributes = wp_parse_args( $attributes, $defaults );
 
-    return self::_alert( $content, $attributes );
+    return self::alert( $content, $attributes );
   }
 
   /**
@@ -118,7 +118,7 @@ class Alert {
     );
     $attributes = wp_parse_args( $attributes, $defaults );
 
-    return self::_alert( $content, $attributes );
+    return self::alert( $content, $attributes );
   }
 
   /**
@@ -137,7 +137,7 @@ class Alert {
     );
     $attributes = wp_parse_args( $attributes, $defaults );
 
-    return self::_alert( $content, $attributes );
+    return self::alert( $content, $attributes );
   }
 
 }
