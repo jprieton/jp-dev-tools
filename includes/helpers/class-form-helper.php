@@ -216,7 +216,7 @@ class FormHelper {
    * @return  string
    */
   public static function submit( $text = '', $attributes = array() ) {
-    $text       = empty( $text ) ? __( 'Submit', 'jpwp' ) : $text;
+    $text       = empty( $text ) ? __( 'Submit', 'jpdevtools' ) : $text;
     $defaults   = array(
         'type' => 'submit'
     );
@@ -235,7 +235,7 @@ class FormHelper {
    * @return  string
    */
   public static function reset( $text = '', $attributes = array() ) {
-    $text       = empty( $text ) ? __( 'Reset', 'jpwp' ) : $text;
+    $text       = empty( $text ) ? __( 'Reset', 'jpdevtools' ) : $text;
     $defaults   = array(
         'type' => 'reset'
     );

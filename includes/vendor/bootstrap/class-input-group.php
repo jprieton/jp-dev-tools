@@ -37,12 +37,12 @@ class Form_Group {
   public function file( $name, $label = '', $attributes = array() ) {
 
     $content = '';
-    $content = Form::label( $name, _x( 'Browse...', 'form-field', 'jpwp' ), 'class=input-group-addon' );
+    $content = Form::label( $name, _x( 'Browse...', 'form-field', 'jpdevtools' ), 'class=input-group-addon' );
 
     $content .= Form::text( $name, array(
         'class'       => 'form-control',
         'readonly',
-        'placeholder' => __( 'No file selected.', 'jpwp' )
+        'placeholder' => __( 'No file selected.', 'jpdevtools' )
             ) );
 
     $content .= Form::file( $name, wp_parse_args( $attributes, 'class=hidden' ) );

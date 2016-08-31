@@ -36,7 +36,7 @@ class Misc {
     $button = HTML::tag( 'button.close', $span, array(
                 'type'         => 'button',
                 'data-dismiss' => $data_dismiss,
-                'aria-label'   => __( 'Close', 'jpwp' )
+                'aria-label'   => __( 'Close', 'jpdevtools' )
             ) );
 
     return $button;

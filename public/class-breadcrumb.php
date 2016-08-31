@@ -32,14 +32,14 @@ class Breadcrumb {
   }
 
   private function add_item_404() {
-    $this->add_item( __( 'Page not found', 'jpwp' ) );
+    $this->add_item( __( 'Page not found', 'jpdevtools' ) );
   }
 
   private function add_item_author() {
     global $author;
 
     $userdata = get_userdata( $author );
-    $this->add_item( sprintf( __( 'Author: %s', 'jpwp' ), $userdata->display_name ) );
+    $this->add_item( sprintf( __( 'Author: %s', 'jpdevtools' ), $userdata->display_name ) );
   }
 
   private function add_item_home() {
@@ -126,13 +126,13 @@ class Breadcrumb {
 
   private function paged_trail() {
     if ( get_query_var( 'paged' ) ) {
-      $this->add_item( sprintf( __( 'Page %d', 'jpwp' ), get_query_var( 'paged' ) ) );
+      $this->add_item( sprintf( __( 'Page %d', 'jpdevtools' ), get_query_var( 'paged' ) ) );
     }
   }
 
   private function search_trail() {
     if ( is_search() ) {
-      $this->add_item( sprintf( __( 'Search results for &ldquo;%s&rdquo;', 'jpwp' ), get_search_query() ), remove_query_arg( 'paged' ) );
+      $this->add_item( sprintf( __( 'Search results for &ldquo;%s&rdquo;', 'jpdevtools' ), get_search_query() ), remove_query_arg( 'paged' ) );
     }
   }
 
