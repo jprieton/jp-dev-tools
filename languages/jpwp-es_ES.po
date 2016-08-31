@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JP WordPress Dev Tools\n"
-"POT-Creation-Date: 2016-08-24 18:34-0400\n"
-"PO-Revision-Date: 2016-08-24 18:36-0400\n"
+"POT-Creation-Date: 2016-08-31 11:37-0400\n"
+"PO-Revision-Date: 2016-08-31 11:40-0400\n"
 "Last-Translator: Javier Prieto <jprieton@gmail.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -19,22 +19,62 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../public/init.php:24
+#: ../includes/helpers/class-form-helper.php:219
+msgid "Submit"
+msgstr "Enviar"
+
+#: ../includes/helpers/class-form-helper.php:238
+msgid "Reset"
+msgstr ""
+
+#: ../includes/vendor/bootstrap/class-input-group.php:40
+msgctxt "form-field"
+msgid "Browse..."
+msgstr "Examinar..."
+
+#: ../includes/vendor/bootstrap/class-input-group.php:45
+msgid "No file selected."
+msgstr "Ningún archivo seleccionado."
+
+#: ../includes/vendor/bootstrap/class-misc.php:39
+msgid "Close"
+msgstr "Cerrar"
+
+#: ../public/class-breadcrumb.php:35
+msgid "Page not found"
+msgstr "Página no encontrada"
+
+#: ../public/class-breadcrumb.php:42
+#, php-format
+msgid "Author: %s"
+msgstr "Autor: %s"
+
+#: ../public/class-breadcrumb.php:129
+#, php-format
+msgid "Page %d"
+msgstr "Página %d"
+
+#: ../public/class-breadcrumb.php:135
+#, php-format
+msgid "Search results for &ldquo;%s&rdquo;"
+msgstr "Resultados de búsqueda para &ldquo;%s&rdquo;"
+
+#: ../public/init.php:31
 msgid "Success!"
 msgstr "¡Éxito!"
 
-#: ../public/init.php:25
+#: ../public/init.php:32
 msgid "Fail!"
 msgstr "¡Falló!"
 
-#: ../public/init.php:26
+#: ../public/init.php:33
 msgid "Error!"
 msgstr "¡Error!"
 
-#: ../public/init.php:27
+#: ../public/init.php:34
 msgid "Send"
 msgstr "Enviar"
 
-#: ../public/init.php:28
+#: ../public/init.php:35
 msgid "Sent!"
 msgstr "¡Enviado!"
