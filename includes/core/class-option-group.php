@@ -20,7 +20,7 @@ class OptionGroup {
 
   /**
    * Option group name
-   * 
+   *
    * @since 0.0.1
    *
    * @var string
@@ -29,7 +29,7 @@ class OptionGroup {
 
   /**
    * Option data
-   * 
+   *
    * @since 0.0.1
    *
    * @var array
@@ -38,9 +38,9 @@ class OptionGroup {
 
   /**
    * Constructor
-   * 
+   *
    * @since   0.0.1
-   * 
+   *
    * @param   string    $opt_group
    */
   public function __construct( $opt_group ) {
@@ -52,12 +52,12 @@ class OptionGroup {
 
   /**
    * Set option value in group option
-   * 
+   *
    * @since   0.0.1
    *
    * @param   string    $option   Name of option to set. Expected to not be SQL-escaped.
    * @param   mixed     $value    Option value. Must be serializable if non-scalar. Expected to not be SQL-escaped.
-   * 
+   *
    * @return  bool
    */
   public function set( $option, $value ) {
@@ -69,12 +69,12 @@ class OptionGroup {
 
   /**
    * Get option value in group option.
-   * 
+   *
    * @since   0.0.1
    *
    * @param   string    $option   Name of option to retrieve. Expected to not be SQL-escaped.
    * @param   mixed     $default  Optional. Default value to return if the option does not exist.
-   * 
+   *
    * @return  mixed
    */
   public function get( $option, $default = false ) {
@@ -87,13 +87,13 @@ class OptionGroup {
 
   /**
    * Filter previous to value in group option.
-   * 
+   *
    * @since   0.0.1
    *
    * @param   array     $value
    * @param   array     $old_value
    * @param   string    $option
-   * 
+   *
    * @return  array
    */
   public function pre_update_option( $value, $old_value, $option ) {
