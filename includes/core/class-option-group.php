@@ -25,7 +25,7 @@ class OptionGroup {
    *
    * @var string
    */
-  protected $opt_group = '';
+  protected $option_group = '';
 
   /**
    * Option data
@@ -34,20 +34,21 @@ class OptionGroup {
    *
    * @var array
    */
-  protected $options = array();
+  protected $data = array();
 
   /**
    * Constructor
    *
    * @since   0.0.1
    *
-   * @param   string    $opt_group
+   * @param   string    $option_group
    */
-  public function __construct( $opt_group ) {
-    $this->opt_group = trim( $opt_group );
-    $this->options   = get_option( $opt_group, array() );
+  public function __construct( $option_group ) {
 
-    add_filter( "pre_update_option_{$this->opt_group}", array( $this, 'pre_update_option' ), 10, 3 );
+    $this->$option_group = trim( $option_group );
+    $this->$data         = get_option( $option_group, array() );
+
+    add_filter( "pre_update_option_{$this->option_group}", array( $this, 'pre_update_option' ), 10, 3 );
   }
 
   /**
@@ -61,10 +62,10 @@ class OptionGroup {
    * @return  bool
    */
   public function set( $option, $value ) {
-    $option                         = trim( (string) $option );
-    $this->options[trim( $option )] = $value;
+    $option                      = trim( (string) $option );
+    $this->data[trim( $option )] = $value;
 
-    return update_option( $this->opt_group, $this->options );
+    return update_option( $this->option_group, $this->data );
   }
 
   /**
@@ -78,10 +79,10 @@ class OptionGroup {
    * @return  mixed
    */
   public function get( $option, $default = false ) {
-    if ( !isset( $this->options[$option] ) ) {
+    if ( !isset( $this->data[$option] ) ) {
       return $default;
     } else {
-      return $this->options[$option];
+      return $this->data[$option];
     }
   }
 
@@ -103,6 +104,10 @@ class OptionGroup {
     } else {
       return unserialize( $value );
     }
+  }
+
+  public function register_setting() {
+    register_setting( $this->option_group, $this->option_group, array( $this, 'pre_update_option' ) );
   }
 
 }
