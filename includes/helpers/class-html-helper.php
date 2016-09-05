@@ -67,9 +67,11 @@ class HtmlHelper {
   }
 
   /**
-   * Retrieve an HTML script element
+   * Retrieve an HTML script element. Is recommended enqueue the script using <i>wp_register_script</i> and/or
+   * <i>wp_enqueue_script</i> because it is the method recommended by WordPress Guidelines.
    *
-   * @since 0.0.1
+   * @since   0.0.1
+   * @see     https://developer.wordpress.org/themes/basics/including-css-javascript/
    *
    * @param   string              $src
    * @param   string|array        $attributes
@@ -83,9 +85,11 @@ class HtmlHelper {
   }
 
   /**
-   * Retrieve an HTML style element
+   * Retrieve an HTML style element. Is recommended enqueue the script using <i>wp_register_script</i> and/or
+   * <i>wp_enqueue_script</i> because it is the method recommended by WordPress Guidelines.
    *
-   * @since 0.0.1
+   * @since   0.0.1
+   * @see     https://developer.wordpress.org/themes/basics/including-css-javascript/
    *
    * @param   string              $href
    * @param   string|array        $attributes
@@ -107,7 +111,7 @@ class HtmlHelper {
   /**
    * Retrieve an HTML meta element
    *
-   * @since 0.0.1
+   * @since   0.0.1
    *
    * @param   string              $href
    * @param   string|array        $attributes
@@ -150,7 +154,7 @@ class HtmlHelper {
     $attributes = wp_parse_args( $attributes );
 
     if ( count( $attributes ) > 1 ) {
-      $sorted = [ ];
+      $sorted = [];
       foreach ( static::$attribute_order as $name ) {
         if ( isset( $attributes[$name] ) ) {
           $sorted[$name] = $attributes[$name];
@@ -167,7 +171,11 @@ class HtmlHelper {
       }
 
       if ( is_bool( $value ) && $value ) {
-        $key = $value;
+        $value = $key;
+      }
+
+      if ( is_bool( $value ) && !$value ) {
+        continue;
       }
 
       if ( !is_null( $value ) ) {
@@ -214,7 +222,7 @@ class HtmlHelper {
    */
   public static function mailto( $email, $text = null, $attributes = array() ) {
     $email = self::email( $email );
-    $text  = $text ? : $email;
+    $text  = $text ?: $email;
     $email = self::obfuscate( 'mailto:' ) . $email;
 
     $defaults   = array(
@@ -254,7 +262,7 @@ class HtmlHelper {
       // To properly obfuscate the value, we will randomly convert each letter to
       // its entity or hexadecimal representation, keeping a bot from sniffing
       // the randomly obfuscated letters out of the string on the responses.
-      switch (rand( 1, 3 )) {
+      switch ( rand( 1, 3 ) ) {
         case 1:
           $safe .= '&#' . ord( $letter ) . ';';
           break;

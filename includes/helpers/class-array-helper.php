@@ -31,12 +31,12 @@ class ArrayHelper {
    *
    * @return  mixed
    */
-  public static function remove( &$array, $key, $default = null ) {
-    $response = $default;
-
+  public static function extract( &$array, $key, $default = null ) {
     if ( is_array( $array ) && array_key_exists( $key, $array ) ) {
       $response = $array[$key];
       unset( $array[$key] );
+    } else {
+      $response = $default;
     }
 
     return $response;

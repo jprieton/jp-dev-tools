@@ -2,7 +2,8 @@
 
 namespace JPDevTools\Helpers;
 
-use JPDevTools\Helpers\HtmlHelper as Html;
+use JPDevTools\Helpers\HtmlHelper;
+use JPDevTools\Helpers\ArrayHelper;
 
 /**
  * If this file is called directly, abort.
@@ -37,7 +38,7 @@ class FormHelper {
    * @return  string
    */
   public static function open( $attributes = array() ) {
-    return Html::open_tag( 'form', $attributes );
+    return '<form ' . HtmlHelper::attributes( $attributes ) . '>';
   }
 
   /**
@@ -69,7 +70,7 @@ class FormHelper {
     );
     $attributes = wp_parse_args( $attributes, $defaults );
 
-    return Html::tag( 'input', null, $attributes );
+    return '<input ' . HtmlHelper::attributes( $attributes ) . '>';
   }
 
   /**
@@ -102,7 +103,7 @@ class FormHelper {
     );
     $attributes = wp_parse_args( $attributes, $defaults );
 
-    return Html::tag( 'textarea', esc_textarea( $text ), $attributes );
+    return HtmlHelper::tag( 'textarea', esc_textarea( $text ), $attributes );
   }
 
   /**
@@ -185,7 +186,7 @@ class FormHelper {
    */
   public static function label( $name, $text, $attributes = array() ) {
     $attributes = wp_parse_args( $attributes, array( 'for' => $name ) );
-    return Html::tag( 'label', $text, $attributes );
+    return HtmlHelper::tag( 'label', $text, $attributes );
   }
 
   /**
@@ -203,7 +204,7 @@ class FormHelper {
     );
     $attributes = wp_parse_args( $attributes, $defaults );
 
-    return Html::tag( 'button', $text, $attributes );
+    return HtmlHelper::tag( 'button', $text, $attributes );
   }
 
   /**
@@ -309,6 +310,110 @@ class FormHelper {
     $field .= wp_nonce_field( $action, $name, $referer, false );
 
     return $field;
+  }
+
+  /**
+   * Create a dropdown list.
+   *
+   * @since 0.0.1
+   *
+   * @param   string              $name
+   * @param   array|string        $options
+   * @param   array|string        $attributes
+   * @return  string
+   */
+  public static function select( $name, $options, $attributes = array() ) {
+    global $wp_locale;
+
+    $content = '';
+
+    switch ( $options ) {
+      case 'month':
+        $options = $wp_locale->month;
+        break;
+      case 'weekday':
+        $options = $wp_locale->weekday;
+        break;
+      default:
+        $options = (is_array( $options )) ? $options : (array) $options;
+        break;
+    }
+
+    $attributes = wp_parse_args( $attributes, compact( 'name' ) );
+
+    $use_label = ArrayHelper::extract( $attributes, 'use_label', false );
+    if ( $use_label ) {
+      $options = array_combine( $options, $options );
+    }
+
+    $placeholder = ArrayHelper::extract( $attributes, 'placeholder', false );
+
+    if ( is_bool( $placeholder ) && $placeholder ) {
+      $content .= HtmlHelper::tag( 'option', _e( 'Select an option...', 'jpdevtools' ), array( 'value' => '' ) );
+    } elseif ( !is_bool( $placeholder ) && $placeholder ) {
+      $content .= HtmlHelper::tag( 'option', $placeholder, array( 'value' => '' ) );
+    }
+
+    $selected = ArrayHelper::extract( $attributes, 'selected', '' );
+    $content  .= self::options( $options, $selected );
+
+    return HtmlHelper::tag( 'select', $content, $attributes );
+  }
+
+  /**
+   * Create a datalist tag.
+   *
+   * @since 0.0.1
+   *
+   * @param   array|string        $options
+   * @param   array|string        $attributes
+   * @return  string
+   */
+  public static function datalist( $options, $attributes = array() ) {
+    global $wp_locale;
+
+    $content = '';
+
+    switch ( $options ) {
+      case 'month':
+        $options = $wp_locale->month;
+        break;
+      case 'weekday':
+        $options = $wp_locale->weekday;
+        break;
+      default:
+        $options = (is_array( $options )) ? $options : (array) $options;
+        break;
+    }
+
+    foreach ( $options as $value ) {
+      $content .= HtmlHelper::tag( 'option', '', compact( 'value' ) );
+    }
+
+    return HtmlHelper::tag( 'datalist', $content, $attributes );
+  }
+
+  /**
+   * Create a list of option tags from array .
+   *
+   * @param   array               $options
+   * @param   string              $selected
+   */
+  public static function options( $options, $selected = '' ) {
+    $content = '';
+
+    foreach ( $options as $key => $value ) {
+      if ( is_array( $value ) ) {
+        $content .= HtmlHelper::tag( 'optgroup', self::options( $value, $selected ), array( 'label' => $key ) );
+      } else {
+        $attributes = array(
+            'value'    => $value,
+            'selected' => ($selected == $value)
+        );
+        $content    .= HtmlHelper::tag( 'option', $key, $attributes );
+      }
+    }
+    return $content;
   }
 
 }
