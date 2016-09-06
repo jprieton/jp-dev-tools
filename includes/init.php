@@ -19,7 +19,7 @@ require_once __DIR__ . '/abstracts/class-post-type.php';
  * Core classes
  */
 require_once __DIR__ . '/core/class-option-group.php';
-require_once __DIR__ . '/config/class-option.php';
+//require_once __DIR__ . '/config/class-option.php';
 
 /**
  * Post Types classes

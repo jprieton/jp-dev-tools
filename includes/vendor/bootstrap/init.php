@@ -8,5 +8,9 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 add_action( 'init', function() {
-  
+
+  require_once plugin_dir_path( __DIR__ ) . 'bootstrap/class-misc.php';
+  require_once plugin_dir_path( __DIR__ ) . 'bootstrap/class-alert.php';
+  require_once plugin_dir_path( __DIR__ ) . 'bootstrap/class-modal.php';
+  require_once plugin_dir_path( __DIR__ ) . 'bootstrap/class-input-group.php';
 } );

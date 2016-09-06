@@ -1,7 +1,5 @@
 <?php
 
-use JPDevTools\Core\Option;
-
 /**
  * If this file is called directly, abort.
  */
@@ -16,16 +14,4 @@ add_action( 'admin_enqueue_scripts', function() {
    * @since 0.0.1
    */
   wp_enqueue_script( 'jpdevtools-admin', plugin_dir_url( __FILE__ ) . 'js/admin.js', array( 'jquery' ), '0.0.1', true );
-} );
-
-
-add_adtion( 'admin_init', function() {
-
-
-  /**
-   * Register JP WordPress Dev Tools core setting group
-   * @since 0.0.1
-   */
-  $jpdevtools = JPDevTools::get_instance();
-  $jpdevtools->register_setting;
 } );

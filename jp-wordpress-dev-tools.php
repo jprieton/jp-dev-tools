@@ -20,6 +20,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * @package Core
  * @since 0.0.1
  */
+
 require_once __DIR__ . '/includes/init.php';
 require_once __DIR__ . '/admin/init.php';
 require_once __DIR__ . '/public/init.php';
