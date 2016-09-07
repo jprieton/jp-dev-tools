@@ -46,7 +46,7 @@ class OptionGroup {
   public function __construct( $option_group ) {
 
     $this->$option_group = trim( $option_group );
-    $this->$data         = get_option( $option_group, array() );
+    $this->$data         = (array) get_option( $option_group, array() );
 
     add_filter( "pre_update_option_{$this->option_group}", array( $this, 'pre_update_option' ), 10, 3 );
   }
@@ -78,7 +78,7 @@ class OptionGroup {
    *
    * @return  mixed
    */
-  public function get( $option, $default = false ) {
+  public function get_option( $option, $default = false ) {
     if ( !isset( $this->data[$option] ) ) {
       return $default;
     } else {

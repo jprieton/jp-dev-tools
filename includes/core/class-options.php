@@ -33,7 +33,7 @@ class Option extends Singleton {
   }
 
   public function get( $option ) {
-    return $this->option_group->get( $option );
+    return $this->option_group->get_option( $option );
   }
 
   public function set( $option, $value ) {

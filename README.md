@@ -1,5 +1,4 @@
 # JP WordPress Dev Tools
-=========
 
 A Microframework for WordPress
 
@@ -9,6 +8,9 @@ A Microframework for WordPress
 
 ### Vendors Helpers
 * Bootstrap 3.x
+
+### Registered scripts
+* Modernzr 2.8.3
 
 Bug tracker
 -----------

@@ -7,11 +7,67 @@ if ( !defined( 'ABSPATH' ) ) {
   die( 'Direct access is forbidden.' );
 }
 
+use JPDevTools\Core\OptionGroup;
+
 add_action( 'admin_enqueue_scripts', function() {
 
   /**
-   * Register and enqueue admin script
+   * Plugin admin scripts
+   *
    * @since 0.0.1
    */
-  wp_enqueue_script( 'jpdevtools-admin', plugin_dir_url( __FILE__ ) . 'js/admin.js', array( 'jquery' ), '0.0.1', true );
+  $scripts = array(
+      'jpdevtools' => array(
+          'handle'    => 'jpdevtools',
+          'local'     => plugin_dir_url( __FILE__ ) . 'js/admin.js',
+          'deps'      => array( 'jquery' ),
+          'ver'       => '0.0.1',
+          'in_footer' => true,
+          'autoload'  => true
+      ),
+  );
+  /**
+   * Filter plugin admin scripts
+   *
+   * @since   0.0.1
+   * @param   array   $scripts
+   */
+  $scripts = apply_filters( 'jpdevtools_admin_register_scripts', $scripts );
+
+  $defaults = array(
+      'local'     => '',
+      'remote'    => '',
+      'deps'      => array(),
+      'ver'       => null,
+      'in_footer' => false,
+      'autoload'  => false
+  );
+
+  $options = new OptionGroup( 'jpdevtools' );
+  $use_cdn = ($options->get_option( 'enable-cdn', false ) == 'yes');
+
+  foreach ( $scripts as $script ) {
+    $script = wp_parse_args( $script, $defaults );
+
+    if ( ($use_cdn && !empty( $script['remote'] )) || empty( $script['local'] ) ) {
+      $src = $script['remote'];
+    } elseif ( (!$use_cdn && !empty( $script['local'] )) || empty( $script['remote'] ) ) {
+      $src = $script['local'];
+    } else {
+      continue;
+    }
+
+    $handle    = $script['handle'];
+    $deps      = $script['deps'];
+    $ver       = $script['ver'];
+    $in_footer = $script['in_footer'];
+
+    /* Register admin scripts */
+    wp_register_script( $handle, $src, (array) $deps, $ver, (bool) $in_footer );
+
+    if ( $script['autoload'] ) {
+      /* Enqueue admin scripts if autolad in enabled */
+      wp_enqueue_script( $handle );
+    }
+  }
 } );
