@@ -2,6 +2,9 @@
 
 A Microframework for WordPress
 
+### API
+* OptionGroup
+
 ### Helpers
 * HtmlHelper
 * FormHelper

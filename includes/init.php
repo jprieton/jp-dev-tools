@@ -1,7 +1,5 @@
 <?php
 
-use JPDevTools\PostTypes\PostTypeSlider;
-
 /**
  * If this file is called directly, abort.
  */
@@ -9,22 +7,12 @@ if ( !defined( 'ABSPATH' ) ) {
   die( 'Direct access is forbidden.' );
 }
 
-/**
- * Abstract classes
- */
-require_once __DIR__ . '/abstracts/class-singleton.php';
-require_once __DIR__ . '/abstracts/class-post-type.php';
+use JPDevTools\Core\OptionGroup;
 
 /**
  * Core classes
  */
 require_once __DIR__ . '/core/class-option-group.php';
-//require_once __DIR__ . '/config/class-option.php';
-
-/**
- * Post Types classes
- */
-require_once __DIR__ . '/post-types/class-post-type-slider.php';
 
 /**
  * Helper classes
@@ -33,23 +21,17 @@ require_once __DIR__ . '/helpers/class-array-helper.php';
 require_once __DIR__ . '/helpers/class-html-helper.php';
 require_once __DIR__ . '/helpers/class-form-helper.php';
 
-/**
- * Main class
- */
-require_once __DIR__ . '/class-jp-dev-tools.php';
-
 add_action( 'init', function() {
 
   /**
    * Loads the plugin's translated strings.
    * @since 0.0.1
    */
-  load_plugin_textdomain( 'jpdevtools', false, dirname( plugin_basename( __DIR__ ) ) . '/languages' );
+  load_plugin_textdomain( 'jpdevtools', false, JPDEVTOOLS_DIR . '/languages' );
 
   /**
-   * Register custom post types enabled
+   * Merge options before saving.
    * @since 0.0.1
    */
-  do_action( 'post_types_enabled' );
+  add_filter( 'pre_update_option_jpdevtools', array( new OptionGroup( 'jpdevtools' ), 'pre_update_option' ), 10, 2 );
 } );
-

@@ -17,15 +17,15 @@ add_action( 'admin_enqueue_scripts', function() {
    * @since 0.0.1
    */
   $scripts = array(
-      'jpdevtools' => array(
-          'handle'    => 'jpdevtools',
-          'local'     => plugin_dir_url( __FILE__ ) . 'js/admin.js',
+      'jpdevtools-admin' => array(
+          'local'     => JPDEVTOOLS_URL . 'assets/js/admin.js',
           'deps'      => array( 'jquery' ),
           'ver'       => '0.0.1',
           'in_footer' => true,
           'autoload'  => true
       ),
   );
+
   /**
    * Filter plugin admin scripts
    *
@@ -46,7 +46,7 @@ add_action( 'admin_enqueue_scripts', function() {
   $options = new OptionGroup( 'jpdevtools' );
   $use_cdn = ($options->get_option( 'enable-cdn', false ) == 'yes');
 
-  foreach ( $scripts as $script ) {
+  foreach ( $scripts as $handle => $script ) {
     $script = wp_parse_args( $script, $defaults );
 
     if ( ($use_cdn && !empty( $script['remote'] )) || empty( $script['local'] ) ) {
@@ -57,7 +57,6 @@ add_action( 'admin_enqueue_scripts', function() {
       continue;
     }
 
-    $handle    = $script['handle'];
     $deps      = $script['deps'];
     $ver       = $script['ver'];
     $in_footer = $script['in_footer'];

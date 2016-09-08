@@ -20,10 +20,13 @@ if ( !defined( 'ABSPATH' ) ) {
  * @package Core
  * @since 0.0.1
  */
+define( 'JPDEVTOOLS_DIR', __DIR__ );
+define( 'JPDEVTOOLS_FILE', __FILE__ );
+define( 'JPDEVTOOLS_URL', plugin_dir_url( __FILE__ ) );
 
-require_once __DIR__ . '/includes/init.php';
-require_once __DIR__ . '/admin/init.php';
-require_once __DIR__ . '/public/init.php';
+require_once JPDEVTOOLS_DIR . '/includes/init.php';
+require_once JPDEVTOOLS_DIR . '/admin/init.php';
+require_once JPDEVTOOLS_DIR . '/public/init.php';
 
 /**
  * The code that runs during plugin activation.
@@ -31,7 +34,7 @@ require_once __DIR__ . '/public/init.php';
  * @since 0.0.1
  */
 register_activation_hook( __FILE__, function() {
-  require_once __DIR__ . '/includes/core/class-activator.php';
+  require_once JPDEVTOOLS_DIR . '/includes/core/class-activator.php';
   JPDevTools\Core\Activator::activate();
 } );
 
@@ -41,6 +44,6 @@ register_activation_hook( __FILE__, function() {
  * @since 0.0.1
  */
 register_activation_hook( __FILE__, function() {
-  require_once __DIR__ . '/includes/core/class-activator.php';
+  require_once JPDEVTOOLS_DIR . '/includes/core/class-activator.php';
   JPDevTools\Core\Activator::deactivate();
 } );

@@ -34,7 +34,7 @@ class OptionGroup {
    *
    * @var array
    */
-  protected $data = array();
+  protected $options = array();
 
   /**
    * Constructor
@@ -44,11 +44,8 @@ class OptionGroup {
    * @param   string    $option_group
    */
   public function __construct( $option_group ) {
-
-    $this->$option_group = trim( $option_group );
-    $this->$data         = (array) get_option( $option_group, array() );
-
-    add_filter( "pre_update_option_{$this->option_group}", array( $this, 'pre_update_option' ), 10, 3 );
+    $this->option_group = trim( $option_group );
+    $this->options      = (array) get_option( $option_group, array() );
   }
 
   /**
@@ -61,15 +58,14 @@ class OptionGroup {
    *
    * @return  bool
    */
-  public function set( $option, $value ) {
-    $option                      = trim( (string) $option );
-    $this->data[trim( $option )] = $value;
+  public function set_option( $option, $value ) {
+    $this->options[$option] = $value;
 
-    return update_option( $this->option_group, $this->data );
+    return update_option( $this->option_group, $this->options );
   }
 
   /**
-   * Get option value in group option.
+   * Get option value in option group.
    *
    * @since   0.0.1
    *
@@ -79,35 +75,42 @@ class OptionGroup {
    * @return  mixed
    */
   public function get_option( $option, $default = false ) {
-    if ( !isset( $this->data[$option] ) ) {
-      return $default;
-    } else {
-      return $this->data[$option];
-    }
+    $response = isset( $this->options[$option] ) ? $this->options[$option] : $default;
+
+    return $response;
   }
 
   /**
-   * Filter previous to value in group option.
+   * Get boolean option value in option group.
    *
    * @since   0.0.1
    *
-   * @param   array     $value
-   * @param   array     $old_value
-   * @param   string    $option
+   * @param   string    $option   Name of option to retrieve. Expected to not be SQL-escaped.
+   * @param   boolean   $default  Optional. Default value to return if the option does not exist.
    *
-   * @return  array
+   * @return  boolean
    */
-  public function pre_update_option( $value, $old_value, $option ) {
-    if ( !is_serialized( $value ) ) {
-      $current_option = (array) get_option( $option, array() );
-      return array_merge( $current_option, $value );
-    } else {
-      return unserialize( $value );
-    }
+  public function get_bool_option( $option, $default = false ) {
+    $response = $this->get_option( $option, $default );
+
+    return (bool) in_array( $response, array( true, 'Y', 'y', 'yes', 'true', 1 ) );
   }
 
-  public function register_setting() {
-    register_setting( $this->option_group, $this->option_group, array( $this, 'pre_update_option' ) );
+  /**
+   * Merge options before saving
+   *
+   * @param   array     $new_value
+   * @param   array     $old_value
+   *
+   * @since   0.0.1
+   */
+  public function pre_update_option( $new_value, $old_value ) {
+    if ( is_serialized( $new_value ) ) {
+      $new_value = unserialize( $new_value );
+    }
+    $this->options = array_merge( $this->options, (array) $new_value );
+
+    return $this->options;
   }
 
 }
