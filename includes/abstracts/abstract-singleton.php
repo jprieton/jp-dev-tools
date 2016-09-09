@@ -61,4 +61,14 @@ abstract class Singleton {
 
   }
 
+  /**
+   * PHP5 style destructor and will run when object is destroyed.
+   *
+   * @since 0.0.1
+   * @return true
+   */
+  public function __destruct() {
+    return true;
+  }
+
 }

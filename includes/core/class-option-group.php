@@ -23,16 +23,16 @@ class OptionGroup {
    *
    * @since 0.0.1
    *
-   * @var string
+   * @var   string
    */
   protected $option_group = '';
 
   /**
    * Option data
    *
-   * @since 0.0.1
+   * @since   0.0.1
    *
-   * @var array
+   * @var     array
    */
   protected $options = array();
 
@@ -46,6 +46,16 @@ class OptionGroup {
   public function __construct( $option_group ) {
     $this->option_group = trim( $option_group );
     $this->options      = (array) get_option( $option_group, array() );
+  }
+
+  /**
+   * PHP5 style destructor and will run when object is destroyed.
+   *
+   * @since   0.0.1
+   * @return  true
+   */
+  public function __destruct() {
+    return true;
   }
 
   /**
@@ -94,6 +104,20 @@ class OptionGroup {
     $response = $this->get_option( $option, $default );
 
     return (bool) in_array( $response, array( true, 'Y', 'y', 'yes', 'true', 1 ) );
+  }
+
+  /**
+   * Get integer option value in option group.
+   *
+   * @since   0.0.1
+   *
+   * @param   string    $option   Name of option to retrieve. Expected to not be SQL-escaped.
+   * @param   integer   $default  Optional. Default value to return if the option does not exist.
+   *
+   * @return  integer
+   */
+  public function get_int_option( $option, $default = 0 ) {
+    return (int) $this->get_option( $option, $default );
   }
 
   /**

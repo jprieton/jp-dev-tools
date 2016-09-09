@@ -42,6 +42,7 @@ class OptionFactory {
    * @since    0.0.1
    *
    * @param    string    $option_group
+   * 
    * @return             OptionGroup
    */
   public static function option_group( $option_group ) {
