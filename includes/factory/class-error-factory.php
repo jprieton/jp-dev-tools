@@ -1,6 +1,6 @@
 <?php
 
-namespace JPDevTools\Core;
+namespace JPDevTools\Core\Factory;
 
 use WP_Error;
 
@@ -12,13 +12,13 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Error class
+ * ErrorFactory class
  *
  * @package Core
  * @since 0.0.1
  * @author jprieton
  */
-class Error {
+class ErrorFactory {
 
   /**
    * Shorthand to unauthorized error
