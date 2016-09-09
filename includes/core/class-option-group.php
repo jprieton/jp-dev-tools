@@ -99,10 +99,10 @@ class OptionGroup {
   /**
    * Merge options before saving
    *
+   * @since   0.0.1
+   *
    * @param   array     $new_value
    * @param   array     $old_value
-   *
-   * @since   0.0.1
    */
   public function pre_update_option( $new_value, $old_value ) {
     if ( is_serialized( $new_value ) ) {
@@ -111,6 +111,15 @@ class OptionGroup {
     $this->options = array_merge( $this->options, (array) $new_value );
 
     return $this->options;
+  }
+
+  /**
+   * Register a setting. Must be called in admin_init hook.
+   *
+   * @since   0.0.1
+   */
+  public function register_setting() {
+    register_setting( $this->option_group, $this->option_group );
   }
 
 }
