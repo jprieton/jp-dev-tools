@@ -27,8 +27,20 @@ class Error {
    *
    * @return WP_Error
    */
-  public static function unauthorized() {
-    $error = new WP_Error( 'unauthorized', __( 'You are not authorized to perform this action ', 'jpdevtools' ) );
+  public static function unauthorized( $data = '' ) {
+    $error = new WP_Error( 'unauthorized_error', __( 'You are not authorized to perform this action.', 'jpdevtools' ), $data );
+    return $error;
+  }
+
+  /**
+   * Shorthand to logged_out error
+   *
+   * @since 0.0.1
+   *
+   * @return WP_Error
+   */
+  public static function logged_out( $data = '' ) {
+    $error = new WP_Error( 'logged_out_error', __( 'You must logged in to perform this action.', 'jpdevtools' ), $data );
     return $error;
   }
 

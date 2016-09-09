@@ -4,7 +4,7 @@ A Microframework for WordPress
 
 ### API
 * OptionGroup
-* Favorite
+* FavoritePosts
 
 ### Helpers
 * HtmlHelper

@@ -12,14 +12,14 @@ if ( !defined( 'ABSPATH' ) ) {
 use wpdb;
 
 /**
- * Singleton abstract class
+ * FavoritePost class
  *
  * @package        Core
  *
  * @since          0.0.1
  * @author         Javier Prieto <jprieton@gmail.com>
  */
-class Favorite {
+class FavoritePosts {
 
   /**
    * Favorite table name.
@@ -27,7 +27,7 @@ class Favorite {
    * @since   0.0.1
    * @var     string
    */
-  private $table = 'user_favorite_posts';
+  private $table = 'favorite_posts';
 
   /**
    * OptionGroup object.
@@ -145,8 +145,8 @@ class Favorite {
    *
    * @return  boolean
    */
-  public function is_user_favorite_post( $user_id = null, $post_id = null ) {
-    $user_id = (int) $user_id ?: get_current_user_id();
+  public function is_favorite_post( $post_id = null ) {
+    $user_id = get_current_user_id();
     $post_id = (int) $post_id ?: get_the_ID();
 
     if ( !$user_id && !$post_id ) {
@@ -158,6 +158,56 @@ class Favorite {
     $is_favorite = (bool) $wpdb->get_var( $query );
 
     return $is_favorite;
+  }
+
+  /**
+   * Add post to favorites
+   *
+   * @since   0.0.1
+   *
+   * @global  wpdb           $wpdb
+   * @param   type           $post_id
+   */
+  public function add_favorite_post( $post_id ) {
+    global $wpdb;
+    $user_id = get_current_user_id();
+    $wpdb->insert( "{$wpdb->prefix}{$this->table}", compact( 'post_id', 'user_id' ) );
+    $this->_update_post_favorite_count( $post_id );
+  }
+
+  /**
+   * Remove post from favorites
+   *
+   * @since   0.0.1
+   *
+   * @global  wpdb           $wpdb
+   * @param   type           $post_id
+   */
+  public function remove_favorite_post( $post_id ) {
+    global $wpdb;
+    $user_id = get_current_user_id();
+    $wpdb->delete( "{$wpdb->prefix}{$this->table}", compact( 'post_id', 'user_id' ) );
+    $this->_update_post_favorite_count( $post_id );
+  }
+
+  /**
+   * Toggle post in favorites
+   *
+   * @since   0.0.1
+   * 
+   * @param   type           $post_id
+   * @return  type
+   */
+  public function toggle_favorite_post( $post_id ) {
+    $is_favorite = $this->is_favorite_post( $post_id );
+
+    if ( $is_favorite ) {
+      $this->remove_favorite_post( $post_id );
+    } else {
+      $this->add_favorite_post( $post_id );
+    }
+
+    return !$is_favorite;
   }
 
 }
