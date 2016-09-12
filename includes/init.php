@@ -10,6 +10,7 @@ if ( !defined( 'ABSPATH' ) ) {
 /**
  * Core classes
  */
+require_once __DIR__ . '/abstracts/abstract-singleton.php';
 require_once __DIR__ . '/core/class-option-group.php';
 require_once __DIR__ . '/factory/class-option-factory.php';
 
@@ -23,6 +24,7 @@ require_once __DIR__ . '/helpers/class-form-helper.php';
 use JPDevTools\Core\Factory\OptionFactory;
 
 add_action( 'init', function() {
+
 
   /**
    * Loads the plugin's translated strings.
