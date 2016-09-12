@@ -7,66 +7,37 @@ if ( !defined( 'ABSPATH' ) ) {
   die( 'Direct access is forbidden.' );
 }
 
-use JPDevTools\Core\OptionGroup;
+require_once JPDEVTOOLS_DIR . '/admin/class-admin-init.php';
+require_once JPDEVTOOLS_DIR . '/admin/class-general-settings.php';
+require_once JPDEVTOOLS_DIR . '/admin/class-social-settings.php';
+require_once JPDEVTOOLS_DIR . '/admin/class-advanced-settings.php';
 
-add_action( 'admin_enqueue_scripts', function() {
+use JPDevTools\Core\Init\AdminInit;
+
+add_action( 'admin_menu', function () {
+
+  $init = AdminInit::get_instance();
 
   /**
-   * Plugin admin scripts
-   *
+   * Add plugin menus
    * @since 0.0.1
    */
-  $scripts = array(
-      'jpdevtools-admin' => array(
-          'local'     => JPDEVTOOLS_URL . 'assets/js/admin.js',
-          'deps'      => array( 'jquery' ),
-          'ver'       => '0.0.1',
-          'in_footer' => true,
-          'autoload'  => true
-      ),
-  );
+  $init->admin_menu();
+} );
+
+add_action( 'wp_enqueue_scripts', function() {
+
+  $init = AdminInit::get_instance();
 
   /**
-   * Filter plugin admin scripts
-   *
-   * @since   0.0.1
-   * @param   array   $scripts
+   * Register and enqueue plugin scripts
+   * @since 0.0.1
    */
-  $scripts = apply_filters( 'jpdevtools_admin_register_scripts', $scripts );
+  $init->enqueue_scripts();
 
-  $defaults = array(
-      'local'     => '',
-      'remote'    => '',
-      'deps'      => array(),
-      'ver'       => null,
-      'in_footer' => false,
-      'autoload'  => false
-  );
-
-  $options = new OptionGroup( 'jpdevtools' );
-  $use_cdn = ($options->get_option( 'enable-cdn', false ) == 'yes');
-
-  foreach ( $scripts as $handle => $script ) {
-    $script = wp_parse_args( $script, $defaults );
-
-    if ( ($use_cdn && !empty( $script['remote'] )) || empty( $script['local'] ) ) {
-      $src = $script['remote'];
-    } elseif ( (!$use_cdn && !empty( $script['local'] )) || empty( $script['remote'] ) ) {
-      $src = $script['local'];
-    } else {
-      continue;
-    }
-
-    $deps      = $script['deps'];
-    $ver       = $script['ver'];
-    $in_footer = $script['in_footer'];
-
-    /* Register admin scripts */
-    wp_register_script( $handle, $src, (array) $deps, $ver, (bool) $in_footer );
-
-    if ( $script['autoload'] ) {
-      /* Enqueue admin scripts if autolad in enabled */
-      wp_enqueue_script( $handle );
-    }
-  }
+  /**
+   * Register and enqueue plugin styles
+   * @since 0.0.1
+   */
+  $init->enqueue_styles();
 } );

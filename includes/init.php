@@ -11,6 +11,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * Core classes
  */
 require_once __DIR__ . '/abstracts/abstract-singleton.php';
+require_once __DIR__ . '/abstracts/abstract-settings.php';
 require_once __DIR__ . '/core/class-option-group.php';
 require_once __DIR__ . '/factory/class-option-factory.php';
 
