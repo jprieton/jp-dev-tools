@@ -36,3 +36,11 @@ add_action( 'init', function() {
    */
   OptionFactory::register_option_group( 'jpdevtools' );
 } );
+
+// Register Theme Features
+add_action( 'after_setup_theme', function () {
+
+  // Add theme support for document Title tag
+  add_theme_support( 'title-tag' );
+} );
+
