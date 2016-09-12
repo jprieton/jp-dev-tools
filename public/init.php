@@ -112,26 +112,32 @@ add_action( 'wp_enqueue_scripts', function() {
 add_action( 'wp_enqueue_scripts', function() {
 
   /**
-   * Plugin scripts
+   * Plugin styles
    *
    * @since 0.0.1
    */
   $styles = array(
-      'bootstrap'  => array(
+      'bootstrap'    => array(
           'remote' => '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
           'ver'    => '3.3.7',
       ),
-      'font-awesome'  => array(
+      'font-awesome' => array(
           'remote' => '//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css',
           'ver'    => '4.6.3',
       ),
-      'animate'    => array(
+      'animate'      => array(
           'local'  => JPDEVTOOLS_URL . 'assets/css/animate.min.css',
           'remote' => '//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css',
-          'media'  => 'screen',
           'ver'    => '3.5.2',
+          'media'  => 'screen',
       ),
-      'jpdevtools' => array(
+      'hover'        => array(
+          'local'  => JPDEVTOOLS_URL . 'assets/css/hover.min.css',
+          'remote' => '//cdnjs.cloudflare.com/ajax/libs/hover.css/2.0.2/css/hover-min.css',
+          'ver'    => '2.0.2',
+          'media'  => 'screen',
+      ),
+      'jpdevtools'   => array(
           'local'    => JPDEVTOOLS_URL . 'assets/css/public.css',
           'ver'      => '0.1.0',
           'autoload' => true
@@ -158,7 +164,6 @@ add_action( 'wp_enqueue_scripts', function() {
   $option_group = new JPDevTools\Core\OptionGroup( 'jpdevtools' );
   $use_cdn      = $option_group->get_bool_option( 'enable-cdn' );
 
-  
   foreach ( $styles as $handle => $style ) {
     $style = wp_parse_args( $style, $defaults );
 

@@ -24,13 +24,18 @@ define( 'JPDEVTOOLS_DIR', __DIR__ );
 define( 'JPDEVTOOLS_FILE', __FILE__ );
 define( 'JPDEVTOOLS_URL', plugin_dir_url( __FILE__ ) );
 
+/**
+ * Disable the Plugin and Theme Editor
+ * @since 0.0.1
+ */
+defined( 'DISALLOW_FILE_EDIT' ) || define( 'DISALLOW_FILE_EDIT', true );
+
 require_once JPDEVTOOLS_DIR . '/includes/init.php';
 require_once JPDEVTOOLS_DIR . '/admin/init.php';
 require_once JPDEVTOOLS_DIR . '/public/init.php';
 
 /**
  * The code that runs during plugin activation.
- *
  * @since 0.0.1
  */
 register_activation_hook( __FILE__, function() {
@@ -40,7 +45,6 @@ register_activation_hook( __FILE__, function() {
 
 /**
  * The code that runs during plugin activation.
- *
  * @since 0.0.1
  */
 register_activation_hook( __FILE__, function() {
