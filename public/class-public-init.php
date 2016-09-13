@@ -29,9 +29,9 @@ class PublicInit extends Singleton {
    *
    * @since 0.0.1
    *
-   * @var JPDevTools\Core\OptionGroup;
+   * @var JPDevTools\Core\SettingGroup;
    */
-  private $option_group;
+  private $setting_group;
 
   /**
    * Static instance of this class
@@ -49,7 +49,7 @@ class PublicInit extends Singleton {
    */
   protected function __construct() {
     parent::__construct();
-    $this->option_group = SettingFactory::setting_group( 'jpdevtools' );
+    $this->setting_group = SettingFactory::setting_group( 'jpdevtools' );
   }
 
   /**
@@ -58,7 +58,7 @@ class PublicInit extends Singleton {
    * @since 0.0.1
    */
   public function disable_admin_bar_by_role() {
-    $disabled_roles = (array) $this->option_group->get_option( 'admin-bar-disabled-roles', array() );
+    $disabled_roles = (array) $this->setting_group->get_option( 'admin-bar-disabled-roles', array() );
     $user           = wp_get_current_user();
 
     // By default is enabled in all roles.
@@ -121,7 +121,7 @@ class PublicInit extends Singleton {
         'autoload'  => false
     );
 
-    $use_cdn = $this->option_group->get_bool_option( 'enable-cdn' );
+    $use_cdn = $this->setting_group->get_bool_option( 'enable-cdn' );
 
     foreach ( $scripts as $handle => $script ) {
       $script = wp_parse_args( $script, $defaults );
@@ -230,7 +230,7 @@ class PublicInit extends Singleton {
         'autoload' => false
     );
 
-    $use_cdn = $this->option_group->get_bool_option( 'enable-cdn' );
+    $use_cdn = $this->setting_group->get_bool_option( 'enable-cdn' );
 
     foreach ( $styles as $handle => $style ) {
       $style = wp_parse_args( $style, $defaults );

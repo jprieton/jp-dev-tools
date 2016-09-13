@@ -30,12 +30,12 @@ class SocialSettings extends SettingsPage {
    */
   public function __construct() {
     parent::__construct( 'jpdevtools', 'jpdevtools_settings', 'jpdevtools_social_settings' );
-    $this->add_submenu_page( __( 'Social Networks', 'jpdevtools' ), __( 'Social Networks', 'jpdevtools' ) );
+    $this->add_submenu_page( __( 'Social Networks', JPDEVTOOLS_TEXTDOMAIN ), __( 'Social Networks', JPDEVTOOLS_TEXTDOMAIN ) );
     $this->add_social_links_section();
   }
 
   private function add_social_links_section() {
-    $this->add_setting_section( 'jpdevtools_social_settings_section_links', __( 'Social Links', 'jpdevtools' ) );
+    $this->add_setting_section( 'jpdevtools_social_settings_section_links', __( 'Links', JPDEVTOOLS_TEXTDOMAIN ) );
 
     /** Default networks */
     $social_networks = array(

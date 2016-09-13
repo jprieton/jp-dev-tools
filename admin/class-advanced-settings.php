@@ -30,7 +30,7 @@ class AdvancedSettings extends SettingsPage {
    */
   public function __construct() {
     parent::__construct( 'jpdevtools', 'jpdevtools_settings', 'jpdevtools_advanced' );
-    $this->add_submenu_page( 'Advanced', 'Advanced', 'administrator' );
+    $this->add_submenu_page( __( 'Advanced', JPDEVTOOLS_TEXTDOMAIN ), __( 'Advanced', JPDEVTOOLS_TEXTDOMAIN ), 'administrator' );
   }
 
 }

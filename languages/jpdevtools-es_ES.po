@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JP WordPress Dev Tools\n"
-"POT-Creation-Date: 2016-09-09 16:00-0400\n"
-"PO-Revision-Date: 2016-09-09 16:02-0400\n"
+"POT-Creation-Date: 2016-09-13 15:57-0400\n"
+"PO-Revision-Date: 2016-09-13 15:59-0400\n"
 "Last-Translator: Javier Prieto <jprieton@gmail.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -19,11 +19,31 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../includes/core/class-error.php:31
+#: ../admin/class-advanced-settings.php:33
+msgid "Advanced"
+msgstr "Avanzado"
+
+#: ../admin/class-general-settings.php:34
+msgid "General Settings"
+msgstr "Ajustes generales"
+
+#: ../admin/class-seo-settings.php:33
+msgid "Analytics &amp; SEO"
+msgstr "Analítica y SEO"
+
+#: ../admin/class-social-settings.php:33
+msgid "Social Networks"
+msgstr "Redes Sociales"
+
+#: ../admin/class-social-settings.php:38
+msgid "Links"
+msgstr "Enlaces"
+
+#: ../includes/factory/class-error-factory.php:31
 msgid "You are not authorized to perform this action."
 msgstr "No estás autorizado para realizar esta acción."
 
-#: ../includes/core/class-error.php:43
+#: ../includes/factory/class-error-factory.php:43
 msgid "You must logged in to perform this action."
 msgstr "Debes iniciar sesión para realizar esta acción."
 
@@ -100,11 +120,11 @@ msgstr ""
 
 #: ../includes/post-types/class-post-type-slider.php:39
 msgid "Not found"
-msgstr ""
+msgstr "No encontrado"
 
 #: ../includes/post-types/class-post-type-slider.php:40
 msgid "Not found in Trash"
-msgstr ""
+msgstr "No encontrado en la papelera"
 
 #: ../includes/post-types/class-post-type-slider.php:41
 msgid "Featured Image"
@@ -178,22 +198,22 @@ msgstr "Página %d"
 msgid "Search results for &ldquo;%s&rdquo;"
 msgstr "Resultados de búsqueda para &ldquo;%s&rdquo;"
 
-#: ../public/init.php:93
+#: ../public/class-public-init.php:158
 msgid "Success!"
 msgstr "¡Éxito!"
 
-#: ../public/init.php:94
+#: ../public/class-public-init.php:159
 msgid "Fail!"
 msgstr "¡Falló!"
 
-#: ../public/init.php:95
+#: ../public/class-public-init.php:160
 msgid "Error!"
 msgstr "¡Error!"
 
-#: ../public/init.php:96
+#: ../public/class-public-init.php:161
 msgid "Send"
 msgstr "Enviar"
 
-#: ../public/init.php:97
+#: ../public/class-public-init.php:162
 msgid "Sent!"
 msgstr "¡Enviado!"

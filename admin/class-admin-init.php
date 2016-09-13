@@ -35,7 +35,7 @@ class AdminInit extends Singleton {
    *
    * @var JPDevTools\Core\OptionGroup;
    */
-  private $option_group;
+  private $setting_group;
 
   /**
    * Static instance of this class
@@ -53,7 +53,14 @@ class AdminInit extends Singleton {
    */
   protected function __construct() {
     parent::__construct();
-    $this->option_group = SettingFactory::setting_group( 'jpdevtools' );
+
+    // Load dependencies
+    require_once JPDEVTOOLS_DIR . '/admin/class-general-settings.php';
+    require_once JPDEVTOOLS_DIR . '/admin/class-social-settings.php';
+    require_once JPDEVTOOLS_DIR . '/admin/class-seo-settings.php';
+    require_once JPDEVTOOLS_DIR . '/admin/class-advanced-settings.php';
+
+    $this->setting_group = SettingFactory::setting_group( 'jpdevtools' );
   }
 
   /**
@@ -62,6 +69,7 @@ class AdminInit extends Singleton {
    * @since   0.0.1
    */
   public function admin_menu() {
+
     new GeneralSettings();
     new SocialSettings();
     new SeoSettings();
@@ -96,7 +104,7 @@ class AdminInit extends Singleton {
         'autoload'  => false
     );
 
-    $use_cdn = $this->option_group->get_bool_option( 'enable-cdn' );
+    $use_cdn = $this->setting_group->get_bool_option( 'enable-cdn' );
 
     foreach ( $scripts as $handle => $script ) {
       $script = wp_parse_args( $script, $defaults );

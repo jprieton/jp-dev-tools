@@ -23,6 +23,7 @@ if ( !defined( 'ABSPATH' ) ) {
 define( 'JPDEVTOOLS_DIR', __DIR__ );
 define( 'JPDEVTOOLS_FILE', __FILE__ );
 define( 'JPDEVTOOLS_URL', plugin_dir_url( __FILE__ ) );
+define( 'JPDEVTOOLS_TEXTDOMAIN', 'jpdevtools' );
 
 /**
  * Disable the Plugin and Theme Editor

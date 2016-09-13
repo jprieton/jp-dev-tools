@@ -30,7 +30,7 @@ class SeoSettings extends SettingsPage {
    */
   public function __construct() {
     parent::__construct( 'jpdevtools', 'jpdevtools_settings', 'jpdevtools_seo_settings' );
-    $this->add_submenu_page( 'Analytics &amp; SEO', 'Analytics &amp; SEO' );
+    $this->add_submenu_page( __( 'Analytics &amp; SEO', JPDEVTOOLS_TEXTDOMAIN ), __( 'Analytics &amp; SEO', JPDEVTOOLS_TEXTDOMAIN ) );
   }
 
 }

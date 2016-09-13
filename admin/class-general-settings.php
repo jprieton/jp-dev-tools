@@ -31,7 +31,7 @@ class GeneralSettings extends SettingsPage {
   public function __construct() {
     parent::__construct( 'jpdevtools', 'jpdevtools_settings', 'jpdevtools_settings' );
     $this->add_menu_page( 'JPDevTools', 'JPDevTools', 'administrator', 'dashicons-admin-tools' );
-    $this->add_submenu_page( 'General Settings', 'General Settings' );
+    $this->add_submenu_page( __( 'General Settings', JPDEVTOOLS_TEXTDOMAIN ), __( 'General Settings', JPDEVTOOLS_TEXTDOMAIN ) );
   }
 
 }
