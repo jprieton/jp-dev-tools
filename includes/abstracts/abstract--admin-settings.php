@@ -9,7 +9,7 @@ if ( !defined( 'ABSPATH' ) ) {
   die( 'Direct access is forbidden.' );
 }
 
-use JPDevTools\Core\Factory\OptionFactory;
+use JPDevTools\Core\Factory\SettingFactory;
 use JPDevTools\Helpers\HtmlHelper;
 use JPDevTools\Helpers\FormHelper;
 
@@ -34,7 +34,7 @@ abstract class AdminSettings {
     $this->option_group = $option_group;
     $this->menu         = $menu;
     $this->submenu      = empty( $submenu ) ? $menu : $submenu;
-    $this->options      = OptionFactory::option_group( $option_group );
+    $this->options      = SettingFactory::setting_group( $option_group );
   }
 
   /**

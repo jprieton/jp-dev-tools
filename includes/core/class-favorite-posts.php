@@ -33,7 +33,7 @@ class FavoritePosts {
    * OptionGroup object.
    *
    * @since   0.0.1
-   * @var OptionGroup
+   * @var SettingGroup
    */
   private $option_group;
 
@@ -44,7 +44,7 @@ class FavoritePosts {
    */
   public function __construct() {
     $this->_create_table();
-    $this->option_group = new OptionGroup( 'jpdevtools' );
+    $this->option_group = new SettingGroup( 'jpdevtools' );
   }
 
   /**

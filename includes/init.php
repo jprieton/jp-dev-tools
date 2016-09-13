@@ -11,9 +11,9 @@ if ( !defined( 'ABSPATH' ) ) {
  * Core classes
  */
 require_once __DIR__ . '/abstracts/abstract-singleton.php';
-require_once __DIR__ . '/abstracts/abstract-settings.php';
-require_once __DIR__ . '/core/class-option-group.php';
-require_once __DIR__ . '/factory/class-option-factory.php';
+require_once __DIR__ . '/abstracts/abstract-settings-page.php';
+require_once __DIR__ . '/core/class-setting-group.php';
+require_once __DIR__ . '/factory/class-setting-factory.php';
 
 /**
  * Helper classes
@@ -22,7 +22,7 @@ require_once __DIR__ . '/helpers/class-array-helper.php';
 require_once __DIR__ . '/helpers/class-html-helper.php';
 require_once __DIR__ . '/helpers/class-form-helper.php';
 
-use JPDevTools\Core\Factory\OptionFactory;
+use JPDevTools\Core\Factory\SettingFactory;
 
 add_action( 'init', function() {
 
@@ -37,7 +37,7 @@ add_action( 'init', function() {
    * Register option group.
    * @since 0.0.1
    */
-  OptionFactory::register_option_group( 'jpdevtools' );
+  SettingFactory::register_setting_group( 'jpdevtools' );
 } );
 
 // Register Theme Features

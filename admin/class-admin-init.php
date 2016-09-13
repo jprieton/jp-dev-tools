@@ -10,7 +10,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 use JPDevTools\Abstracts\Singleton;
-use JPDevTools\Core\Factory\OptionFactory;
+use JPDevTools\Core\Factory\SettingFactory;
 use JPDevTools\Core\Settings\GeneralSettings;
 use JPDevTools\Core\Settings\SocialSettings;
 use JPDevTools\Core\Settings\SeoSettings;
@@ -53,7 +53,7 @@ class AdminInit extends Singleton {
    */
   protected function __construct() {
     parent::__construct();
-    $this->option_group = OptionFactory::option_group( 'jpdevtools' );
+    $this->option_group = SettingFactory::setting_group( 'jpdevtools' );
   }
 
   /**

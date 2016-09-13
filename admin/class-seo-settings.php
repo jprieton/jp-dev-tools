@@ -9,7 +9,7 @@ if ( !defined( 'ABSPATH' ) ) {
   die( 'Direct access is forbidden.' );
 }
 
-use JPDevTools\Abstracts\Settings;
+use JPDevTools\Abstracts\SettingsPage;
 
 /**
  * SeoSettings class
@@ -21,7 +21,7 @@ use JPDevTools\Abstracts\Settings;
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
-class SeoSettings extends Settings {
+class SeoSettings extends SettingsPage {
 
   /**
    * Constructor

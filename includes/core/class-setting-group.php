@@ -16,16 +16,16 @@ if ( !defined( 'ABSPATH' ) ) {
  * @since 0.0.1
  * @author jprieton
  */
-class OptionGroup {
+class SettingGroup {
 
   /**
-   * Option group name
+   * Setting group name
    *
    * @since 0.0.1
    *
    * @var   string
    */
-  protected $option_group = '';
+  protected $setting_group = '';
 
   /**
    * Option data
@@ -41,11 +41,11 @@ class OptionGroup {
    *
    * @since   0.0.1
    *
-   * @param   string    $option_group
+   * @param   string    $setting_group
    */
-  public function __construct( $option_group ) {
-    $this->option_group = trim( $option_group );
-    $this->options      = (array) get_option( $option_group, array() );
+  public function __construct( $setting_group ) {
+    $this->setting_group = trim( $setting_group ) . '-settings';
+    $this->options       = (array) get_option( $this->setting_group, array() );
   }
 
   /**
@@ -71,7 +71,7 @@ class OptionGroup {
   public function set_option( $option, $value ) {
     $this->options[$option] = $value;
 
-    return update_option( $this->option_group, $this->options );
+    return update_option( $this->setting_group, $this->options );
   }
 
   /**
@@ -143,7 +143,7 @@ class OptionGroup {
    * @since   0.0.1
    */
   public function register_setting() {
-    register_setting( $this->option_group, $this->option_group );
+    register_setting( $this->setting_group, $this->setting_group );
   }
-  
+
 }

@@ -9,7 +9,7 @@ if ( !defined( 'ABSPATH' ) ) {
   die( 'Direct access is forbidden.' );
 }
 
-use JPDevTools\Abstracts\Settings;
+use JPDevTools\Abstracts\SettingsPage;
 
 /**
  * SocialSettings class
@@ -21,7 +21,7 @@ use JPDevTools\Abstracts\Settings;
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
-class SocialSettings extends Settings {
+class SocialSettings extends SettingsPage {
 
   /**
    * Constructor
@@ -30,7 +30,7 @@ class SocialSettings extends Settings {
    */
   public function __construct() {
     parent::__construct( 'jpdevtools', 'jpdevtools_settings', 'jpdevtools_social_settings' );
-    $this->add_submenu_page( 'Social Networks', 'Social Networks' );
+    $this->add_submenu_page( __( 'Social Networks', 'jpdevtools' ), __( 'Social Networks', 'jpdevtools' ) );
     $this->add_social_links_section();
   }
 

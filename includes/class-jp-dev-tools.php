@@ -1,7 +1,7 @@
 <?php
 
 use JPDevTools\Abstracts\Singleton;
-use JPDevTools\Core\OptionGroup;
+use JPDevTools\Core\SettingGroup;
 
 /**
  *
@@ -11,7 +11,7 @@ class JPDevTools extends Singleton {
   public $option_group;
 
   protected function __construct() {
-    $this->option_group = new OptionGroup( 'jpdevtools' );
+    $this->option_group = new SettingGroup( 'jpdevtools' );
     parent::__construct();
   }
 

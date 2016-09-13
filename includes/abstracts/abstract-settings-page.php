@@ -9,14 +9,14 @@ if ( !defined( 'ABSPATH' ) ) {
   die( 'Direct access is forbidden.' );
 }
 
-use JPDevTools\Core\Factory\OptionFactory;
-use JPDevTools\Core\OptionGroup;
+use JPDevTools\Core\Factory\SettingFactory;
+use JPDevTools\Core\SettingGroup;
 use JPDevTools\Helpers\ArrayHelper;
 use JPDevTools\Helpers\HtmlHelper as Html;
 use JPDevTools\Helpers\FormHelper as Form;
 
 /**
- * Settings abstract class
+ * SettingsPage abstract class
  *
  * @package        Core
  * @subpackage     Abstracts
@@ -25,7 +25,7 @@ use JPDevTools\Helpers\FormHelper as Form;
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
-abstract class Settings {
+abstract class SettingsPage {
 
   /**
    * Page title
@@ -37,31 +37,31 @@ abstract class Settings {
   /**
    * OptionGroup object
    * @since   0.0.1
-   * @var     OptionGroup
+   * @var     SettingGroup
    */
-  private $option_group_name;
+  private $option_group;
 
   /**
    * Option group name
    * @since   0.0.1
-   * @var     OptionGroup
+   * @var     SettingGroup
    */
-  private $option_group;
+  private $setting_group;
 
   /**
    * Constructor
    *
    * @since   0.0.1
    *
-   * @param   string         $option_group_name
+   * @param   string         $option_group
    * @param   string         $menu
    * @param   string         $submenu
    */
-  public function __construct( $option_group_name, $menu, $submenu = '' ) {
-    $this->menu              = $menu;
-    $this->submenu           = empty( $submenu ) ? $menu : $submenu;
-    $this->option_group_name = $option_group_name;
-    $this->option_group      = OptionFactory::option_group( $option_group_name );
+  public function __construct( $option_group, $menu, $submenu = '' ) {
+    $this->menu          = $menu;
+    $this->submenu       = empty( $submenu ) ? $menu : $submenu;
+    $this->option_group  = $option_group;
+    $this->setting_group = SettingFactory::setting_group( $option_group );
   }
 
   /**
@@ -132,7 +132,7 @@ abstract class Settings {
 
     echo Form::open( array( 'method' => 'post', 'action' => 'options.php' ) );
 
-    settings_fields( $this->option_group_name );
+    settings_fields( $this->option_group );
 
     if ( !empty( $this->description ) ) {
       apply_filters( 'the_content', $this->description );
@@ -201,7 +201,7 @@ abstract class Settings {
 
     $field = wp_parse_args( $field, $defaults );
 
-    switch ($field['type']) {
+    switch ( $field['type'] ) {
       case 'checkbox':
         $callback = array( &$this, 'render_checkbox' );
         break;
@@ -228,9 +228,9 @@ abstract class Settings {
    */
   public function render_input( $field ) {
     $type    = ArrayHelper::extract( $field, 'type', 'text' );
-    $name    = sprintf( "{$this->option_group_name}[%s]", $field['id'] );
-    $value   = $this->option_group->get_option( $field['id'], $default );
+    $name    = sprintf( "{$this->option_group}[%s]", $field['id'] );
     $default = ArrayHelper::extract( $field, 'default', '' );
+    $value   = $this->setting_group->get_option( $field['id'], $default );
 
     if ( array_key_exists( 'desc', $field ) ) {
       $description = apply_filters( 'the_content', $field['desc'] );
@@ -241,6 +241,7 @@ abstract class Settings {
     }
 
     $field['class'] = ArrayHelper::extract( $field, 'input_class', '' );
+
     unset( $field['name'], $field['value'] );
     $input = Form::input( $type, $name, $value, $field );
 

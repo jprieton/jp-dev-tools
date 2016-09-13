@@ -10,7 +10,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 use JPDevTools\Abstracts\Singleton;
-use JPDevTools\Core\Factory\OptionFactory;
+use JPDevTools\Core\Factory\SettingFactory;
 
 /**
  * InitPublic class
@@ -49,7 +49,7 @@ class PublicInit extends Singleton {
    */
   protected function __construct() {
     parent::__construct();
-    $this->option_group = OptionFactory::option_group( 'jpdevtools' );
+    $this->option_group = SettingFactory::setting_group( 'jpdevtools' );
   }
 
   /**

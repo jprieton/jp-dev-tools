@@ -9,7 +9,7 @@ if ( !defined( 'ABSPATH' ) ) {
   die( 'Direct access is forbidden.' );
 }
 
-use JPDevTools\Abstracts\Settings;
+use JPDevTools\Abstracts\SettingsPage;
 
 /**
  * GeneralSettings class
@@ -21,7 +21,7 @@ use JPDevTools\Abstracts\Settings;
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
-class GeneralSettings extends Settings {
+class GeneralSettings extends SettingsPage {
 
   /**
    * Constructor
