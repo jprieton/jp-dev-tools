@@ -145,5 +145,5 @@ class OptionGroup {
   public function register_setting() {
     register_setting( $this->option_group, $this->option_group );
   }
-
+  
 }

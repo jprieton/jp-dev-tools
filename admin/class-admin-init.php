@@ -13,6 +13,7 @@ use JPDevTools\Abstracts\Singleton;
 use JPDevTools\Core\Factory\OptionFactory;
 use JPDevTools\Core\Settings\GeneralSettings;
 use JPDevTools\Core\Settings\SocialSettings;
+use JPDevTools\Core\Settings\SeoSettings;
 use JPDevTools\Core\Settings\AdvancedSettings;
 
 /**
@@ -63,6 +64,7 @@ class AdminInit extends Singleton {
   public function admin_menu() {
     new GeneralSettings();
     new SocialSettings();
+    new SeoSettings();
     new AdvancedSettings();
   }
 

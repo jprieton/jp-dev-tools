@@ -323,7 +323,7 @@ class HtmlHelper {
    */
   public static function close_tag( $tag ) {
 
-    return sprintf( '</$s>', trim( esc_attr( $tag ) ) );
+    return sprintf( '</%s>', trim( esc_attr( $tag ) ) );
   }
 
   /**

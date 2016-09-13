@@ -4,8 +4,9 @@ JP WordPress Dev Tools
 A Microframework for WordPress rewrite from JP Theme Tools
 
 ### API
-* OptionGroup
 * FavoritePosts
+* OptionGroup
+* Settings
 
 ### Helpers
 * HtmlHelper

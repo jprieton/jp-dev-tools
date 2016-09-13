@@ -10,6 +10,7 @@ if ( !defined( 'ABSPATH' ) ) {
 require_once JPDEVTOOLS_DIR . '/admin/class-admin-init.php';
 require_once JPDEVTOOLS_DIR . '/admin/class-general-settings.php';
 require_once JPDEVTOOLS_DIR . '/admin/class-social-settings.php';
+require_once JPDEVTOOLS_DIR . '/admin/class-seo-settings.php';
 require_once JPDEVTOOLS_DIR . '/admin/class-advanced-settings.php';
 
 use JPDevTools\Core\Init\AdminInit;
