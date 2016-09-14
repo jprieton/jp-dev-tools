@@ -16,7 +16,7 @@ use wpdb;
  *
  * @package        Core
  *
- * @since          0.0.1
+ * @since          0.1.0
  * @author         Javier Prieto <jprieton@gmail.com>
  */
 class FavoritePosts {
@@ -24,7 +24,7 @@ class FavoritePosts {
   /**
    * Favorite table name.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    * @var     string
    */
   private $table = 'favorite_posts';
@@ -32,7 +32,7 @@ class FavoritePosts {
   /**
    * OptionGroup object.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    * @var SettingGroup
    */
   private $option_group;
@@ -40,7 +40,7 @@ class FavoritePosts {
   /**
    * Constructor
    *
-   * @since   0.0.1
+   * @since   0.1.0
    */
   public function __construct() {
     $this->_create_table();
@@ -50,7 +50,7 @@ class FavoritePosts {
   /**
    * PHP5 style destructor and will run when object is destroyed.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    * @return  true
    */
   public function __destruct() {
@@ -61,7 +61,7 @@ class FavoritePosts {
   /**
    * Creates subscriber table
    *
-   * @since   0.0.1
+   * @since   0.1.0
    * @global  wpdb           $wpdb
    */
   private function _create_table() {
@@ -85,7 +85,7 @@ class FavoritePosts {
   /**
    * Returns the count of users that have marked the article as favorite.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    * @param   int            $post_id
    * @return  int            Count of users
    */
@@ -115,7 +115,7 @@ class FavoritePosts {
   /**
    * Update and return the count of users that have marked the article as favorite .
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @global  wpdb           $wpdb
    * @param   int            $post_id
@@ -137,7 +137,7 @@ class FavoritePosts {
   /**
    * Is user favorite post?
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @global  wpdb           $wpdb
    * @param   int            $user_id
@@ -163,7 +163,7 @@ class FavoritePosts {
   /**
    * Add post to favorites
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @global  wpdb           $wpdb
    * @param   type           $post_id
@@ -178,7 +178,7 @@ class FavoritePosts {
   /**
    * Remove post from favorites
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @global  wpdb           $wpdb
    * @param   type           $post_id
@@ -193,7 +193,7 @@ class FavoritePosts {
   /**
    * Toggle post in favorites
    *
-   * @since   0.0.1
+   * @since   0.1.0
    * 
    * @param   type           $post_id
    * @return  type

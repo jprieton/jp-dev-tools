@@ -13,7 +13,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * Upload class
  *
  * @package Core
- * @since 0.0.1
+ * @since 0.1.0
  * @author jprieton
  */
 class Upload {

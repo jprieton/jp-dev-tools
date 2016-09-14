@@ -21,7 +21,7 @@ use JPDevTools\Helpers\FormHelper as Form;
  * @package        Core
  * @subpackage     Abstracts
  *
- * @since          0.0.1
+ * @since          0.1.0
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
@@ -29,21 +29,21 @@ abstract class SettingsPage {
 
   /**
    * Page title
-   * @since   0.0.1
+   * @since   0.1.0
    * @var     string
    */
   private $title;
 
   /**
    * OptionGroup object
-   * @since   0.0.1
+   * @since   0.1.0
    * @var     SettingGroup
    */
   private $option_group;
 
   /**
    * Option group name
-   * @since   0.0.1
+   * @since   0.1.0
    * @var     SettingGroup
    */
   private $setting_group;
@@ -51,23 +51,23 @@ abstract class SettingsPage {
   /**
    * Constructor
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
-   * @param   string         $option_group
+   * @param   string         $setting_group
    * @param   string         $menu
    * @param   string         $submenu
    */
-  public function __construct( $option_group, $menu, $submenu = '' ) {
+  public function __construct( $setting_group, $menu, $submenu = '' ) {
     $this->menu          = $menu;
     $this->submenu       = empty( $submenu ) ? $menu : $submenu;
-    $this->option_group  = $option_group;
-    $this->setting_group = SettingFactory::setting_group( $option_group );
+    $this->option_group  = $setting_group;
+    $this->setting_group = SettingFactory::setting_group( $setting_group );
   }
 
   /**
    * Add a top-level menu page.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string         $page_title
    * @param   string         $menu_title
@@ -82,7 +82,7 @@ abstract class SettingsPage {
   /**
    * Add a submenu page.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string         $page_title
    * @param   string         $menu_title
@@ -96,7 +96,7 @@ abstract class SettingsPage {
   /**
    * Add a new section to a settings page.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string         $section
    * @param   string         $title
@@ -109,7 +109,7 @@ abstract class SettingsPage {
   /**
    * Render a settings page.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @global   array         $wp_settings_sections
    * @global   array         $wp_settings_fields
@@ -129,9 +129,7 @@ abstract class SettingsPage {
     }
 
     settings_errors();
-
     echo Form::open( array( 'method' => 'post', 'action' => 'options.php' ) );
-
     settings_fields( $this->option_group );
 
     if ( !empty( $this->description ) ) {
@@ -139,7 +137,6 @@ abstract class SettingsPage {
     }
 
     $tab_list = '';
-
 
     if ( count( (array) $wp_settings_sections[$this->submenu] ) > 1 ) {
 
@@ -179,19 +176,18 @@ abstract class SettingsPage {
   }
 
   /**
+   * Add field to section
    *
-   * @param array $field
-   * @return boolean
+   * @since   0.1.0
+   *
+   * @param   array          $field
+   * @return  boolean
    */
   public function add_field( $field ) {
     if ( (!is_array( $field ) || !array_key_exists( 'name', $field ) ) && array_key_exists( 'options', $field ) ) {
       return false;
     }
-
-    if ( array_key_exists( 'class', $field ) ) {
-      $field['input_class'] = $field['class'];
-      unset( $field['class'] );
-    }
+    $field['input_class'] = ArrayHelper::extract( $field, 'class', '' );
 
     $defaults = array(
         'type' => 'text',
@@ -222,9 +218,11 @@ abstract class SettingsPage {
   }
 
   /**
-   * @since 0.2.0
+   * Render a input field
    *
-   * @param array $field
+   * @since   0.1.0
+   *
+   * @param   array          $field
    */
   public function render_input( $field ) {
     $type    = ArrayHelper::extract( $field, 'type', 'text' );
@@ -244,6 +242,34 @@ abstract class SettingsPage {
 
     unset( $field['name'], $field['value'] );
     $input = Form::input( $type, $name, $value, $field );
+
+    echo $input . $description;
+  }
+
+  /**
+   * Render a textarea field
+   *
+   * @since   0.1.0
+   *
+   * @param   array          $field
+   */
+  public function render_textarea( $field ) {
+    $name    = sprintf( "{$this->option_group}[%s]", $field['id'] );
+    $default = ArrayHelper::extract( $field, 'default', '' );
+    $value   = $this->setting_group->get_option( $field['id'], $default );
+
+    if ( array_key_exists( 'desc', $field ) ) {
+      $description = apply_filters( 'the_content', $field['desc'] );
+      $description = str_replace( '<p>', '<p class="description">', $description );
+      unset( $field['desc'] );
+    } else {
+      $description = '';
+    }
+
+    $field['class'] = ArrayHelper::extract( $field, 'input_class', '' );
+
+    unset( $field['name'], $field['value'] );
+    $textarea = Form::textarea( $description, esc_textarea( $text ), $field );
 
     echo $input . $description;
   }

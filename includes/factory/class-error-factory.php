@@ -15,7 +15,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * ErrorFactory class
  *
  * @package Core
- * @since 0.0.1
+ * @since 0.1.0
  * @author jprieton
  */
 class ErrorFactory {
@@ -23,7 +23,7 @@ class ErrorFactory {
   /**
    * Shorthand to unauthorized error
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @return WP_Error
    */
@@ -35,7 +35,7 @@ class ErrorFactory {
   /**
    * Shorthand to logged_out error
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @return WP_Error
    */

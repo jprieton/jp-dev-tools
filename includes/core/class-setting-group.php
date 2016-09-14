@@ -13,7 +13,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * OptionGroup class
  *
  * @package Core
- * @since 0.0.1
+ * @since 0.1.0
  * @author jprieton
  */
 class SettingGroup {
@@ -21,7 +21,7 @@ class SettingGroup {
   /**
    * Setting group name
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @var   string
    */
@@ -30,7 +30,7 @@ class SettingGroup {
   /**
    * Option data
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @var     array
    */
@@ -39,7 +39,7 @@ class SettingGroup {
   /**
    * Constructor
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string    $setting_group
    */
@@ -51,7 +51,7 @@ class SettingGroup {
   /**
    * PHP5 style destructor and will run when object is destroyed.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    * @return  true
    */
   public function __destruct() {
@@ -61,7 +61,7 @@ class SettingGroup {
   /**
    * Set option value in group option
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string    $option   Name of option to set. Expected to not be SQL-escaped.
    * @param   mixed     $value    Option value. Must be serializable if non-scalar. Expected to not be SQL-escaped.
@@ -77,7 +77,7 @@ class SettingGroup {
   /**
    * Get option value in option group.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string    $option   Name of option to retrieve. Expected to not be SQL-escaped.
    * @param   mixed     $default  Optional. Default value to return if the option does not exist.
@@ -93,7 +93,7 @@ class SettingGroup {
   /**
    * Get boolean option value in option group.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string    $option   Name of option to retrieve. Expected to not be SQL-escaped.
    * @param   boolean   $default  Optional. Default value to return if the option does not exist.
@@ -109,7 +109,7 @@ class SettingGroup {
   /**
    * Get integer option value in option group.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string    $option   Name of option to retrieve. Expected to not be SQL-escaped.
    * @param   integer   $default  Optional. Default value to return if the option does not exist.
@@ -123,7 +123,7 @@ class SettingGroup {
   /**
    * Merge options before saving
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   array     $new_value
    * @param   array     $old_value
@@ -140,7 +140,7 @@ class SettingGroup {
   /**
    * Register a setting. Must be called in admin_init hook.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    */
   public function register_setting() {
     register_setting( $this->setting_group, $this->setting_group );

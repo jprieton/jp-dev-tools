@@ -24,7 +24,7 @@ abstract class AdminSettings {
   public $section;
 
   /**
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param string $option_group
    * @param string $menu

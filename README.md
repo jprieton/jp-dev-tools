@@ -15,6 +15,10 @@ A Microframework for WordPress rewrite from JP Theme Tools
 ### Vendors Helpers
 * Bootstrap 3.x
 
+### Post Types
+* Products
+* Services
+
 ### Registered styles
 * Animate.css 3.5.2
 * Bootstrap 3.3.7

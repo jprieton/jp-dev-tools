@@ -17,24 +17,24 @@ add_action( 'admin_menu', function () {
 
   /**
    * Add plugin menus
-   * @since 0.0.1
+   * @since 0.1.0
    */
   $init->admin_menu();
 } );
 
-add_action( 'wp_enqueue_scripts', function() {
+add_action( 'admin_enqueue_scripts', function() {
 
   $init = AdminInit::get_instance();
 
   /**
    * Register and enqueue plugin scripts
-   * @since 0.0.1
+   * @since 0.1.0
    */
   $init->enqueue_scripts();
 
   /**
    * Register and enqueue plugin styles
-   * @since 0.0.1
+   * @since 0.1.0
    */
   $init->enqueue_styles();
 } );

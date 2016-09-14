@@ -22,7 +22,7 @@ use JPDevTools\Core\Settings\AdvancedSettings;
  * @package        Core
  * @subpackage     Init
  *
- * @since          0.0.1
+ * @since          0.1.0
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
@@ -31,7 +31,7 @@ class AdminInit extends Singleton {
   /**
    * Option group data
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @var JPDevTools\Core\OptionGroup;
    */
@@ -40,7 +40,7 @@ class AdminInit extends Singleton {
   /**
    * Static instance of this class
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @var PublicInit;
    */
@@ -49,7 +49,7 @@ class AdminInit extends Singleton {
   /**
    * Constructor
    *
-   * @since   0.0.1
+   * @since   0.1.0
    */
   protected function __construct() {
     parent::__construct();
@@ -66,7 +66,7 @@ class AdminInit extends Singleton {
   /**
    * Add menu and submenu pages.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    */
   public function admin_menu() {
 
@@ -81,7 +81,7 @@ class AdminInit extends Singleton {
         'jpdevtools-admin' => array(
             'local'     => JPDEVTOOLS_URL . 'assets/js/admin.js',
             'deps'      => array( 'jquery' ),
-            'ver'       => '0.0.1',
+            'ver'       => '0.1.0',
             'in_footer' => true,
             'autoload'  => true
         ),
@@ -90,7 +90,7 @@ class AdminInit extends Singleton {
     /**
      * Filter plugin admin scripts
      *
-     * @since   0.0.1
+     * @since   0.1.0
      * @param   array   $scripts
      */
     $scripts = apply_filters( 'jpdevtools_admin_register_scripts', $scripts );

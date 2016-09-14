@@ -17,7 +17,7 @@ use JPDevTools\Core\SettingGroup;
  * @package        Core
  * @subpackage     Factory
  *
- * @since          0.0.1
+ * @since          0.1.0
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
@@ -26,7 +26,7 @@ class SettingFactory {
   /**
    * Register a setting group and add filter
    *
-   * @since    0.0.1
+   * @since    0.1.0
    *
    * @param    string    $setting_group
    */
@@ -39,7 +39,7 @@ class SettingFactory {
   /**
    * Creates and returns an SettingGroup object
    *
-   * @since    0.0.1
+   * @since    0.1.0
    *
    * @param    string    $setting_group
    *

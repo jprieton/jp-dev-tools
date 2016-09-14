@@ -17,7 +17,7 @@ use JPDevTools\Abstracts\SettingsPage;
  * @package        Core
  * @subpackage     Settings
  *
- * @since          0.0.1
+ * @since          0.1.0
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
@@ -26,10 +26,10 @@ class SocialSettings extends SettingsPage {
   /**
    * Constructor
    *
-   * @since   0.0.1
+   * @since   0.1.0
    */
   public function __construct() {
-    parent::__construct( 'jpdevtools', 'jpdevtools_settings', 'jpdevtools_social_settings' );
+    parent::__construct( 'jpdevtools-settings', 'jpdevtools_settings', 'jpdevtools_social_settings' );
     $this->add_submenu_page( __( 'Social Networks', JPDEVTOOLS_TEXTDOMAIN ), __( 'Social Networks', JPDEVTOOLS_TEXTDOMAIN ) );
     $this->add_social_links_section();
   }

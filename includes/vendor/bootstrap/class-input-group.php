@@ -18,7 +18,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * @package        Vendor
  * @subpackage     Bootstrap
  *
- * @since          0.0.1
+ * @since          0.1.0
  * @see            http://getbootstrap.com/components/#input-groups
  *
  * @author         Javier Prieto <jprieton@gmail.com>
@@ -28,7 +28,7 @@ class Form_Group {
   /**
    * Create a masked file input field.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $name
    * @param   array|string        $attributes
@@ -59,7 +59,7 @@ class Form_Group {
   /**
    * Create a form group input field.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $name
    * @param   string              $value
@@ -90,7 +90,7 @@ class Form_Group {
   /**
    * Create a form group text input field.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $name
    * @param   string              $value
@@ -104,7 +104,7 @@ class Form_Group {
   /**
    * Create a form group email input field.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $name
    * @param   string              $value

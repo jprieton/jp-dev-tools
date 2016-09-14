@@ -9,7 +9,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 /**
  * Register Product Post Type.
- * @since 0.0.1
+ * @since 0.1.0
  */
 $labels  = array(
     'name'                  => __( 'Products', JPDEVTOOLS_TEXTDOMAIN ),

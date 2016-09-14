@@ -19,7 +19,7 @@ if ( !defined( 'ABSPATH' ) ) {
  *
  * @package Core
  *
- * @since   0.0.1
+ * @since   0.1.0
  * @see     https://laravelcollective.com/docs/master/html
  *
  * @author         Javier Prieto <jprieton@gmail.com>
@@ -29,7 +29,7 @@ class FormHelper {
   /**
    * Open up a new HTML form.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   array|string        $attributes
    *
@@ -44,7 +44,7 @@ class FormHelper {
   /**
    * Close the HTML form.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @return  string
    */
@@ -55,7 +55,7 @@ class FormHelper {
   /**
    * Create a form input field.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $name
    * @param   string              $value
@@ -76,7 +76,7 @@ class FormHelper {
   /**
    * Create a text input field.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $name
    * @param   string              $value
@@ -90,7 +90,7 @@ class FormHelper {
   /**
    * Create a textarea input field.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $name
    * @param   string              $text
@@ -109,7 +109,7 @@ class FormHelper {
   /**
    * Create a hidden input field.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $name
    * @param   string              $value
@@ -123,7 +123,7 @@ class FormHelper {
   /**
    * Create a email input field.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $name
    * @param   string              $value
@@ -137,7 +137,7 @@ class FormHelper {
   /**
    * Create a email input field.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $name
    * @param   string              $value
@@ -151,7 +151,7 @@ class FormHelper {
   /**
    * Create a password input field.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $name
    * @param   array|string        $attributes
@@ -164,7 +164,7 @@ class FormHelper {
   /**
    * Create a file input field.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $name
    * @param   array|string        $attributes
@@ -177,7 +177,7 @@ class FormHelper {
   /**
    * Create a label element field.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $name
    * @param   string              $text
@@ -192,7 +192,7 @@ class FormHelper {
   /**
    * Create a button
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $text
    * @param   array|string        $attributes
@@ -210,7 +210,7 @@ class FormHelper {
   /**
    * Create a submit button
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $text
    * @param   array|string        $attributes
@@ -229,7 +229,7 @@ class FormHelper {
   /**
    * Create a reset button
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $text
    * @param   array|string        $attributes
@@ -248,7 +248,7 @@ class FormHelper {
   /**
    * Create a checkbox input field.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $name
    * @param   string              $value
@@ -273,7 +273,7 @@ class FormHelper {
   /**
    * Create a radio input field.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $name
    * @param   string              $value
@@ -298,7 +298,7 @@ class FormHelper {
   /**
    * Create a action hidden field and nonce hidden field for forms.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $action
    * @param   string              $name
@@ -315,7 +315,7 @@ class FormHelper {
   /**
    * Create a dropdown list.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $name
    * @param   array|string        $options
@@ -363,7 +363,7 @@ class FormHelper {
   /**
    * Create a datalist tag.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   array|string        $options
    * @param   array|string        $attributes

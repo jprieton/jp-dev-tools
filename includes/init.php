@@ -28,13 +28,13 @@ add_action( 'init', function() {
 
   /**
    * Register option group.
-   * @since 0.0.1
+   * @since 0.1.0
    */
   SettingFactory::register_setting_group( 'jpdevtools-settings' );
 
   /**
    * Loads the plugin's translated strings.
-   * @since 0.0.1
+   * @since 0.1.0
    */
   load_plugin_textdomain( JPDEVTOOLS_TEXTDOMAIN, false, dirname( plugin_basename( __DIR__ ) ) . '/languages' );
 
@@ -43,7 +43,7 @@ add_action( 'init', function() {
 
   /**
    * Register Product Post Type.
-   * @since 0.0.1
+   * @since 0.1.0
    */
   if ( $setting_group->get_bool_option( 'product-post-type-enabled' ) ) {
     include_once __DIR__ . '/post-types/product-post-type.php';
@@ -51,7 +51,7 @@ add_action( 'init', function() {
 
   /**
    * Register Service Post Type.
-   * @since 0.0.1
+   * @since 0.1.0
    */
   if ( $setting_group->get_bool_option( 'service-post-type-enabled' ) ) {
     include_once __DIR__ . '/post-types/service-post-type.php';

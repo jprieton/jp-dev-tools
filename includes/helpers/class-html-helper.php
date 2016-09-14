@@ -16,7 +16,7 @@ if ( !defined( 'ABSPATH' ) ) {
  *
  * @package Core
  *
- * @since   0.0.1
+ * @since   0.1.0
  * @see     https://laravelcollective.com/docs/master/html
  * @see     http://www.yiiframework.com/doc-2.0/yii-helpers-basehtml.html
  *
@@ -48,7 +48,7 @@ class HtmlHelper {
   /**
    * Retrieve an HTML img element
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $src
    * @param   string|array        $attributes
@@ -70,7 +70,7 @@ class HtmlHelper {
    * Retrieve an HTML script element. Is recommended enqueue the script using <i>wp_register_script</i> and/or
    * <i>wp_enqueue_script</i> because it is the method recommended by WordPress Guidelines.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    * @see     https://developer.wordpress.org/themes/basics/including-css-javascript/
    *
    * @param   string              $src
@@ -88,7 +88,7 @@ class HtmlHelper {
    * Retrieve an HTML style element. Is recommended enqueue the script using <i>wp_register_script</i> and/or
    * <i>wp_enqueue_script</i> because it is the method recommended by WordPress Guidelines.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    * @see     https://developer.wordpress.org/themes/basics/including-css-javascript/
    *
    * @param   string              $href
@@ -111,7 +111,7 @@ class HtmlHelper {
   /**
    * Retrieve an HTML meta element
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $href
    * @param   string|array        $attributes
@@ -128,7 +128,7 @@ class HtmlHelper {
   /**
    * Retrieve a HTML link
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $href
    * @param   string              $text
@@ -145,7 +145,7 @@ class HtmlHelper {
   /**
    * Convert an array to HTML attributes
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   array|string        $attributes
    * @return  string
@@ -189,7 +189,7 @@ class HtmlHelper {
   /**
    * Retrieve a HTML complete tag
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $tag
    * @param   string              $text
@@ -213,7 +213,7 @@ class HtmlHelper {
   /**
    * Generate a HTML link to an email address.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $email
    * @param   string              $text
@@ -236,7 +236,7 @@ class HtmlHelper {
   /**
    * Obfuscate an e-mail address to prevent spam-bots from sniffing it.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $email
    * @return  string
@@ -248,7 +248,7 @@ class HtmlHelper {
   /**
    * Obfuscate a string to prevent spam-bots from sniffing it.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $text
    * @return  string
@@ -279,7 +279,7 @@ class HtmlHelper {
   /**
    * Check if exists a class in atts, if not then add to string.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   array               $attributes
    * @param   string              $class
@@ -298,7 +298,7 @@ class HtmlHelper {
   /**
    * Retrieve a HTML open tag
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $tag
    * @param   array|string        $attributes
@@ -316,7 +316,7 @@ class HtmlHelper {
   /**
    * Retrieve a HTML close tag
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $tag
    * @return  string
@@ -329,7 +329,7 @@ class HtmlHelper {
   /**
    * Parse a shorthand tag.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $text
    * @return  array
@@ -370,7 +370,7 @@ class HtmlHelper {
   /**
    * Generate an un-ordered list of items.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   array               $items
    * @param   array|string        $attributes
@@ -397,7 +397,7 @@ class HtmlHelper {
   /**
    * Generate an ordered list of items.
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   array               $items
    * @param   array|string        $attributes

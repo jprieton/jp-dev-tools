@@ -11,6 +11,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 use JPDevTools\Abstracts\Singleton;
 use JPDevTools\Core\Factory\SettingFactory;
+use JPDevTools\Helpers\HtmlHelper as Html;
 
 /**
  * InitPublic class
@@ -18,7 +19,7 @@ use JPDevTools\Core\Factory\SettingFactory;
  * @package        Core
  * @subpackage     Init
  *
- * @since          0.0.1
+ * @since          0.1.0
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
@@ -27,7 +28,7 @@ class PublicInit extends Singleton {
   /**
    * Option group data
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @var JPDevTools\Core\SettingGroup;
    */
@@ -36,7 +37,7 @@ class PublicInit extends Singleton {
   /**
    * Static instance of this class
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @var PublicInit;
    */
@@ -45,7 +46,7 @@ class PublicInit extends Singleton {
   /**
    * Constructor
    *
-   * @since   0.0.1
+   * @since   0.1.0
    */
   protected function __construct() {
     parent::__construct();
@@ -55,7 +56,7 @@ class PublicInit extends Singleton {
   /**
    * Disable WordPress Admin Bar in frontend in specific roles.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    */
   public function disable_admin_bar_by_role() {
     $disabled_roles = (array) $this->setting_group->get_option( 'admin-bar-disabled-roles', array() );
@@ -77,7 +78,7 @@ class PublicInit extends Singleton {
   /**
    * Register & enqueue plugin scripts
    *
-   * @since 0.0.1
+   * @since 0.1.0
    */
   public function enqueue_scripts() {
     $scripts = array(
@@ -92,7 +93,7 @@ class PublicInit extends Singleton {
         'jpdevtools' => array(
             'local'     => JPDEVTOOLS_URL . 'assets/js/public.js',
             'deps'      => array( 'jquery' ),
-            'ver'       => '0.0.1',
+            'ver'       => '0.1.0',
             'in_footer' => true,
             'autoload'  => true
         ),
@@ -107,7 +108,7 @@ class PublicInit extends Singleton {
     /**
      * Filter plugin scripts
      *
-     * @since   0.0.1
+     * @since   0.1.0
      * @param   array   $scripts
      */
     $scripts = apply_filters( 'jpdevtools_register_scripts', $scripts );
@@ -150,7 +151,7 @@ class PublicInit extends Singleton {
     /**
      * Localize public script
      *
-     * @since   0.0.1
+     * @since   0.1.0
      */
     $localize_script = array(
         'ajax_url' => admin_url( 'admin-ajax.php' ),
@@ -166,7 +167,7 @@ class PublicInit extends Singleton {
     /**
      * Filter localize scripts
      *
-     * @since   0.0.1
+     * @since   0.1.0
      * @param   array   $localize_script
      */
     $localize_script = apply_filters( 'jpdevtools_localize_scripts', $localize_script );
@@ -177,13 +178,13 @@ class PublicInit extends Singleton {
   /**
    * Register & enqueue plugin styles
    *
-   * @since 0.0.1
+   * @since 0.1.0
    */
   public function enqueue_styles() {
     /**
      * Plugin styles
      *
-     * @since 0.0.1
+     * @since 0.1.0
      */
     $styles = array(
         'bootstrap'    => array(
@@ -216,7 +217,7 @@ class PublicInit extends Singleton {
     /**
      * Filter styles
      *
-     * @since   0.0.1
+     * @since   0.1.0
      * @param   array   $styles
      */
     $styles = apply_filters( 'jpdevtools_register_styles', $styles );
@@ -254,6 +255,68 @@ class PublicInit extends Singleton {
         /* Enqueue styles if autolad in enabled */
         wp_enqueue_style( $handle );
       }
+    }
+  }
+
+  /**
+   * Shows Google Tag Manager script
+   *
+   * @since 0.1.0
+   */
+  public function google_tag_manager() {
+    $google_tag_manager = $this->setting_group->get_option( 'google-tag-manager', '' );
+    if ( !empty( $google_tag_manager ) ) {
+      $google_tag_manager = strip_tags( $google_tag_manager );
+      echo Html::tag( 'script', $google_tag_manager );
+    }
+  }
+
+  /**
+   * Shows Google Universal Analytics script
+   *
+   * @since 0.1.0
+   */
+  public function google_universal_analytics() {
+    $google_universal_analytics = $this->setting_group->get_option( 'google-universal-analytics', '' );
+    if ( !empty( $google_universal_analytics ) ) {
+      $google_universal_analytics = strip_tags( $google_universal_analytics );
+      echo Html::tag( 'script', $google_universal_analytics );
+    }
+  }
+
+  /**
+   * Shows Bing Site Verification code
+   *
+   * @since 0.1.0
+   */
+  public function bing_site_verification() {
+    // If is Yoast active do nothing;
+    if ( defined( 'WPSEO_VERSION' ) ) {
+      return;
+    }
+
+    $bing_site_verification = $this->setting_group->get_option( 'bing-site-verification', '' );
+    if ( !empty( $bing_site_verification ) ) {
+      $bing_site_verification = strip_tags( $bing_site_verification );
+      echo Html::tag( 'script', $bing_site_verification );
+    }
+  }
+
+  /**
+   * Shows Google Site Verification code
+   *
+   * @since 0.1.0
+   */
+  public function google_site_verification() {
+    // If is Yoast active do nothing;
+    if ( defined( 'WPSEO_VERSION' ) ) {
+      return;
+    }
+
+    $google_site_verification = $this->setting_group->get_option( 'google-site-verification', '' );
+    if ( !empty( $google_site_verification ) ) {
+      $google_site_verification = strip_tags( $google_site_verification );
+      echo Html::meta( 'google-site-verification', $google_site_verification );
     }
   }
 

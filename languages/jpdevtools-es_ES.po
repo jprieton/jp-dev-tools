@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JP WordPress Dev Tools\n"
-"POT-Creation-Date: 2016-09-14 11:02-0400\n"
-"PO-Revision-Date: 2016-09-14 11:07-0400\n"
+"POT-Creation-Date: 2016-09-14 13:36-0400\n"
+"PO-Revision-Date: 2016-09-14 13:37-0400\n"
 "Last-Translator: Javier Prieto <jprieton@gmail.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -30,6 +30,15 @@ msgstr "Ajustes generales"
 #: ../admin/class-seo-settings.php:33
 msgid "Analytics &amp; SEO"
 msgstr "Analítica y SEO"
+
+#: ../admin/class-seo-settings.php:41 ../admin/class-seo-settings.php:52
+msgid "Site Verification Code"
+msgstr "Código de Verificación"
+
+#: ../admin/class-seo-settings.php:45 ../admin/class-seo-settings.php:56
+msgctxt "settings"
+msgid "verification-code"
+msgstr "código-de-verificación"
 
 #: ../admin/class-social-settings.php:33
 msgid "Social Networks"
@@ -346,23 +355,23 @@ msgstr "Página %d"
 msgid "Search results for &ldquo;%s&rdquo;"
 msgstr "Resultados de búsqueda para &ldquo;%s&rdquo;"
 
-#: ../public/class-public-init.php:158
+#: ../public/class-public-init.php:159
 msgid "Success!"
 msgstr "¡Éxito!"
 
-#: ../public/class-public-init.php:159
+#: ../public/class-public-init.php:160
 msgid "Fail!"
 msgstr "¡Falló!"
 
-#: ../public/class-public-init.php:160
+#: ../public/class-public-init.php:161
 msgid "Error!"
 msgstr "¡Error!"
 
-#: ../public/class-public-init.php:161
+#: ../public/class-public-init.php:162
 msgid "Send"
 msgstr "Enviar"
 
-#: ../public/class-public-init.php:162
+#: ../public/class-public-init.php:163
 msgid "Sent!"
 msgstr "¡Enviado!"
 

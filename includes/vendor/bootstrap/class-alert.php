@@ -18,7 +18,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * @package        Vendor
  * @subpackage     Bootstrap
  *
- * @since          0.0.1
+ * @since          0.1.0
  * @see            http://getbootstrap.com/components/#alerts
  *
  * @author         Javier Prieto <jprieton@gmail.com>
@@ -28,7 +28,7 @@ class Alert {
   /**
    * Retrieve a Bootstrap alert component
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $content
    * @param   string|array        $attributes
@@ -67,7 +67,7 @@ class Alert {
   /**
    * Retrieve a Bootstrap success alert component
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $content
    * @param   string|array        $attributes
@@ -86,7 +86,7 @@ class Alert {
   /**
    * Retrieve a Bootstrap info alert component
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $content
    * @param   string|array        $attributes
@@ -105,7 +105,7 @@ class Alert {
   /**
    * Retrieve a Bootstrap warning alert component
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $content
    * @param   string|array        $attributes
@@ -124,7 +124,7 @@ class Alert {
   /**
    * Retrieve a Bootstrap danger alert component
    *
-   * @since 0.0.1
+   * @since 0.1.0
    *
    * @param   string              $content
    * @param   string|array        $attributes

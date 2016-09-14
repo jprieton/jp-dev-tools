@@ -13,7 +13,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * Activation class
  *
  * @package Core
- * @since 0.0.1
+ * @since 0.1.0
  * @author jprieton
  */
 class Activator {
@@ -21,7 +21,7 @@ class Activator {
   /**
    * The code that runs during plugin activation.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    */
   public static function activate() {
     do_action( 'jpdevtools_activation_hook' );
@@ -30,7 +30,7 @@ class Activator {
   /**
    * The code that runs during plugin deactivation.
    *
-   * @since 0.0.1
+   * @since 0.1.0
    */
   public static function deactivate() {
     do_action( 'jpdevtools_deactivation_hook' );

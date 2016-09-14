@@ -17,7 +17,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * @package        Vendor
  * @subpackage     Bootstrap
  *
- * @since          0.0.1
+ * @since          0.1.0
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
@@ -26,7 +26,7 @@ class Misc {
   /**
    * Bootstrap close button for modals and/or alerts
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $data_dismiss
    * @return  string
@@ -45,7 +45,7 @@ class Misc {
   /**
    * Bootstrap badge
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $content
    * @return  string
@@ -58,7 +58,7 @@ class Misc {
   /**
    * Bootstrap well
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $content
    * @return  string
@@ -71,7 +71,7 @@ class Misc {
   /**
    * Bootstrap glyphicon
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $glyphicon
    * @return  string

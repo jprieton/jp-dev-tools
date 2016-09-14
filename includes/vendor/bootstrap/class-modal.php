@@ -18,7 +18,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * @package        Vendor
  * @subpackage     Bootstrap
  *
- * @since          0.0.1
+ * @since          0.1.0
  * @see            http://getbootstrap.com/javascript/#modals
  *
  * @author         Javier Prieto <jprieton@gmail.com>
@@ -28,7 +28,7 @@ class Modal {
   /**
    * Modal attributes
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @var array
    */
@@ -37,7 +37,7 @@ class Modal {
   /**
    * Modal header text
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @var string
    */
@@ -46,7 +46,7 @@ class Modal {
   /**
    * Modal footer text
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @var string
    */
@@ -55,7 +55,7 @@ class Modal {
   /**
    * Modal body text
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @var string
    */
@@ -64,7 +64,7 @@ class Modal {
   /**
    * Bootstrap modal's constructor
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   array|string        $attributes
    */
@@ -89,7 +89,7 @@ class Modal {
   /**
    * Set the modal header
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $header
    */
@@ -100,7 +100,7 @@ class Modal {
   /**
    * Set the modal footer
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $footer
    */
@@ -111,7 +111,7 @@ class Modal {
   /**
    * Set the modal body
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $body
    */
@@ -122,7 +122,7 @@ class Modal {
   /**
    * Retrieve a Bootstrap modal markup
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   bool                $echo
    * @return  string
@@ -150,7 +150,7 @@ class Modal {
   /**
    * Retrieve a Bootstrap modal header markup
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @return  string
    */
@@ -169,7 +169,7 @@ class Modal {
   /**
    * Retrieve a Bootstrap modal footer markup
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @return  string
    */
@@ -184,7 +184,7 @@ class Modal {
   /**
    * Retrieve a Bootstrap modal body markup
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @return  string
    */
@@ -201,7 +201,7 @@ class Modal {
   /**
    * Retrieve a Bootstrap modal button trigger
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $src
    * @param   string|array        $attributes
@@ -222,7 +222,7 @@ class Modal {
   /**
    * Retrieve a Bootstrap modal button trigger
    *
-   * @since   0.0.1
+   * @since   0.1.0
    *
    * @param   string              $src
    * @param   string|array        $attributes

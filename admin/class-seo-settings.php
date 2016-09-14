@@ -17,7 +17,7 @@ use JPDevTools\Abstracts\SettingsPage;
  * @package        Core
  * @subpackage     Settings
  *
- * @since          0.0.1
+ * @since          0.1.0
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
@@ -26,11 +26,35 @@ class SeoSettings extends SettingsPage {
   /**
    * Constructor
    *
-   * @since   0.0.1
+   * @since   0.1.0
    */
   public function __construct() {
-    parent::__construct( 'jpdevtools', 'jpdevtools_settings', 'jpdevtools_seo_settings' );
+    parent::__construct( 'jpdevtools-settings', 'jpdevtools_settings', 'jpdevtools_seo_settings' );
     $this->add_submenu_page( __( 'Analytics &amp; SEO', JPDEVTOOLS_TEXTDOMAIN ), __( 'Analytics &amp; SEO', JPDEVTOOLS_TEXTDOMAIN ) );
+    $this->add_google_settings_section();
+    $this->add_bing_settings_section();
+  }
+
+  private function add_google_settings_section() {
+    $this->add_setting_section( 'jpdevtools_seo_settings_section_google', 'Google' );
+    $this->add_field( array(
+        'name'  => __( 'Site Verification Code', JPDEVTOOLS_TEXTDOMAIN ),
+        'id'    => 'google-site-verification',
+        'type'  => 'text',
+        'class' => 'large-text code',
+        'desc'  => '<code>&lt;meta name="google-site-verification" content="<b>{' . _x( 'verification-code', 'settings', JPDEVTOOLS_TEXTDOMAIN ) . '}</b>"&gt;</code>',
+    ) );
+  }
+
+  private function add_bing_settings_section() {
+    $this->add_setting_section( 'jpdevtools_seo_settings_section_bing', 'Bing' );
+    $this->add_field( array(
+        'name'  => __( 'Site Verification Code', JPDEVTOOLS_TEXTDOMAIN ),
+        'id'    => 'bing-site-verification',
+        'type'  => 'text',
+        'class' => 'large-text code',
+        'desc'  => '<code>&lt;meta  name="msvalidate.01" content="<b>{' . _x( 'verification-code', 'settings', JPDEVTOOLS_TEXTDOMAIN ) . '}</b>"&gt;</code>',
+    ) );
   }
 
 }

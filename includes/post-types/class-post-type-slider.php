@@ -15,7 +15,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * PostTypeSlider class
  *
  * @package PostTypeSlider
- * @since 0.0.1
+ * @since 0.1.0
  * @author jprieton
  */
 class PostTypeSlider extends PostType {

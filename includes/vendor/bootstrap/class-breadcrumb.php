@@ -17,7 +17,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * @package        Vendor
  * @subpackage     Bootstrap
  *
- * @since          0.0.1
+ * @since          0.1.0
  * @see            http://getbootstrap.com/components/#breadcrumbs
  *
  * @author         Javier Prieto <jprieton@gmail.com>
