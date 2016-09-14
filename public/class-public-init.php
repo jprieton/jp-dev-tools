@@ -49,7 +49,7 @@ class PublicInit extends Singleton {
    */
   protected function __construct() {
     parent::__construct();
-    $this->setting_group = SettingFactory::setting_group( 'jpdevtools' );
+    $this->setting_group = SettingFactory::setting_group( 'jpdevtools-settings' );
   }
 
   /**

@@ -37,11 +37,14 @@ add_action( 'init', function() {
    * Register option group.
    * @since 0.0.1
    */
-  SettingFactory::register_setting_group( 'jpdevtools' );
+  SettingFactory::register_setting_group( 'jpdevtools-settings' );
 } );
 
 // Register Theme Features
 add_action( 'after_setup_theme', function () {
+
+  // Add theme support for Featured Images
+  add_theme_support( 'post-thumbnails' );
 
   // Add theme support for document Title tag
   add_theme_support( 'title-tag' );

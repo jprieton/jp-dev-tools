@@ -60,7 +60,7 @@ class AdminInit extends Singleton {
     require_once JPDEVTOOLS_DIR . '/admin/class-seo-settings.php';
     require_once JPDEVTOOLS_DIR . '/admin/class-advanced-settings.php';
 
-    $this->setting_group = SettingFactory::setting_group( 'jpdevtools' );
+    $this->setting_group = SettingFactory::setting_group( 'jpdevtools-settings' );
   }
 
   /**

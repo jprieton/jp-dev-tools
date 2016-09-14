@@ -44,7 +44,7 @@ class SettingGroup {
    * @param   string    $setting_group
    */
   public function __construct( $setting_group ) {
-    $this->setting_group = trim( $setting_group ) . '-settings';
+    $this->setting_group = trim( $setting_group );
     $this->options       = (array) get_option( $this->setting_group, array() );
   }
 
