@@ -26,6 +26,11 @@ use JPDevTools\Core\Factory\SettingFactory;
 
 add_action( 'init', function() {
 
+  /**
+   * Register option group.
+   * @since 0.0.1
+   */
+  SettingFactory::register_setting_group( 'jpdevtools-settings' );
 
   /**
    * Loads the plugin's translated strings.
@@ -33,12 +38,25 @@ add_action( 'init', function() {
    */
   load_plugin_textdomain( JPDEVTOOLS_TEXTDOMAIN, false, dirname( plugin_basename( __DIR__ ) ) . '/languages' );
 
+  // Plugin settings
+  $setting_group = SettingFactory::setting_group( 'jpdevtools-settings' );
+
   /**
-   * Register option group.
+   * Register Product Post Type.
    * @since 0.0.1
    */
-  SettingFactory::register_setting_group( 'jpdevtools-settings' );
-} );
+  if ( $setting_group->get_bool_option( 'product-post-type-enabled' ) ) {
+    include_once __DIR__ . '/post-types/product-post-type.php';
+  }
+
+  /**
+   * Register Service Post Type.
+   * @since 0.0.1
+   */
+  if ( $setting_group->get_bool_option( 'service-post-type-enabled' ) ) {
+    include_once __DIR__ . '/post-types/service-post-type.php';
+  }
+}, 0 );
 
 // Register Theme Features
 add_action( 'after_setup_theme', function () {

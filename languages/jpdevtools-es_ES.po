@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JP WordPress Dev Tools\n"
-"POT-Creation-Date: 2016-09-13 15:57-0400\n"
-"PO-Revision-Date: 2016-09-13 15:59-0400\n"
+"POT-Creation-Date: 2016-09-14 11:02-0400\n"
+"PO-Revision-Date: 2016-09-14 11:07-0400\n"
 "Last-Translator: Javier Prieto <jprieton@gmail.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -38,6 +38,10 @@ msgstr "Redes Sociales"
 #: ../admin/class-social-settings.php:38
 msgid "Links"
 msgstr "Enlaces"
+
+#: ../admin/class-support-settings.php:33
+msgid "Support"
+msgstr "Soporte"
 
 #: ../includes/factory/class-error-factory.php:31
 msgid "You are not authorized to perform this action."
@@ -79,6 +83,8 @@ msgid "Slider"
 msgstr ""
 
 #: ../includes/post-types/class-post-type-slider.php:29
+#: ../includes/post-types/product-post-type.php:19
+#: ../includes/post-types/service-post-type.php:19
 msgid "Item Archives"
 msgstr ""
 
@@ -99,6 +105,8 @@ msgid "Add New"
 msgstr ""
 
 #: ../includes/post-types/class-post-type-slider.php:34
+#: ../includes/post-types/product-post-type.php:24
+#: ../includes/post-types/service-post-type.php:24
 msgid "New Item"
 msgstr ""
 
@@ -143,28 +151,168 @@ msgid "Use as featured image"
 msgstr ""
 
 #: ../includes/post-types/class-post-type-slider.php:45
+#: ../includes/post-types/product-post-type.php:31
+#: ../includes/post-types/service-post-type.php:31
 msgid "Insert into item"
 msgstr ""
 
 #: ../includes/post-types/class-post-type-slider.php:46
+#: ../includes/post-types/product-post-type.php:32
+#: ../includes/post-types/service-post-type.php:32
 msgid "Uploaded to this item"
 msgstr ""
 
 #: ../includes/post-types/class-post-type-slider.php:47
+#: ../includes/post-types/product-post-type.php:33
+#: ../includes/post-types/service-post-type.php:33
 msgid "Items list"
 msgstr ""
 
 #: ../includes/post-types/class-post-type-slider.php:48
+#: ../includes/post-types/product-post-type.php:34
+#: ../includes/post-types/service-post-type.php:34
 msgid "Items list navigation"
 msgstr ""
 
 #: ../includes/post-types/class-post-type-slider.php:49
+#: ../includes/post-types/product-post-type.php:35
+#: ../includes/post-types/service-post-type.php:35
 msgid "Filter items list"
 msgstr ""
 
 #: ../includes/post-types/class-post-type-slider.php:54
 msgid "Slider post type"
 msgstr ""
+
+#: ../includes/post-types/product-post-type.php:15
+#: ../includes/post-types/product-post-type.php:17
+msgid "Products"
+msgstr "Productos"
+
+#: ../includes/post-types/product-post-type.php:16
+#: ../includes/post-types/product-post-type.php:18
+#: ../includes/post-types/product-post-type.php:44
+msgid "Product"
+msgstr "Producto"
+
+#: ../includes/post-types/product-post-type.php:20
+msgid "Parent Product:"
+msgstr ""
+
+#: ../includes/post-types/product-post-type.php:21
+msgid "All Products"
+msgstr "Todos los productos"
+
+#: ../includes/post-types/product-post-type.php:22
+msgid "Add New Product"
+msgstr "Añadir nuevo producto"
+
+#: ../includes/post-types/product-post-type.php:23
+msgid "New Product"
+msgstr "Nuevo producto"
+
+#: ../includes/post-types/product-post-type.php:25
+msgid "Edit Product"
+msgstr "Editar producto"
+
+#: ../includes/post-types/product-post-type.php:26
+msgid "Update Product"
+msgstr "Actualizar producto"
+
+#: ../includes/post-types/product-post-type.php:27
+msgid "View Product"
+msgstr "Ver producto"
+
+#: ../includes/post-types/product-post-type.php:28
+msgid "Search products"
+msgstr "Buscar productos"
+
+#: ../includes/post-types/product-post-type.php:29
+msgid "No products found"
+msgstr "No se han encontrado productos"
+
+#: ../includes/post-types/product-post-type.php:30
+msgid "No products found in Trash"
+msgstr "Ningún producto encontrado en la papelera."
+
+#: ../includes/post-types/product-post-type.php:38
+msgctxt "post_type slug"
+msgid "product"
+msgstr "producto"
+
+#: ../includes/post-types/product-post-type.php:45
+msgid "Site products"
+msgstr ""
+
+#: ../includes/post-types/product-post-type.php:58
+msgctxt "post_type archive_slug"
+msgid "product"
+msgstr "producto"
+
+#: ../includes/post-types/service-post-type.php:15
+msgid "Services"
+msgstr "Servicios"
+
+#: ../includes/post-types/service-post-type.php:16
+#: ../includes/post-types/service-post-type.php:17
+#: ../includes/post-types/service-post-type.php:18
+#: ../includes/post-types/service-post-type.php:44
+msgid "Service"
+msgstr "Servicio"
+
+#: ../includes/post-types/service-post-type.php:20
+msgid "Parent Service:"
+msgstr ""
+
+#: ../includes/post-types/service-post-type.php:21
+msgid "All Services"
+msgstr "Todos los servicios"
+
+#: ../includes/post-types/service-post-type.php:22
+msgid "Add New Service"
+msgstr "Añadir nuevo servicio"
+
+#: ../includes/post-types/service-post-type.php:23
+msgid "New Service"
+msgstr "Nuevo servicio"
+
+#: ../includes/post-types/service-post-type.php:25
+msgid "Edit Service"
+msgstr "Editar servicio"
+
+#: ../includes/post-types/service-post-type.php:26
+msgid "Update Service"
+msgstr "Actualizar servicio"
+
+#: ../includes/post-types/service-post-type.php:27
+msgid "View Service"
+msgstr "Ver servicio"
+
+#: ../includes/post-types/service-post-type.php:28
+msgid "Search services"
+msgstr "Buscar servicios"
+
+#: ../includes/post-types/service-post-type.php:29
+msgid "No services found"
+msgstr "No se han encontrado servicios"
+
+#: ../includes/post-types/service-post-type.php:30
+msgid "No services found in Trash"
+msgstr "Ningún servicio encontrado en la papelera."
+
+#: ../includes/post-types/service-post-type.php:38
+msgctxt "post_type slug"
+msgid "service"
+msgstr "servicio"
+
+#: ../includes/post-types/service-post-type.php:45
+msgid "Site services."
+msgstr ""
+
+#: ../includes/post-types/service-post-type.php:57
+msgctxt "post_type archive_slug"
+msgid "service"
+msgstr "servicio"
 
 #: ../includes/vendor/bootstrap/class-input-group.php:40
 msgctxt "form-field"
@@ -217,3 +365,51 @@ msgstr "Enviar"
 #: ../public/class-public-init.php:162
 msgid "Sent!"
 msgstr "¡Enviado!"
+
+#~ msgctxt "post_type all_items"
+#~ msgid "All Products"
+#~ msgstr "Todos los productos"
+
+#~ msgctxt "post_type add_new_item"
+#~ msgid "Add New Product"
+#~ msgstr "Agregar Nuevo Producto"
+
+#~ msgctxt "post_type add_new"
+#~ msgid "New Product"
+#~ msgstr "Nuevo producto"
+
+#~ msgctxt "post_type edit_item"
+#~ msgid "Edit Product"
+#~ msgstr "Editar producto"
+
+#~ msgctxt "post_type view_item"
+#~ msgid "View Product"
+#~ msgstr "Ver producto"
+
+#~ msgctxt "post_type not_found"
+#~ msgid "No products found"
+#~ msgstr "No se han encontrado productos"
+
+#~ msgctxt "post_type not_found_in_trash"
+#~ msgid "No products found in Trash"
+#~ msgstr "No hay productos en la papelera"
+
+#~ msgctxt "post_type name"
+#~ msgid "Products"
+#~ msgstr "Productos"
+
+#~ msgctxt "post_type singular_name"
+#~ msgid "Product"
+#~ msgstr "Producto"
+
+#~ msgctxt "post_type menu_name"
+#~ msgid "Products"
+#~ msgstr "Productos"
+
+#~ msgctxt "post_type name_admin_bar"
+#~ msgid "Product"
+#~ msgstr "Producto"
+
+#~ msgctxt "slug"
+#~ msgid "product"
+#~ msgstr "producto"
