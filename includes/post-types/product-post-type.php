@@ -17,7 +17,6 @@ $labels  = array(
     'menu_name'             => __( 'Products', JPDEVTOOLS_TEXTDOMAIN ),
     'name_admin_bar'        => __( 'Product', JPDEVTOOLS_TEXTDOMAIN ),
     'archives'              => __( 'Item Archives', JPDEVTOOLS_TEXTDOMAIN ),
-    'parent_item_colon'     => __( 'Parent Product:', JPDEVTOOLS_TEXTDOMAIN ),
     'all_items'             => __( 'All Products', JPDEVTOOLS_TEXTDOMAIN ),
     'add_new_item'          => __( 'Add New Product', JPDEVTOOLS_TEXTDOMAIN ),
     'add_new'               => __( 'New Product', JPDEVTOOLS_TEXTDOMAIN ),

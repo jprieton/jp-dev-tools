@@ -17,7 +17,6 @@ $labels  = array(
     'menu_name'             => __( 'Service', JPDEVTOOLS_TEXTDOMAIN ),
     'name_admin_bar'        => __( 'Service', JPDEVTOOLS_TEXTDOMAIN ),
     'archives'              => __( 'Item Archives', JPDEVTOOLS_TEXTDOMAIN ),
-    'parent_item_colon'     => __( 'Parent Service:', JPDEVTOOLS_TEXTDOMAIN ),
     'all_items'             => __( 'All Services', JPDEVTOOLS_TEXTDOMAIN ),
     'add_new_item'          => __( 'Add New Service', JPDEVTOOLS_TEXTDOMAIN ),
     'add_new'               => __( 'New Service', JPDEVTOOLS_TEXTDOMAIN ),
