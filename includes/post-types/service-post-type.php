@@ -8,7 +8,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Register Product Post Type.
+ * Register Service Post Type.
  * @since 0.1.0
  */
 $labels  = array(

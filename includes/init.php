@@ -56,6 +56,14 @@ add_action( 'init', function() {
   if ( $setting_group->get_bool_option( 'service-post-type-enabled' ) ) {
     include_once __DIR__ . '/post-types/service-post-type.php';
   }
+
+  /**
+   * Register Service Post Type.
+   * @since 0.1.0
+   */
+  if ( $setting_group->get_bool_option( 'portfolio-post-type-enabled' ) ) {
+    include_once __DIR__ . '/post-types/portfolio-post-type.php';
+  }
 }, 0 );
 
 // Register Theme Features
