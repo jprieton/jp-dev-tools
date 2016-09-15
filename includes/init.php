@@ -48,10 +48,14 @@ add_action( 'init', function() {
 
   /**
    * Register Product Post Type.
+   * Register Product Category Taxonomy.
+   * Register Product Tag Taxonomy.
    * @since 0.1.0
    */
   if ( $setting_group->get_bool_option( 'product-post-type-enabled' ) ) {
-    include_once __DIR__ . '/post-types/product-post-type.php';
+    include_once __DIR__ . '/post-types/product.php';
+    include_once __DIR__ . '/taxonomies/product_cat.php';
+    include_once __DIR__ . '/taxonomies/product_tag.php';
   }
 
   /**
@@ -59,7 +63,7 @@ add_action( 'init', function() {
    * @since 0.1.0
    */
   if ( $setting_group->get_bool_option( 'service-post-type-enabled' ) ) {
-    include_once __DIR__ . '/post-types/service-post-type.php';
+    include_once __DIR__ . '/post-types/service.php';
   }
 
   /**
@@ -67,7 +71,7 @@ add_action( 'init', function() {
    * @since 0.1.0
    */
   if ( $setting_group->get_bool_option( 'portfolio-post-type-enabled' ) ) {
-    include_once __DIR__ . '/post-types/portfolio-post-type.php';
+    include_once __DIR__ . '/post-types/portfolio.php';
   }
 }, 0 );
 

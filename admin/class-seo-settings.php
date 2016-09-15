@@ -35,6 +35,11 @@ class SeoSettings extends SettingsPage {
     $this->add_bing_settings_section();
   }
 
+  /**
+   * Add Google settings section
+   *
+   * @since   0.1.0
+   */
   private function add_google_settings_section() {
     $this->add_setting_section( 'jpdevtools_seo_settings_section_google', 'Google' );
     $this->add_field( array(
@@ -46,6 +51,11 @@ class SeoSettings extends SettingsPage {
     ) );
   }
 
+  /**
+   * Add Bing settings section
+   *
+   * @since   0.1.0
+   */
   private function add_bing_settings_section() {
     $this->add_setting_section( 'jpdevtools_seo_settings_section_bing', 'Bing' );
     $this->add_field( array(
