@@ -61,4 +61,3 @@ $args    = array(
     'capability_type'     => 'post',
 );
 register_post_type( 'portfolio', $args );
-
