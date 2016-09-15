@@ -2,15 +2,15 @@
 
 namespace JPDevTools\Vendor\Bootstrap;
 
-use JPDevTools\Helpers\HtmlHelper as Html;
-use JPDevTools\Vendor\Bootstrap\Misc;
-
 /**
  * If this file is called directly, abort.
  */
 if ( !defined( 'ABSPATH' ) ) {
   die( 'Direct access is forbidden.' );
 }
+
+use JPDevTools\Helpers\HtmlHelper as Html;
+use JPDevTools\Vendor\Bootstrap\Misc;
 
 /**
  * Bootstrap modal class
@@ -66,7 +66,7 @@ class Modal {
    *
    * @since   0.1.0
    *
-   * @param   array|string        $attributes
+   * @param   array|string   $attributes
    */
   public function __construct( $attributes = array() ) {
     static $id;
@@ -91,7 +91,7 @@ class Modal {
    *
    * @since   0.1.0
    *
-   * @param   string              $header
+   * @param   string         $header
    */
   public function set_header( $header ) {
     $this->header = (string) $header;
@@ -102,7 +102,7 @@ class Modal {
    *
    * @since   0.1.0
    *
-   * @param   string              $footer
+   * @param   string         $footer
    */
   public function set_footer( $footer ) {
     $this->footer = (string) $footer;
@@ -113,7 +113,7 @@ class Modal {
    *
    * @since   0.1.0
    *
-   * @param   string              $body
+   * @param   string         $body
    */
   public function set_body( $body ) {
     $this->body = (string) $body;
@@ -124,7 +124,7 @@ class Modal {
    *
    * @since   0.1.0
    *
-   * @param   bool                $echo
+   * @param   bool           $echo
    * @return  string
    */
   public function render( $echo = false ) {
@@ -177,7 +177,7 @@ class Modal {
     if ( empty( $this->footer ) ) {
       return '';
     }
-    
+
     return Html::tag( 'div.modal-footer', $this->footer );
   }
 
@@ -203,9 +203,9 @@ class Modal {
    *
    * @since   0.1.0
    *
-   * @param   string              $src
-   * @param   string|array        $attributes
-   * 
+   * @param   string         $src
+   * @param   string|array   $attributes
+   *
    * @return  string
    */
   public function get_button_trigger( $text, $attributes = array() ) {
@@ -224,9 +224,9 @@ class Modal {
    *
    * @since   0.1.0
    *
-   * @param   string              $src
-   * @param   string|array        $attributes
-   * 
+   * @param   string         $src
+   * @param   string|array   $attributes
+   *
    * @return  string
    */
   public function get_link_trigger( $text, $attributes = array() ) {

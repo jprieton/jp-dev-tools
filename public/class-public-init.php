@@ -320,4 +320,30 @@ class PublicInit extends Singleton {
     }
   }
 
+  /**
+   * Remove WordPress Version Number from header and feeds
+   *
+   * @since 0.1.0
+   */
+  public function remove_wordpress_version() {
+    if ( !$this->setting_group->get_bool_option( 'remove-wordpress-version' ) ) {
+      return;
+    }
+
+    remove_action( 'wp_head', 'wp_generator' );
+    add_filter( 'the_generator', '__return_empty_string' );
+
+    $remove_version = function ( $src, $handle ) {
+      $src = remove_query_arg( 'ver', $src );
+      return $src;
+    };
+
+    if ( !$this->setting_group->get_bool_option( 'remove-wordpress-version-all' ) ) {
+      return;
+    }
+
+    add_filter( 'style_loader_src', $remove_version, 10, 2 );
+    add_filter( 'script_loader_src', $remove_version, 10, 2 );
+  }
+
 }

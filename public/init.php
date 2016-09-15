@@ -20,6 +20,12 @@ add_action( 'init', function() {
    * @since 0.1.0
    */
   $init->disable_admin_bar_by_role();
+
+  /**
+   * Remove WordPress Version Number from header and feeds
+   * @since 0.1.0
+   */
+  $init->remove_wordpress_version();
 } );
 
 add_action( 'wp_enqueue_scripts', function() {
