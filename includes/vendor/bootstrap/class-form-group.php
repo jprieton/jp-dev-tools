@@ -3,7 +3,7 @@
 namespace JPDevTools\Vendor\Bootstrap;
 
 use JPDevTools\Helpers\HtmlHelper as Html;
-use JPDevTools\Core\Form;
+use JPDevTools\Helpers\FormHelper as Form;
 
 /**
  * If this file is called directly, abort.
@@ -23,7 +23,7 @@ if ( !defined( 'ABSPATH' ) ) {
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
-class Form_Group {
+class FormGroup {
 
   /**
    * Create a masked file input field.
@@ -34,26 +34,24 @@ class Form_Group {
    * @param   array|string        $attributes
    * @return  string
    */
-  public function file( $name, $label = '', $attributes = array() ) {
+  public static function file( $name, $label = '', $attributes = array() ) {
 
     $content = '';
-    $content = Form::label( $name, _x( 'Browse...', 'form-field', 'jpdevtools' ), 'class=input-group-addon' );
+    if ( $label ) {
+      $label = Form::label( $name, $label );
+    }
+    $content .= Form::label( $name, _x( 'Browse...', 'form-field', 'jpdevtools' ), 'class=input-group-addon' );
 
-    $content .= Form::text( $name, array(
-        'class'       => 'form-control',
-        'readonly',
-        'placeholder' => __( 'No file selected.', 'jpdevtools' )
+    $content .= Form::text( $name, '', array(
+                'class'       => 'form-control',
+                'readonly',
+                'placeholder' => __( 'No file selected.', 'jpdevtools' )
             ) );
-
-    $content .= Form::file( $name, wp_parse_args( $attributes, 'class=hidden' ) );
+    $content .= Form::file( $name, wp_parse_args( $attributes, array( 'class' => 'hidden' ) ) );
 
     $input_group = Html::tag( 'div.input-group.input-group-file', $content );
 
-    if ( $label ) {
-      $content .= Form::label( $name, $label );
-    }
-
-    return Html::tag( 'div.form-group', $label . $content );
+    return Html::tag( 'div.form-group', $label . $input_group );
   }
 
   /**
@@ -66,7 +64,7 @@ class Form_Group {
    * @param   array|string        $attributes
    * @return  string
    */
-  public function input( $type, $name, $value = '', $label = '', $attributes = array() ) {
+  public static function input( $type, $name, $value = '', $label = '', $attributes = array() ) {
     $defaults   = array(
         'name'  => $name,
         'value' => $value,
@@ -113,6 +111,22 @@ class Form_Group {
    */
   public static function email( $name, $value = '', $label = '', $attributes = array() ) {
     return self::input( 'email', $name, $value, $label, $attributes );
+  }
+
+  public static function select( $name, $options = array(), $label = '', $attributes = array() ) {
+    $defaults   = array(
+        'name'  => $name,
+        'class' => 'form-control'
+    );
+    $attributes = wp_parse_args( $attributes, $defaults );
+
+    $content = '';
+    if ( $label ) {
+      $content .= Form::label( $name, $label );
+    }
+
+    $content .= Form::select( $content, $options, $attributes );
+    return $content;
   }
 
 }

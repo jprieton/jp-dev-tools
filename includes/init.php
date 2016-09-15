@@ -22,6 +22,11 @@ require_once __DIR__ . '/helpers/class-array-helper.php';
 require_once __DIR__ . '/helpers/class-html-helper.php';
 require_once __DIR__ . '/helpers/class-form-helper.php';
 
+/**
+ * Vendor init
+ */
+require_once __DIR__ . '/vendor/bootstrap/init.php';
+
 use JPDevTools\Core\Factory\SettingFactory;
 
 add_action( 'init', function() {

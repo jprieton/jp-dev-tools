@@ -78,7 +78,7 @@ class Modal {
     }
 
     $defaults         = array(
-        'class'    => 'modal',
+        'class'    => 'modal fade',
         'tabindex' => '-1',
         'role'     => 'dialog',
         'id'       => "modal-{$id}",
