@@ -101,9 +101,9 @@ class SettingGroup {
    * @return  boolean
    */
   public function get_bool_option( $option, $default = false ) {
-    $response = $this->get_option( $option, $default );
+    $value = $this->get_option( $option, $default );
 
-    return (bool) in_array( $response, array( true, 'Y', 'y', 'yes', 'true', 1 ) );
+    return (bool) in_array( $value, array( 'Y', 'y', 'yes', 'true', 1 ) );
   }
 
   /**

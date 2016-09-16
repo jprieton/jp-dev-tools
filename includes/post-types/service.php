@@ -14,7 +14,7 @@ if ( !defined( 'ABSPATH' ) ) {
 $labels  = array(
     'name'                  => __( 'Services', JPDEVTOOLS_TEXTDOMAIN ),
     'singular_name'         => __( 'Service', JPDEVTOOLS_TEXTDOMAIN ),
-    'menu_name'             => __( 'Service', JPDEVTOOLS_TEXTDOMAIN ),
+    'menu_name'             => __( 'Services', JPDEVTOOLS_TEXTDOMAIN ),
     'name_admin_bar'        => __( 'Service', JPDEVTOOLS_TEXTDOMAIN ),
     'archives'              => __( 'Item Archives', JPDEVTOOLS_TEXTDOMAIN ),
     'all_items'             => __( 'All Services', JPDEVTOOLS_TEXTDOMAIN ),

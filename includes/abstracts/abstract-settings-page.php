@@ -35,14 +35,14 @@ abstract class SettingsPage {
   private $title;
 
   /**
-   * OptionGroup object
+   * Option group name
    * @since   0.1.0
-   * @var     SettingGroup
+   * @var     string
    */
   private $option_group;
 
   /**
-   * Option group name
+   * SettingGroup object
    * @since   0.1.0
    * @var     SettingGroup
    */
@@ -197,7 +197,7 @@ abstract class SettingsPage {
 
     $field = wp_parse_args( $field, $defaults );
 
-    switch ( $field['type'] ) {
+    switch ($field['type']) {
       case 'checkbox':
         $callback = array( &$this, 'render_checkbox' );
         break;
@@ -272,6 +272,62 @@ abstract class SettingsPage {
     $textarea = Form::textarea( $description, esc_textarea( $text ), $field );
 
     echo $input . $description;
+  }
+
+  /**
+   * Render a checkbox field
+   *
+   * @since   0.1.0
+   *
+   * @param   array          $field
+   */
+  public function render_checkbox( $field ) {
+
+    $options = array();
+
+    $is_multiple = false;
+    if ( array_key_exists( 'options', $field ) ) {
+      $options     = $field['options'];
+      unset( $field['options'] );
+      $is_multiple = true;
+    }
+
+    $field['class'] = ArrayHelper::extract( $field, 'input_class', '' );
+
+    if ( empty( $options ) ) {
+      $options[] = $field;
+    }
+
+    foreach ( $options as $item ) {
+      $item['type']  = 'checkbox';
+      $item['id']    = ArrayHelper::get( $item, 'id' );
+      $item['name']  = sprintf( "{$this->option_group}[%s]", $item['id'] );
+      $item['value'] = 'yes';
+
+      $label = ArrayHelper::extract( $item, 'label', false );
+      if ( $label ) {
+        $label = '%s ' . Html::tag( 'b', $label );
+      } else {
+        $label = '%s ';
+      }
+
+      $desc = ArrayHelper::extract( $item, 'desc', '' );
+      if ( $desc ) {
+        $desc = apply_filters( 'the_content', $desc );
+        $desc = str_replace( '<p>', '<p class="description">', $desc );
+      } else {
+        $desc = '<br />';
+      }
+
+      if ( $this->setting_group->get_bool_option( $item['id'] ) ) {
+        $item['checked'] = 'checked';
+      }
+
+      $label = Form::label( $item['id'], $label );
+      $input = Form::hidden( $item['name'], 'no' ) . Form::checkbox( $item['name'], 'yes', $item );
+
+      echo sprintf( $label, $input ) . $desc;
+    }
   }
 
 }

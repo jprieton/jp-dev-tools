@@ -31,6 +31,33 @@ class AdvancedSettings extends SettingsPage {
   public function __construct() {
     parent::__construct( 'jpdevtools-settings', 'jpdevtools_settings', 'jpdevtools_advanced' );
     $this->add_submenu_page( __( 'Advanced', JPDEVTOOLS_TEXTDOMAIN ), __( 'Advanced', JPDEVTOOLS_TEXTDOMAIN ), 'administrator' );
+    $this->add_development_setting_section();
+  }
+
+  private function add_development_setting_section() {
+    $this->add_setting_section( 'jpdevtools_social_settings_section_development', __( 'Development', JPDEVTOOLS_TEXTDOMAIN ) );
+    $this->add_field( array(
+        'name'    => __( 'Post Type Enabled' ),
+        'type'    => 'checkbox',
+        'options' => array(
+            array(
+                'id'    => 'slide-post-type-enabled',
+                'label' => __( 'Carousel', JPDEVTOOLS_TEXTDOMAIN ),
+            ),
+            array(
+                'id'    => 'service-post-type-enabled',
+                'label' => __( 'Service', JPDEVTOOLS_TEXTDOMAIN ),
+            ),
+            array(
+                'id'    => 'portfolio-post-type-enabled',
+                'label' => __( 'Portfolio', JPDEVTOOLS_TEXTDOMAIN ),
+            ),
+            array(
+                'id'    => 'product-post-type-enabled',
+                'label' => __( 'Product', JPDEVTOOLS_TEXTDOMAIN ),
+            ),
+        ),
+    ) );
   }
 
 }

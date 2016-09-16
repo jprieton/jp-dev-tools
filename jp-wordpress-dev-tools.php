@@ -9,8 +9,8 @@ if ( !defined( 'ABSPATH' ) ) {
 
 /**
  * Plugin Name:    JP WordPress Dev Tools
- * Description:
- * Version:        0.1.0
+ * Description:    A Microframework for WordPress
+ * Version:        0.1.0-dev
  * Author:         Javier Prieto
  * License:        GPL-3.0+
  * License URI:    http://www.gnu.org/licenses/gpl-3.0.txt
