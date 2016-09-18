@@ -83,13 +83,4 @@ add_action( 'init', function() {
   }
 }, 0 );
 
-// Register Theme Features
-add_action( 'after_setup_theme', function () {
-
-  // Add theme support for Featured Images
-  add_theme_support( 'post-thumbnails' );
-
-  // Add theme support for document Title tag
-  add_theme_support( 'title-tag' );
-} );
 

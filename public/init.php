@@ -8,6 +8,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 require_once JPDEVTOOLS_DIR . '/public/class-public-init.php';
+require_once JPDEVTOOLS_DIR . '/public/media.php';
 
 use JPDevTools\Core\Init\PublicInit;
 
@@ -67,3 +68,30 @@ add_action( 'before_main_content', function() {
   $init->google_tag_manager();
 } );
 
+
+// Register Theme Features
+add_action( 'after_setup_theme', function () {
+
+  /**
+   * Add theme support for Featured Images
+   * @since 0.1.0
+   */
+  add_theme_support( 'post-thumbnails' );
+
+  /**
+   * Add theme support for document Title tag
+   * @since 0.1.0
+   */
+  add_theme_support( 'title-tag' );
+} );
+
+add_filter( 'post_thumbnail_html', function($html, $post_id, $post_thumbnail_id, $size, $attr) {
+
+  $init = PublicInit::get_instance();
+
+  /**
+   * Shows a default image when the post don't have featured image
+   * @since 0.1.0
+   */
+  return $init->post_thumbnail_html( $html, $post_id, $post_thumbnail_id, $size, $attr );
+}, 10, 5 );

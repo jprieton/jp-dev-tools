@@ -44,6 +44,15 @@ class PublicInit extends Singleton {
   protected static $instance;
 
   /**
+   * Not found image url
+   *
+   * @since 0.1.0
+   *
+   * @var string
+   */
+  protected $not_found_image;
+
+  /**
    * Constructor
    *
    * @since   0.1.0
@@ -344,6 +353,51 @@ class PublicInit extends Singleton {
 
     add_filter( 'style_loader_src', $remove_version, 10, 2 );
     add_filter( 'script_loader_src', $remove_version, 10, 2 );
+  }
+
+  /**
+   * Returns the fallback not found image
+   * 
+   * @since 0.1.0
+   * 
+   * @return string
+   */
+  public function get_not_found_image_url() {
+    if ( empty( $this->not_found_image ) ) {
+      $locale = substr( get_locale(), 0, 2 );
+
+      if ( empty( $locale ) || !file_exists( JPDEVTOOLS_DIR . '/assets/images/not-available-' . $locale . '.png' ) ) {
+        $this->not_found_image = JPDEVTOOLS_URL . 'assets/images/not-available-en.png';
+      } else {
+        $this->not_found_image = JPDEVTOOLS_URL . 'assets/images/not-available-' . $locale . '.png';
+      }
+
+      $this->not_found_image = $this->setting_group->get_option( 'not-found-image', $this->not_found_image );
+    }
+
+    return $this->not_found_image;
+  }
+
+  /**
+   * Shows a default image when the post don't have featured image
+   * 
+   * @since 0.1.0
+   * 
+   * @staticvar    string    $not_found_image
+   * @param        string    $html
+   * @param        int       $post_id
+   * @param        int       $post_thumbnail_id
+   * @param        string    $size
+   * @param        array     $attr
+   * @return       string
+   */
+  public function post_thumbnail_html( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
+    if ( !empty( $html ) ) {
+      return $html;
+    }
+
+    $attr['alt'] = __( 'Image not available', JPDEVTOOLS_TEXTDOMAIN );
+    return Html::img( $this->get_not_found_image_url(), $attr );
   }
 
 }

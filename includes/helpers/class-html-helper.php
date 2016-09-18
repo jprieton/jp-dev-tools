@@ -178,9 +178,14 @@ class HtmlHelper {
         continue;
       }
 
+      if ( is_array( $value )) {
+        $value = implode( ' ', $value );
+      }
+
       if ( !is_null( $value ) ) {
         $_attributes[] = sprintf( '%s="%s"', trim( esc_attr( $key ) ), trim( esc_attr( $value ) ) );
       }
+      
     }
 
     return implode( ' ', $_attributes );
