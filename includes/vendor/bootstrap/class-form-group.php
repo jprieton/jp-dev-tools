@@ -47,7 +47,7 @@ class FormGroup {
                 'readonly',
                 'placeholder' => __( 'No file selected.', 'jpdevtools' )
             ) );
-    $content .= Form::file( $name, wp_parse_args( $attributes, array( 'class' => 'hidden' ) ) );
+    $content .= Form::file( $name, wp_parse_args( $attributes, array( 'class' => 'hidden', 'id' => $name ) ) );
 
     $input_group = Html::tag( 'div.input-group.input-group-file', $content );
 
