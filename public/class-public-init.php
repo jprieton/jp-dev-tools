@@ -158,29 +158,12 @@ class PublicInit extends Singleton {
     }
 
     /**
-     * Localize public script
-     *
-     * @since   0.1.0
-     */
-    $localize_script = array(
-        'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
-        'messages' => array(
-            'success' => __( 'Success!', JPDEVTOOLS_TEXTDOMAIN ),
-            'fail'    => __( 'Fail!', JPDEVTOOLS_TEXTDOMAIN ),
-            'error'   => __( 'Error!', JPDEVTOOLS_TEXTDOMAIN ),
-            'send'    => __( 'Send', JPDEVTOOLS_TEXTDOMAIN ),
-            'sending' => __( 'Sending...', JPDEVTOOLS_TEXTDOMAIN ),
-            'sent'    => __( 'Sent!', JPDEVTOOLS_TEXTDOMAIN ),
-        )
-    );
-
-    /**
      * Filter localize scripts
      *
      * @since   0.1.0
      * @param   array   $localize_script
      */
-    $localize_script = apply_filters( 'jpdevtools_localize_scripts', $localize_script );
+    $localize_script = apply_filters( 'jpdevtools_localize_scripts', array() );
 
     wp_localize_script( 'jpdevtools', 'JPDevTools', $localize_script );
   }
@@ -358,9 +341,9 @@ class PublicInit extends Singleton {
 
   /**
    * Returns the fallback not found image
-   * 
+   *
    * @since 0.1.0
-   * 
+   *
    * @return string
    */
   public function get_not_found_image_url() {
@@ -381,9 +364,9 @@ class PublicInit extends Singleton {
 
   /**
    * Shows a default image when the post don't have featured image
-   * 
+   *
    * @since 0.1.0
-   * 
+   *
    * @staticvar    string    $not_found_image
    * @param        string    $html
    * @param        int       $post_id

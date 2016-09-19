@@ -129,6 +129,16 @@ class AdminInit extends Singleton {
         wp_enqueue_script( $handle );
       }
     }
+
+    /**
+     * Filter localize scripts
+     *
+     * @since   0.1.0
+     * @param   array   $localize_script
+     */
+    $localize_script = apply_filters( 'jpdevtools_localize_scripts', array() );
+
+    wp_localize_script( 'jpdevtools-admin', 'JPDevTools', $localize_script );
   }
 
   public function enqueue_styles() {
