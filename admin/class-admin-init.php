@@ -76,6 +76,11 @@ class AdminInit extends Singleton {
     new AdvancedSettings();
   }
 
+  /**
+   * Enqueue admin scripts.
+   *
+   * @since   0.1.0
+   */
   public function enqueue_scripts() {
     $scripts = array(
         'jpdevtools-admin' => array(
@@ -141,6 +146,11 @@ class AdminInit extends Singleton {
     wp_localize_script( 'jpdevtools-admin', 'JPDevTools', $localize_script );
   }
 
+  /**
+   * Enqueue admin styles.
+   *
+   * @since   0.1.0
+   */
   public function enqueue_styles() {
 
   }

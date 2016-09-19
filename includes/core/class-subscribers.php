@@ -9,6 +9,9 @@ if ( !defined( 'ABSPATH' ) ) {
   die( 'Direct access is forbidden.' );
 }
 
+use JPDevTools\Abstracts\Singleton;
+use WP_REST_Server;
+use WP_REST_Request;
 use wpdb;
 
 /**
@@ -19,10 +22,10 @@ use wpdb;
  * @since          0.1.0
  * @author         Javier Prieto <jprieton@gmail.com>
  */
-class Subscribers {
+class Subscribers extends Singleton {
 
   /**
-   * Favorite table name.
+   * Subscribers table name.
    *
    * @since   0.1.0
    * @var     string
@@ -30,11 +33,24 @@ class Subscribers {
   private $table = 'subscribers';
 
   /**
+   * Subscribers endpoint.
+   *
+   * @since   0.1.0
+   * @var     string
+   */
+  private $table = 'subscribers';
+
+  /**
+   * @var type SubscribersRestApi
+   */
+  static $instance;
+
+  /**
    * Constructor
    *
    * @since   0.1.0
    */
-  public function __construct() {
+  protected function __construct() {
     $this->_create_table();
   }
 
@@ -98,6 +114,74 @@ class Subscribers {
     $exists = $wpdb->get_var( "SELECT subscriber_id FROM {$wpdb->base_prefix}{$this->table} WHERE subscriber_email = '{$email}' LIMIT 1" );
 
     return $exists;
+  }
+
+  public function register_rest_routes() {
+    $args = array(
+        'methods'     => WP_REST_Server::ALLMETHODS,
+        'accept_json' => true,
+        'callback'    => array( $this, '_add_json_callback' ),
+        'args'        => array(
+            'subscriber_email'  => array(
+                'required'          => true,
+                'sanitize_callback' => 'sanitize_email'
+            ),
+            'subscriber_field1' => array(
+                'default'           => '',
+                'sanitize_callback' => 'sanitize_text_field'
+            ),
+            'subscriber_field2' => array(
+                'default'           => '',
+                'sanitize_callback' => 'sanitize_text_field'
+            ),
+            'subscriber_field3' => array(
+                'default'           => '',
+                'sanitize_callback' => 'sanitize_text_field'
+            ),
+            'subscriber_field4' => array(
+                'default'           => '',
+                'sanitize_callback' => 'sanitize_text_field'
+            ),
+            'subscriber_field5' => array(
+                'default'           => '',
+                'sanitize_callback' => 'sanitize_text_field'
+            ),
+            'subscriber_field6' => array(
+                'default'           => '',
+                'sanitize_callback' => 'sanitize_text_field'
+            ),
+            'subscriber_list'   => array(
+                'default'           => 0,
+                'sanitize_callback' => 'absint'
+            ),
+        )
+    );
+
+    register_rest_route( $this->namespace, 'add.json', $args );
+  }
+
+  /**
+   *
+   * @param WP_REST_Request $wp_rest_request
+   */
+  public function _add_json_callback( $wp_rest_request ) {
+    $response = array(
+        'code'    => '',
+        'message' => '',
+        'data'    => array(
+            'status' => 200
+        ),
+    );
+
+    $fields['subscriber_email'] = $wp_rest_request->get_param( 'subscriber_email' );
+    for ( $i = 1; $i < 7; $i++ ) {
+      $fields["subscriber_field{$i}"] = $wp_rest_request->get_param( "subscriber_field{$i}" );
+    }
+    $fields['subscriber_list'] = $wp_rest_request->get_param( 'subscriber_list' );
+
+
+
+    return $fields;
   }
 
 }

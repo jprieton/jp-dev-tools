@@ -23,6 +23,11 @@ require_once __DIR__ . '/helpers/class-html-helper.php';
 require_once __DIR__ . '/helpers/class-form-helper.php';
 
 /**
+ * Rest API
+ */
+require_once __DIR__ . '/api/class-subscribers-rest.php';
+
+/**
  * Vendor init
  */
 require_once __DIR__ . '/vendor/bootstrap/init.php';
