@@ -59,7 +59,7 @@ class FavoritePosts {
   }
 
   /**
-   * Creates subscriber table
+   * Creates favorite_posts table
    *
    * @since   0.1.0
    * @global  wpdb           $wpdb
@@ -194,7 +194,7 @@ class FavoritePosts {
    * Toggle post in favorites
    *
    * @since   0.1.0
-   * 
+   *
    * @param   type           $post_id
    * @return  type
    */
