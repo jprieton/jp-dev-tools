@@ -37,6 +37,7 @@ class SubscribersRestApi extends Singleton {
         'callback'    => array( $this, 'add_rest_route_callback' ),
         'args'        => array(
             'subscriber_email'  => array(
+                'default'           => '',
                 'required'          => true,
                 'sanitize_callback' => 'sanitize_email'
             ),
