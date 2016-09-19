@@ -101,7 +101,7 @@ class PublicInit extends Singleton {
         ),
         'jpdevtools' => array(
             'local'     => JPDEVTOOLS_URL . 'assets/js/public.js',
-            'deps'      => array( 'jquery' ),
+            'deps'      => array( 'jquery', 'jquery-form' ),
             'ver'       => '0.1.0',
             'in_footer' => true,
             'autoload'  => true
@@ -163,13 +163,14 @@ class PublicInit extends Singleton {
      * @since   0.1.0
      */
     $localize_script = array(
-        'ajax_url' => admin_url( 'admin-ajax.php' ),
+        'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
         'messages' => array(
-            'success' => __( 'Success!', 'jpdevtools' ),
-            'fail'    => __( 'Fail!', 'jpdevtools' ),
-            'error'   => __( 'Error!', 'jpdevtools' ),
-            'send'    => __( 'Send', 'jpdevtools' ),
-            'sent'    => __( 'Sent!', 'jpdevtools' ),
+            'success' => __( 'Success!', JPDEVTOOLS_TEXTDOMAIN ),
+            'fail'    => __( 'Fail!', JPDEVTOOLS_TEXTDOMAIN ),
+            'error'   => __( 'Error!', JPDEVTOOLS_TEXTDOMAIN ),
+            'send'    => __( 'Send', JPDEVTOOLS_TEXTDOMAIN ),
+            'sending' => __( 'Sending...', JPDEVTOOLS_TEXTDOMAIN ),
+            'sent'    => __( 'Sent!', JPDEVTOOLS_TEXTDOMAIN ),
         )
     );
 

@@ -23,4 +23,39 @@
     });
   });
 
+  /**
+   * Default ajaxForm behavior
+   */
+  $('.ajax-form').each(function () {
+    var form = $(this);
+    $(form).find('textarea,input').on('focus', function (i, e) {
+      var button = form.find('button[type=submit]');
+      button.attr('data-default', button.text());
+    });
+  });
+
+  $('.ajax-form').ajaxForm({
+    url: JPDevTools.ajaxUrl,
+    dataType: 'json',
+    method: 'post',
+    beforeSubmit: function (formData, form, options) {
+      var button = form.find('button[type=submit]');
+      button.attr('disabled', '').text(JPDevTools.messages.sending);
+      form.trigger('ajaxFormBeforeSubmit', [form]);
+    },
+    success: function (response, statusText, xhr, form) {
+      var button = form.find('button[type=submit]');
+      button.removeAttr('disabled');
+      if (response.success) {
+        var textSuccess = button.attr('data-success') ? button.attr('data-success') : JPDevTools.messages.success;
+        button.text(textSuccess);
+        form.trigger('ajaxFormSuccess', [response, form]);
+      } else {
+        var textError = button.attr('data-success') ? button.attr('data-success') : JPDevTools.messages.error;
+        button.text(textError);
+        form.trigger('ajaxFormError', [response, form]);
+      }
+    }
+  });
+
 })(jQuery);
