@@ -25,13 +25,17 @@ use JPDevTools\Helpers\ArrayHelper;
  */
 class Pagination {
 
-  public static function paginate_links( $args = array(), $echo = true ) {
-    global $wp_query;
-
-    if ( !$wp_query->max_num_pages ) {
-      return '';
-    }
-
+  /**
+   * Returns a Bootstrap pagination links
+   *
+   * @since  0.1.0
+   * @see    https://codex.wordpress.org/Function_Reference/paginate_links
+   *
+   * @global  type          $wp_query
+   * @param   array         $args
+   * @return  string
+   */
+  public static function paginate_links( $args = array() ) {
     $defaults  = array(
         'nav_class' => 'text-center',
         'class'     => '',
@@ -48,7 +52,7 @@ class Pagination {
         "<li><span class='page-numbers current'>"
     );
     $replace    = array(
-        "<ul class='page-numbers pagination {$ul_class}'>",
+        "<ul class='page-numbers pagination'>",
         "<li class='active'><span class='page-numbers current'>"
     );
     $paginate   = str_replace( $search, $replace, $paginate );
@@ -56,9 +60,6 @@ class Pagination {
                 'itemscope',
                 'itemtype' => 'http://schema.org/SiteNavigationElement',
                 'class'    => $nav_class ) );
-    if ( $echo ) {
-      echo $pagination;
-    }
 
     return $paginate;
   }
