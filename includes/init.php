@@ -73,6 +73,8 @@ add_action( 'init', function() {
    */
   if ( $setting_group->get_bool_option( 'portfolio-post-type-enabled' ) ) {
     include_once __DIR__ . '/post-types/portfolio.php';
+    include_once __DIR__ . '/taxonomies/portfolio_cat.php';
+    include_once __DIR__ . '/taxonomies/portfolio_tag.php';
   }
 
   /**
