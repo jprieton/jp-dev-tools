@@ -2,7 +2,7 @@
 
 namespace JPDevTools\Helpers;
 
-use JPDevTools\Helpers\HtmlHelper;
+use JPDevTools\Helpers\HtmlBuilder;
 use JPDevTools\Helpers\ArrayHelper;
 
 /**
@@ -13,7 +13,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Form_Helper class
+ * FormBuilder class
  *
  * Based on Laravel Forms & HTML
  *
@@ -24,7 +24,7 @@ if ( !defined( 'ABSPATH' ) ) {
  *
  * @author         Javier Prieto <jprieton@gmail.com>
  */
-class FormHelper {
+class FormBuilder {
 
   /**
    * Open up a new HTML form.
@@ -38,7 +38,7 @@ class FormHelper {
    * @return  string
    */
   public static function open( $attributes = array() ) {
-    return '<form ' . HtmlHelper::attributes( $attributes ) . '>';
+    return '<form ' . HtmlBuilder::attributes( $attributes ) . '>';
   }
 
   /**
@@ -70,7 +70,7 @@ class FormHelper {
     );
     $attributes = wp_parse_args( $attributes, $defaults );
 
-    return '<input ' . HtmlHelper::attributes( $attributes ) . '>';
+    return '<input ' . HtmlBuilder::attributes( $attributes ) . '>';
   }
 
   /**
@@ -103,7 +103,7 @@ class FormHelper {
     );
     $attributes = wp_parse_args( $attributes, $defaults );
 
-    return HtmlHelper::tag( 'textarea', esc_textarea( $text ), $attributes );
+    return HtmlBuilder::tag( 'textarea', esc_textarea( $text ), $attributes );
   }
 
   /**
@@ -186,7 +186,7 @@ class FormHelper {
    */
   public static function label( $name, $text, $attributes = array() ) {
     $attributes = wp_parse_args( $attributes, array( 'for' => $name ) );
-    return HtmlHelper::tag( 'label', $text, $attributes );
+    return HtmlBuilder::tag( 'label', $text, $attributes );
   }
 
   /**
@@ -204,7 +204,7 @@ class FormHelper {
     );
     $attributes = wp_parse_args( $attributes, $defaults );
 
-    return HtmlHelper::tag( 'button', $text, $attributes );
+    return HtmlBuilder::tag( 'button', $text, $attributes );
   }
 
   /**
@@ -349,15 +349,15 @@ class FormHelper {
     $placeholder = ArrayHelper::extract( $attributes, 'placeholder', false );
 
     if ( is_bool( $placeholder ) && $placeholder ) {
-      $content .= HtmlHelper::tag( 'option', _e( 'Select an option...', 'jpdevtools' ), array( 'value' => '' ) );
+      $content .= HtmlBuilder::tag( 'option', _e( 'Select an option...', 'jpdevtools' ), array( 'value' => '' ) );
     } elseif ( !is_bool( $placeholder ) && $placeholder ) {
-      $content .= HtmlHelper::tag( 'option', $placeholder, array( 'value' => '' ) );
+      $content .= HtmlBuilder::tag( 'option', $placeholder, array( 'value' => '' ) );
     }
 
     $selected = ArrayHelper::extract( $attributes, 'selected', '' );
     $content  .= self::options( $options, $selected );
 
-    return HtmlHelper::tag( 'select', $content, $attributes );
+    return HtmlBuilder::tag( 'select', $content, $attributes );
   }
 
   /**
@@ -387,10 +387,10 @@ class FormHelper {
     }
 
     foreach ( $options as $value ) {
-      $content .= HtmlHelper::tag( 'option', '', compact( 'value' ) );
+      $content .= HtmlBuilder::tag( 'option', '', compact( 'value' ) );
     }
 
-    return HtmlHelper::tag( 'datalist', $content, $attributes );
+    return HtmlBuilder::tag( 'datalist', $content, $attributes );
   }
 
   /**
@@ -404,13 +404,13 @@ class FormHelper {
 
     foreach ( $options as $key => $value ) {
       if ( is_array( $value ) ) {
-        $content .= HtmlHelper::tag( 'optgroup', self::options( $value, $selected ), array( 'label' => $key ) );
+        $content .= HtmlBuilder::tag( 'optgroup', self::options( $value, $selected ), array( 'label' => $key ) );
       } else {
         $attributes = array(
             'value'    => $value,
             'selected' => ($selected == $value)
         );
-        $content    .= HtmlHelper::tag( 'option', $key, $attributes );
+        $content    .= HtmlBuilder::tag( 'option', $key, $attributes );
       }
     }
     return $content;

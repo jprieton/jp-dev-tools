@@ -12,15 +12,19 @@ if ( !defined( 'ABSPATH' ) ) {
  */
 require_once __DIR__ . '/abstracts/abstract-singleton.php';
 require_once __DIR__ . '/abstracts/abstract-settings-page.php';
-require_once __DIR__ . '/core/class-setting-group.php';
+require_once __DIR__ . '/class-setting-group.php';
 require_once __DIR__ . '/factory/class-setting-factory.php';
 
 /**
- * Helper classes
+ * Helpers
  */
 require_once __DIR__ . '/helpers/class-array-helper.php';
-require_once __DIR__ . '/helpers/class-html-helper.php';
-require_once __DIR__ . '/helpers/class-form-helper.php';
+
+/**
+ * Builders
+ */
+require_once __DIR__ . '/builders/class-html-builder.php';
+require_once __DIR__ . '/builders/class-form-builder.php';
 
 /**
  * Rest API

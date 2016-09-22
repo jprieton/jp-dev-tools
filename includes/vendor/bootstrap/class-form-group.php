@@ -2,8 +2,8 @@
 
 namespace JPDevTools\Vendor\Bootstrap;
 
-use JPDevTools\Helpers\HtmlHelper as Html;
-use JPDevTools\Helpers\FormHelper as Form;
+use JPDevTools\Helpers\HtmlBuilder as Html;
+use JPDevTools\Helpers\FormBuilder as Form;
 
 /**
  * If this file is called directly, abort.

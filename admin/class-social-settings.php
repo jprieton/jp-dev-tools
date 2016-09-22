@@ -32,8 +32,15 @@ class SocialSettings extends SettingsPage {
     parent::__construct( 'jpdevtools-settings', 'jpdevtools_settings', 'jpdevtools_social_settings' );
     $this->add_submenu_page( __( 'Social Networks', JPDEVTOOLS_TEXTDOMAIN ), __( 'Social Networks', JPDEVTOOLS_TEXTDOMAIN ) );
     $this->add_social_links_section();
+    $this->add_facebook_section();
+    $this->add_instagram_section();
   }
 
+  /**
+   * Add social network links
+   *
+   * @since   0.1.0
+   */
   private function add_social_links_section() {
     $this->add_setting_section( 'jpdevtools_social_settings_section_links', __( 'Links', JPDEVTOOLS_TEXTDOMAIN ) );
 
@@ -52,9 +59,55 @@ class SocialSettings extends SettingsPage {
     );
 
     /** Filter to add more networks */
-    $social_networks = apply_filters( 'jpdevtools_social_neworks', $social_networks );
+    $social_networks = apply_filters( 'jpdevtools_social_networks', $social_networks );
 
     foreach ( $social_networks as $key => $label ) {
+      $this->add_field( array(
+          'name'  => $label,
+          'id'    => $key,
+          'type'  => 'text',
+          'class' => 'regular-text code',
+      ) );
+    }
+  }
+
+  /**
+   * Add Facebook API Section
+   *
+   * @since   0.1.0
+   */
+  private function add_facebook_section() {
+    $this->add_setting_section( 'jpdevtools_social_settings_section_facebook', __( 'Facebook', JPDEVTOOLS_TEXTDOMAIN ) );
+
+    $fields = array(
+        'facebook-app-id' => 'App ID',
+        'facebook-admins' => 'Admin IDs',
+    );
+
+    foreach ( $fields as $key => $label ) {
+      $this->add_field( array(
+          'name'  => $label,
+          'id'    => $key,
+          'type'  => 'text',
+          'class' => 'regular-text code',
+      ) );
+    }
+  }
+
+  /**
+   * Add Instagram API Section
+   *
+   * @since   0.1.0
+   */
+  private function add_instagram_section() {
+    $this->add_setting_section( 'jpdevtools_social_settings_section_instagram', __( 'Instagram', JPDEVTOOLS_TEXTDOMAIN ) );
+
+    $fields = array(
+        'instagram-client-id' => 'Client ID',
+        'instagram-token'     => 'Token',
+    );
+
+    foreach ( $fields as $key => $label ) {
       $this->add_field( array(
           'name'  => $label,
           'id'    => $key,

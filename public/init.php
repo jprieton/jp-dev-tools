@@ -54,6 +54,19 @@ add_action( 'wp_head', function() {
    * Shows Google Universal Analytics script
    * @since 0.1.0
    */
+  $init->open_graph_tags();
+  $init->twitter_card_tags();
+  $init->facebook_tags();
+},0 );
+
+add_action( 'wp_head', function() {
+
+  $init = PublicInit::get_instance();
+
+  /**
+   * Shows Google Universal Analytics script
+   * @since 0.1.0
+   */
   $init->google_universal_analytics();
 } );
 

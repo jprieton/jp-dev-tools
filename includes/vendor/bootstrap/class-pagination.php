@@ -9,7 +9,7 @@ if ( !defined( 'ABSPATH' ) ) {
   die( 'Direct access is forbidden.' );
 }
 
-use JPDevTools\Helpers\HtmlHelper as Html;
+use JPDevTools\Helpers\HtmlBuilder as Html;
 use JPDevTools\Helpers\ArrayHelper;
 
 /**

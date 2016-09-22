@@ -11,7 +11,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 use JPDevTools\Abstracts\Singleton;
 use JPDevTools\Core\Factory\SettingFactory;
-use JPDevTools\Helpers\HtmlHelper as Html;
+use JPDevTools\Helpers\HtmlBuilder as Html;
 
 /**
  * InitPublic class
@@ -382,6 +382,215 @@ class PublicInit extends Singleton {
 
     $attr['alt'] = __( 'Image not available', JPDEVTOOLS_TEXTDOMAIN );
     return Html::img( $this->get_not_found_image_url(), $attr );
+  }
+
+  /**
+   * Add Open Graph meta tags to header
+   *
+   * @since 0.1.0
+   */
+  public function open_graph_tags() {
+    // If is Yoast active do nothing;
+    if ( defined( 'WPSEO_VERSION' ) ) {
+      return;
+    }
+
+    // If OpenGraph is disabled do nothing;
+    if ( !$this->setting_group->get_bool_option( 'open-graph-enabled' ) ) {
+      return;
+    }
+
+    $meta_tags = array(
+        array( 'property' => 'og:site_name', 'content' => get_bloginfo( 'name' ) ),
+    );
+
+    if ( is_page() || is_singular() ) {
+      $post = get_post();
+
+      $meta_tags[] = array(
+          'property' => 'og:title',
+          'content'  => esc_attr( $post->post_title )
+      );
+      $meta_tags[] = array(
+          'property' => 'og:description',
+          'content'  => esc_attr( $post->post_excerpt )
+      );
+      $meta_tags[] = array(
+          'property' => 'og:url',
+          'content'  => get_permalink( $post )
+      );
+
+      $attachment_id = get_post_thumbnail_id( $post->ID );
+
+      if ( $attachment_id ) {
+        $attachment  = wp_get_attachment_image_src( $attachment_id, 'full' );
+        $meta_tags[] = array(
+            'property' => 'og:image',
+            'content'  => $attachment[0]
+        );
+        $meta_tags[] = array(
+            'property' => 'og:image:width',
+            'content'  => $attachment[1]
+        );
+        $meta_tags[] = array(
+            'property' => 'og:image:width',
+            'content'  => $attachment[2]
+        );
+      }
+
+      if ( !is_front_page() ) {
+        $meta_tags[] = array(
+            'property' => 'og:type',
+            'content'  => 'article'
+        );
+        $meta_tags[] = array(
+            'property' => 'article:published_time',
+            'content'  => mysql2date( 'c', $post->post_date ),
+        );
+        $meta_tags[] = array(
+            'property' => 'article:modified_time',
+            'content'  => mysql2date( 'c', $post->post_modified )
+        );
+      } else {
+        $meta_tags[] = array(
+            'property' => 'og:type',
+            'content'  => 'website'
+        );
+      }
+    } else {
+      $meta_tags[] = array(
+          'property' => 'og:type',
+          'content'  => 'website'
+      );
+    }
+
+    $meta_tags = apply_filters( 'open_graph_tags', $meta_tags );
+
+    echo "\n<!-- Open Graph -->\n";
+    foreach ( $meta_tags as $attributes ) {
+      echo Html::tag( 'meta', false, $attributes );
+    }
+  }
+
+  /**
+   * Add Twitter cards meta tags to header
+   *
+   * @since 0.1.0
+   */
+  public function twitter_card_tags() {
+    // If is Yoast active do nothing;
+    if ( defined( 'WPSEO_VERSION' ) ) {
+      return;
+    }
+
+    // If Twitter Cards is disabled do nothing;
+    if ( !$this->setting_group->get_bool_option( 'twitter-card-enabled' ) ) {
+      return;
+    }
+
+    $meta_tags = array();
+
+    if ( is_page() || is_singular() ) {
+      $post          = get_post();
+      $attachment_id = get_post_thumbnail_id( $post->ID );
+
+      $meta_tags[] = array(
+          'name'    => 'twitter:title',
+          'content' => esc_attr( $post->post_title )
+      );
+      $meta_tags[] = array(
+          'name'    => 'twitter:description',
+          'content' => esc_attr( $post->post_excerpt )
+      );
+      $meta_tags[] = array(
+          'name'    => 'twitter:url',
+          'content' => get_permalink( $post )
+      );
+
+
+      if ( $attachment_id ) {
+        $attachment  = wp_get_attachment_image_src( $attachment_id, 'full' );
+        $meta_tags[] = array(
+            'name'    => 'twitter:card',
+            'content' => 'summary_large_image'
+        );
+        $meta_tags[] = array(
+            'name'    => 'twitter:image:src',
+            'content' => $attachment[0]
+        );
+        $meta_tags[] = array(
+            'name'    => 'twitter:image:width',
+            'content' => $attachment[1]
+        );
+        $meta_tags[] = array(
+            'name'    => 'twitter:image:width',
+            'content' => $attachment[2]
+        );
+      } else {
+        $meta_tags[] = array(
+            'name'    => 'twitter:card',
+            'content' => 'summary'
+        );
+      }
+
+      $twitter_profile = $this->setting_group->get_option( 'social-twitter' );
+      $explode         = (array) explode( '/', $twitter_profile );
+      $profile         = (string) end( $explode );
+      if ( !empty( $profile ) && $profile != '#' ) {
+        $meta_tags[] = array(
+            'name'    => 'twitter:site',
+            'content' => '@' . $profile
+        );
+      }
+    } else {
+      $meta_tags[] = array(
+          'name'    => 'twitter:card',
+          'content' => 'summary'
+      );
+    }
+
+    $meta_tags = apply_filters( 'twitter_card_tags', $meta_tags );
+
+    echo "\n<!-- Twitter cards -->\n";
+    foreach ( $meta_tags as $attributes ) {
+      echo Html::tag( 'meta', false, $attributes );
+    }
+  }
+
+  /**
+   * Add Twitter cards meta tags to header
+   *
+   * @since 0.1.0
+   */
+  public function facebook_tags() {
+    // If is Yoast active do nothing;
+    if ( defined( 'WPSEO_VERSION' ) ) {
+      return;
+    }
+
+    $meta_tags = array();
+
+    $facebook_admins = $this->setting_group->get_option( 'facebook-admins', null );
+    $fb_explode      = (array) explode( ',', $facebook_admins );
+    foreach ( $fb_explode as $admin ) {
+      $meta_tags[] = array(
+          'property' => 'fb:admins',
+          'content'  => $admin
+      );
+    }
+
+    $facebook_app_id = $this->setting_group->get_option( 'facebook-app-id', false );
+    if ( $facebook_app_id ) {
+      $meta_tags[] = array(
+          'property' => 'fb:app_id',
+          'content'  => $facebook_app_id
+      );
+    }
+
+    echo "\n<!-- Facebook -->\n";
+    foreach ( $meta_tags as $attributes ) {
+      echo Html::tag( 'meta', false, $attributes );
+    }
   }
 
 }

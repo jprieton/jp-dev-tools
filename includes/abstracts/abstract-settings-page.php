@@ -12,8 +12,8 @@ if ( !defined( 'ABSPATH' ) ) {
 use JPDevTools\Core\Factory\SettingFactory;
 use JPDevTools\Core\SettingGroup;
 use JPDevTools\Helpers\ArrayHelper;
-use JPDevTools\Helpers\HtmlHelper as Html;
-use JPDevTools\Helpers\FormHelper as Form;
+use JPDevTools\Helpers\HtmlBuilder as Html;
+use JPDevTools\Helpers\FormBuilder as Form;
 
 /**
  * SettingsPage abstract class

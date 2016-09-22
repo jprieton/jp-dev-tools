@@ -10,8 +10,8 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 use JPDevTools\Core\Factory\SettingFactory;
-use JPDevTools\Helpers\HtmlHelper;
-use JPDevTools\Helpers\FormHelper;
+use JPDevTools\Helpers\HtmlBuilder;
+use JPDevTools\Helpers\FormBuilder;
 
 abstract class AdminSettings {
 
