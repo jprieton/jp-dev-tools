@@ -44,6 +44,20 @@ class SeoSettings extends SettingsPage {
   private function add_google_settings_section() {
     $this->add_setting_section( 'jpdevtools_seo_settings_section_google', 'Google' );
     $this->add_field( array(
+        'name'  => 'Google Universal Analytics',
+        'id'    => 'google-universal-analytics',
+        'type'  => 'textarea',
+        'rows'  => 6,
+        'class' => 'large-text code',
+    ) );
+    $this->add_field( array(
+        'name'  => 'Google Tag Manager',
+        'id'    => 'google-tag-manager',
+        'type'  => 'textarea',
+        'rows'  => 6,
+        'class' => 'large-text code',
+    ) );
+    $this->add_field( array(
         'name'  => __( 'Site Verification Code', JPDEVTOOLS_TEXTDOMAIN ),
         'id'    => 'google-site-verification',
         'type'  => 'text',

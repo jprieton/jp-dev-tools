@@ -269,9 +269,9 @@ abstract class SettingsPage {
     $field['class'] = ArrayHelper::extract( $field, 'input_class', '' );
 
     unset( $field['name'], $field['value'] );
-    $textarea = Form::textarea( $description, esc_textarea( $text ), $field );
+    $textarea = Form::textarea( $description, esc_textarea( $value ), $field );
 
-    echo $input . $description;
+    echo $textarea . $description;
   }
 
   /**
