@@ -29,7 +29,7 @@ class SupportSettings extends SettingsPage {
    * @since   0.1.0
    */
   public function __construct() {
-    parent::__construct( 'jpdevtools-settings', 'jpdevtools_settings', 'jpdevtools_advanced' );
+    parent::__construct( 'jpdevtools-settings', 'jpdevtools_settings', 'jpdevtools_support' );
     $this->add_submenu_page( __( 'Support', JPDEVTOOLS_TEXTDOMAIN ), __( 'Support', JPDEVTOOLS_TEXTDOMAIN ), 'administrator' );
   }
 
