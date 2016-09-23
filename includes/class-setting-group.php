@@ -127,11 +127,13 @@ class SettingGroup {
    *
    * @param   array     $new_value
    * @param   array     $old_value
+   * @return  array
    */
   public function pre_update_option( $new_value, $old_value ) {
     if ( is_serialized( $new_value ) ) {
       $new_value = unserialize( $new_value );
     }
+
     $this->options = array_merge( $this->options, (array) $new_value );
 
     return $this->options;

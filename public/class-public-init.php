@@ -259,8 +259,7 @@ class PublicInit extends Singleton {
   public function google_tag_manager() {
     $google_tag_manager = $this->setting_group->get_option( 'google-tag-manager', '' );
     if ( !empty( $google_tag_manager ) ) {
-      $google_tag_manager = strip_tags( $google_tag_manager );
-      echo Html::tag( 'script', $google_tag_manager );
+      echo (string) $google_tag_manager;
     }
   }
 
@@ -272,8 +271,7 @@ class PublicInit extends Singleton {
   public function google_universal_analytics() {
     $google_universal_analytics = $this->setting_group->get_option( 'google-universal-analytics', '' );
     if ( !empty( $google_universal_analytics ) ) {
-      $google_universal_analytics = strip_tags( $google_universal_analytics );
-      echo Html::tag( 'script', $google_universal_analytics );
+      echo (string) $google_universal_analytics;
     }
   }
 

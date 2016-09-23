@@ -197,7 +197,7 @@ abstract class SettingsPage {
 
     $field = wp_parse_args( $field, $defaults );
 
-    switch ($field['type']) {
+    switch ( $field['type'] ) {
       case 'checkbox':
         $callback = array( &$this, 'render_checkbox' );
         break;
@@ -269,9 +269,9 @@ abstract class SettingsPage {
     $field['class'] = ArrayHelper::extract( $field, 'input_class', '' );
 
     unset( $field['name'], $field['value'] );
-    $textarea = Form::textarea( $description, esc_textarea( $text ), $field );
+    $textarea = Form::textarea( $description, esc_textarea( $value ), $field );
 
-    echo $input . $description;
+    echo $textarea . $description;
   }
 
   /**
@@ -302,11 +302,11 @@ abstract class SettingsPage {
       $item['type']  = 'checkbox';
       $item['id']    = ArrayHelper::get( $item, 'id' );
       $item['name']  = sprintf( "{$this->option_group}[%s]", $item['id'] );
-      $item['value'] = 'yes';
+      $item['value'] = ArrayHelper::get( $item, 'value', 'yes' );
 
       $label = ArrayHelper::extract( $item, 'label', false );
       if ( $label ) {
-        $label = '%s ' . Html::tag( 'b', $label );
+        $label = '%s ' . $label;
       } else {
         $label = '%s ';
       }

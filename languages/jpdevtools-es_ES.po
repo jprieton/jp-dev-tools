@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JP WordPress Dev Tools\n"
-"POT-Creation-Date: 2016-09-20 10:42-0400\n"
-"PO-Revision-Date: 2016-09-20 10:42-0400\n"
+"POT-Creation-Date: 2016-09-23 15:32-0400\n"
+"PO-Revision-Date: 2016-09-23 15:32-0400\n"
 "Last-Translator: Javier Prieto <jprieton@gmail.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -12,8 +12,7 @@ msgstr ""
 "X-Generator: Poedit 1.8.9\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
-"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
-"esc_html_x:1,2c\n"
+"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -23,27 +22,35 @@ msgstr ""
 msgid "Advanced"
 msgstr "Avanzado"
 
-#: ../admin/class-advanced-settings.php:38
+#: ../admin/class-advanced-settings.php:44
+msgid "Cleanup"
+msgstr "Limpieza"
+
+#: ../admin/class-advanced-settings.php:60
+msgid "Erase content"
+msgstr "Borrar contenido"
+
+#: ../admin/class-advanced-settings.php:101
 msgid "Development"
 msgstr "Desarrollo"
 
-#: ../admin/class-advanced-settings.php:40
+#: ../admin/class-advanced-settings.php:103
 msgid "Post Type Enabled"
-msgstr ""
+msgstr "Post types habilitados"
 
-#: ../admin/class-advanced-settings.php:45 ../includes/post-types/slide.php:15
+#: ../admin/class-advanced-settings.php:108 ../includes/post-types/slide.php:15
 #: ../includes/post-types/slide.php:16 ../includes/post-types/slide.php:17
 #: ../includes/post-types/slide.php:43
 msgid "Carousel"
 msgstr "Carrusel"
 
-#: ../admin/class-advanced-settings.php:49
+#: ../admin/class-advanced-settings.php:112
 #: ../includes/post-types/service.php:16 ../includes/post-types/service.php:18
 #: ../includes/post-types/service.php:43
 msgid "Service"
 msgstr "Servicio"
 
-#: ../admin/class-advanced-settings.php:53
+#: ../admin/class-advanced-settings.php:116
 #: ../includes/post-types/portfolio.php:15
 #: ../includes/post-types/portfolio.php:16
 #: ../includes/post-types/portfolio.php:17
@@ -52,7 +59,7 @@ msgstr "Servicio"
 msgid "Portfolio"
 msgstr "Portafolio"
 
-#: ../admin/class-advanced-settings.php:57
+#: ../admin/class-advanced-settings.php:120
 #: ../includes/post-types/product.php:16 ../includes/post-types/product.php:18
 #: ../includes/post-types/product.php:43
 msgid "Product"
@@ -66,26 +73,42 @@ msgstr "Ajustes generales"
 msgid "Analytics &amp; SEO"
 msgstr "Analítica y SEO"
 
-#: ../admin/class-seo-settings.php:46 ../admin/class-seo-settings.php:62
+#: ../admin/class-seo-settings.php:61 ../admin/class-seo-settings.php:77
 msgid "Site Verification Code"
 msgstr "Código de Verificación"
 
-#: ../admin/class-seo-settings.php:50 ../admin/class-seo-settings.php:66
+#: ../admin/class-seo-settings.php:65 ../admin/class-seo-settings.php:81
 msgctxt "settings"
 msgid "verification-code"
 msgstr "código-de-verificación"
+
+#: ../admin/class-seo-settings.php:86
+msgid "Others"
+msgstr "Otros"
 
 #: ../admin/class-social-settings.php:33
 msgid "Social Networks"
 msgstr "Redes Sociales"
 
-#: ../admin/class-social-settings.php:38
+#: ../admin/class-social-settings.php:45
 msgid "Links"
 msgstr "Enlaces"
 
 #: ../admin/class-support-settings.php:33
 msgid "Support"
 msgstr "Soporte"
+
+#: ../includes/builders/class-form-builder.php:220
+msgid "Submit"
+msgstr "Enviar"
+
+#: ../includes/builders/class-form-builder.php:239
+msgid "Reset"
+msgstr ""
+
+#: ../includes/builders/class-form-builder.php:352
+msgid "Select an option..."
+msgstr "Selecciona una opción…"
 
 #: ../includes/factory/class-error-factory.php:31
 msgid "You are not authorized to perform this action."
@@ -95,39 +118,27 @@ msgstr "No estás autorizado para realizar esta acción."
 msgid "You must logged in to perform this action."
 msgstr "Debes iniciar sesión para realizar esta acción."
 
-#: ../includes/helpers/class-form-helper.php:220
-msgid "Submit"
-msgstr "Enviar"
-
-#: ../includes/helpers/class-form-helper.php:239
-msgid "Reset"
-msgstr ""
-
-#: ../includes/helpers/class-form-helper.php:352
-msgid "Select an option..."
-msgstr "Selecciona una opción…"
-
-#: ../includes/init.php:100
+#: ../includes/init.php:106
 msgid "Success!"
 msgstr "¡Éxito!"
 
-#: ../includes/init.php:101
+#: ../includes/init.php:107
 msgid "Fail!"
 msgstr "¡Falló!"
 
-#: ../includes/init.php:102
+#: ../includes/init.php:108
 msgid "Error!"
 msgstr "¡Error!"
 
-#: ../includes/init.php:103
+#: ../includes/init.php:109
 msgid "Send"
 msgstr "Enviar"
 
-#: ../includes/init.php:104
+#: ../includes/init.php:110
 msgid "Sending..."
 msgstr "Enviando..."
 
-#: ../includes/init.php:105
+#: ../includes/init.php:111
 msgid "Sent!"
 msgstr "¡Enviado!"
 
@@ -194,6 +205,8 @@ msgstr ""
 #: ../includes/post-types/portfolio.php:32
 #: ../includes/post-types/product.php:32 ../includes/post-types/service.php:32
 #: ../includes/post-types/slide.php:32
+#: ../includes/taxonomies/portfolio_cat.php:32
+#: ../includes/taxonomies/portfolio_tag.php:32
 #: ../includes/taxonomies/product_cat.php:32
 #: ../includes/taxonomies/product_tag.php:32
 msgid "Items list"
@@ -202,6 +215,8 @@ msgstr ""
 #: ../includes/post-types/portfolio.php:33
 #: ../includes/post-types/product.php:33 ../includes/post-types/service.php:33
 #: ../includes/post-types/slide.php:33
+#: ../includes/taxonomies/portfolio_cat.php:33
+#: ../includes/taxonomies/portfolio_tag.php:33
 #: ../includes/taxonomies/product_cat.php:33
 #: ../includes/taxonomies/product_tag.php:33
 msgid "Items list navigation"
@@ -384,6 +399,154 @@ msgstr "carrusel"
 msgid "Site Carousel"
 msgstr ""
 
+#: ../includes/taxonomies/portfolio_cat.php:14
+msgid "Portfolio Categories"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_cat.php:15
+msgid "Portfolio Category"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_cat.php:16
+#: ../includes/taxonomies/product_cat.php:16
+msgid "Categories"
+msgstr "Categorías"
+
+#: ../includes/taxonomies/portfolio_cat.php:17
+msgid "All Portfolio Categories"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_cat.php:18
+msgid "Parent Portfolio Categories"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_cat.php:19
+msgid "Parent Portfolio Categories:"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_cat.php:20
+msgid "New Portfolio Categories Name"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_cat.php:21
+#: ../includes/taxonomies/portfolio_tag.php:21
+#: ../includes/taxonomies/product_cat.php:21
+#: ../includes/taxonomies/product_tag.php:21
+msgid "Add New Item"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_cat.php:22
+msgid "Edit Portfolio Categories"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_cat.php:23
+msgid "Update Portfolio Categories"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_cat.php:24
+#: ../includes/taxonomies/portfolio_tag.php:24
+#: ../includes/taxonomies/product_cat.php:24
+#: ../includes/taxonomies/product_tag.php:24
+msgid "View Item"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_cat.php:25
+#: ../includes/taxonomies/portfolio_tag.php:25
+#: ../includes/taxonomies/product_cat.php:25
+#: ../includes/taxonomies/product_tag.php:25
+msgid "Separate items with commas"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_cat.php:26
+#: ../includes/taxonomies/portfolio_tag.php:26
+#: ../includes/taxonomies/product_cat.php:26
+#: ../includes/taxonomies/product_tag.php:26
+msgid "Add or remove items"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_cat.php:27
+#: ../includes/taxonomies/portfolio_tag.php:27
+#: ../includes/taxonomies/product_cat.php:27
+#: ../includes/taxonomies/product_tag.php:27
+msgid "Choose from the most used"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_cat.php:28
+#: ../includes/taxonomies/portfolio_tag.php:28
+#: ../includes/taxonomies/product_cat.php:28
+#: ../includes/taxonomies/product_tag.php:28
+msgid "Popular Items"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_cat.php:29
+msgid "Search Portfolio Categories"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_cat.php:30
+#: ../includes/taxonomies/portfolio_tag.php:30
+#: ../includes/taxonomies/product_cat.php:30
+#: ../includes/taxonomies/product_tag.php:30
+msgid "Not Found"
+msgstr "No encontrado"
+
+#: ../includes/taxonomies/portfolio_cat.php:31
+#: ../includes/taxonomies/portfolio_tag.php:31
+#: ../includes/taxonomies/product_cat.php:31
+#: ../includes/taxonomies/product_tag.php:31
+msgid "No items"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_cat.php:36
+msgctxt "taxonomy slug"
+msgid "portfolio-category"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_tag.php:14
+msgid "Portfolio Tags"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_tag.php:15
+msgid "Portfolio Tag"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_tag.php:16
+#: ../includes/taxonomies/product_tag.php:16
+msgid "Tags"
+msgstr "Etiquetas"
+
+#: ../includes/taxonomies/portfolio_tag.php:17
+msgid "All Portfolio Tags"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_tag.php:18
+msgid "Parent Portfolio Tags"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_tag.php:19
+msgid "Parent Portfolio Tags:"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_tag.php:20
+msgid "New Portfolio Tags Name"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_tag.php:22
+msgid "Edit Portfolio Tags"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_tag.php:23
+msgid "Update Portfolio Tags"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_tag.php:29
+msgid "Search Portfolio Tags"
+msgstr ""
+
+#: ../includes/taxonomies/portfolio_tag.php:36
+msgctxt "taxonomy slug"
+msgid "portfolio-tag"
+msgstr ""
+
 #: ../includes/taxonomies/product_cat.php:14
 msgid "Product Categories"
 msgstr ""
@@ -391,10 +554,6 @@ msgstr ""
 #: ../includes/taxonomies/product_cat.php:15
 msgid "Product Category"
 msgstr ""
-
-#: ../includes/taxonomies/product_cat.php:16
-msgid "Categories"
-msgstr "Categorías"
 
 #: ../includes/taxonomies/product_cat.php:17
 msgid "All Product Categories"
@@ -412,11 +571,6 @@ msgstr ""
 msgid "New Product Categories Name"
 msgstr ""
 
-#: ../includes/taxonomies/product_cat.php:21
-#: ../includes/taxonomies/product_tag.php:21
-msgid "Add New Item"
-msgstr ""
-
 #: ../includes/taxonomies/product_cat.php:22
 msgid "Edit Product Categories"
 msgstr ""
@@ -425,43 +579,8 @@ msgstr ""
 msgid "Update Product Categories"
 msgstr ""
 
-#: ../includes/taxonomies/product_cat.php:24
-#: ../includes/taxonomies/product_tag.php:24
-msgid "View Item"
-msgstr ""
-
-#: ../includes/taxonomies/product_cat.php:25
-#: ../includes/taxonomies/product_tag.php:25
-msgid "Separate items with commas"
-msgstr ""
-
-#: ../includes/taxonomies/product_cat.php:26
-#: ../includes/taxonomies/product_tag.php:26
-msgid "Add or remove items"
-msgstr ""
-
-#: ../includes/taxonomies/product_cat.php:27
-#: ../includes/taxonomies/product_tag.php:27
-msgid "Choose from the most used"
-msgstr ""
-
-#: ../includes/taxonomies/product_cat.php:28
-#: ../includes/taxonomies/product_tag.php:28
-msgid "Popular Items"
-msgstr ""
-
 #: ../includes/taxonomies/product_cat.php:29
 msgid "Search Product Categories"
-msgstr ""
-
-#: ../includes/taxonomies/product_cat.php:30
-#: ../includes/taxonomies/product_tag.php:30
-msgid "Not Found"
-msgstr "No encontrado"
-
-#: ../includes/taxonomies/product_cat.php:31
-#: ../includes/taxonomies/product_tag.php:31
-msgid "No items"
 msgstr ""
 
 #: ../includes/taxonomies/product_cat.php:36
@@ -476,10 +595,6 @@ msgstr ""
 #: ../includes/taxonomies/product_tag.php:15
 msgid "Product Tag"
 msgstr ""
-
-#: ../includes/taxonomies/product_tag.php:16
-msgid "Tags"
-msgstr "Etiquetas"
 
 #: ../includes/taxonomies/product_tag.php:17
 msgid "All Product Tags"
@@ -546,60 +661,6 @@ msgstr "Página %d"
 msgid "Search results for &ldquo;%s&rdquo;"
 msgstr "Resultados de búsqueda para &ldquo;%s&rdquo;"
 
-#: ../public/class-public-init.php:383
+#: ../public/class-public-init.php:381
 msgid "Image not available"
 msgstr "Imagen no disponible"
-
-#~ msgid "Not found"
-#~ msgstr "No encontrado"
-
-#~ msgid "Not found in Trash"
-#~ msgstr "No encontrado en la papelera"
-
-#~ msgctxt "post_type all_items"
-#~ msgid "All Products"
-#~ msgstr "Todos los productos"
-
-#~ msgctxt "post_type add_new_item"
-#~ msgid "Add New Product"
-#~ msgstr "Agregar Nuevo Producto"
-
-#~ msgctxt "post_type add_new"
-#~ msgid "New Product"
-#~ msgstr "Nuevo producto"
-
-#~ msgctxt "post_type edit_item"
-#~ msgid "Edit Product"
-#~ msgstr "Editar producto"
-
-#~ msgctxt "post_type view_item"
-#~ msgid "View Product"
-#~ msgstr "Ver producto"
-
-#~ msgctxt "post_type not_found"
-#~ msgid "No products found"
-#~ msgstr "No se han encontrado productos"
-
-#~ msgctxt "post_type not_found_in_trash"
-#~ msgid "No products found in Trash"
-#~ msgstr "No hay productos en la papelera"
-
-#~ msgctxt "post_type name"
-#~ msgid "Products"
-#~ msgstr "Productos"
-
-#~ msgctxt "post_type singular_name"
-#~ msgid "Product"
-#~ msgstr "Producto"
-
-#~ msgctxt "post_type menu_name"
-#~ msgid "Products"
-#~ msgstr "Productos"
-
-#~ msgctxt "post_type name_admin_bar"
-#~ msgid "Product"
-#~ msgstr "Producto"
-
-#~ msgctxt "slug"
-#~ msgid "product"
-#~ msgstr "producto"

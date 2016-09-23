@@ -15,6 +15,7 @@ use JPDevTools\Core\Settings\GeneralSettings;
 use JPDevTools\Core\Settings\SocialSettings;
 use JPDevTools\Core\Settings\SeoSettings;
 use JPDevTools\Core\Settings\AdvancedSettings;
+use JPDevTools\Core\Settings\SupportSettings;
 
 /**
  * AdminInit class
@@ -59,6 +60,7 @@ class AdminInit extends Singleton {
     require_once JPDEVTOOLS_DIR . '/admin/class-social-settings.php';
     require_once JPDEVTOOLS_DIR . '/admin/class-seo-settings.php';
     require_once JPDEVTOOLS_DIR . '/admin/class-advanced-settings.php';
+    require_once JPDEVTOOLS_DIR . '/admin/class-support-settings.php';
 
     $this->setting_group = SettingFactory::setting_group( 'jpdevtools-settings' );
   }
@@ -71,9 +73,10 @@ class AdminInit extends Singleton {
   public function admin_menu() {
 
     new GeneralSettings();
-    new SocialSettings();
     new SeoSettings();
+    new SocialSettings();
     new AdvancedSettings();
+    new SupportSettings();
   }
 
   /**

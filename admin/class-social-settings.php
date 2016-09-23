@@ -77,7 +77,7 @@ class SocialSettings extends SettingsPage {
    * @since   0.1.0
    */
   private function add_facebook_section() {
-    $this->add_setting_section( 'jpdevtools_social_settings_section_facebook', __( 'Facebook', JPDEVTOOLS_TEXTDOMAIN ) );
+    $this->add_setting_section( 'jpdevtools_social_settings_section_facebook', 'Facebook' );
 
     $fields = array(
         'facebook-app-id' => 'App ID',
@@ -100,7 +100,7 @@ class SocialSettings extends SettingsPage {
    * @since   0.1.0
    */
   private function add_instagram_section() {
-    $this->add_setting_section( 'jpdevtools_social_settings_section_instagram', __( 'Instagram', JPDEVTOOLS_TEXTDOMAIN ) );
+    $this->add_setting_section( 'jpdevtools_social_settings_section_instagram', 'Instagram' );
 
     $fields = array(
         'instagram-client-id' => 'Client ID',
