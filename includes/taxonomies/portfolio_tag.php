@@ -47,4 +47,4 @@ $args    = array(
     'show_tagcloud'     => true,
     'rewrite'           => $rewrite,
 );
-register_taxonomy( 'portfolio_cat', array( 'portfolio' ), $args );
+register_taxonomy( 'portfolio_tag', array( 'portfolio' ), $args );
