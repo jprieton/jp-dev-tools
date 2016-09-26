@@ -102,6 +102,7 @@ class AdvancedSettings extends SettingsPage {
     $this->add_field( array(
         'name'    => __( 'Post Type Enabled', JPDEVTOOLS_TEXTDOMAIN ),
         'type'    => 'checkbox',
+        'id' => 'post-types-enabled',
         'options' => array(
             array(
                 'id'    => 'slide-post-type-enabled',
@@ -118,6 +119,17 @@ class AdvancedSettings extends SettingsPage {
             array(
                 'id'    => 'product-post-type-enabled',
                 'label' => __( 'Product', JPDEVTOOLS_TEXTDOMAIN ),
+            ),
+        ),
+    ) );
+    $this->add_field( array(
+        'name'    => __( 'Helpers', JPDEVTOOLS_TEXTDOMAIN ),
+        'type'    => 'checkbox',
+        'id' => 'helpers-enabled',
+        'options' => array(
+            array(
+                'id'    => 'frontend-helper-enabled',
+                'label' => __( 'Frontend Helper', JPDEVTOOLS_TEXTDOMAIN ),
             ),
         ),
     ) );

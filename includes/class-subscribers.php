@@ -38,7 +38,7 @@ class Subscribers extends Singleton {
    * @since   0.1.0
    * @var     string
    */
-  private $table = 'subscribers';
+  private $endpoint = 'subscribers';
 
   /**
    * @var type SubscribersRestApi
@@ -54,15 +54,6 @@ class Subscribers extends Singleton {
     $this->_create_table();
   }
 
-  /**
-   * PHP5 style destructor and will run when object is destroyed.
-   *
-   * @since   0.1.0
-   * @return  true
-   */
-  public function __destruct() {
-    return true;
-  }
 
   /**
    * Creates subscribers table

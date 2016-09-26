@@ -57,7 +57,7 @@ add_action( 'wp_head', function() {
   $init->open_graph_tags();
   $init->twitter_card_tags();
   $init->facebook_tags();
-},0 );
+}, 0 );
 
 add_action( 'wp_head', function() {
 
@@ -68,6 +68,17 @@ add_action( 'wp_head', function() {
    * @since 0.1.0
    */
   $init->google_universal_analytics();
+}, 99 );
+
+add_action( 'wp_footer', function() {
+
+  $init = PublicInit::get_instance();
+
+  /**
+   * Shows Frontend helper
+   * @since 0.1.0
+   */
+  $init->frontend_helper();
 } );
 
 add_action( 'before_main_content', function() {

@@ -180,30 +180,36 @@ class PublicInit extends Singleton {
      * @since 0.1.0
      */
     $styles = array(
-        'bootstrap'    => array(
+        'bootstrap'       => array(
             'remote' => '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
             'ver'    => '3.3.7',
         ),
-        'font-awesome' => array(
+        'font-awesome'    => array(
             'remote' => '//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css',
             'ver'    => '4.6.3',
         ),
-        'animate'      => array(
+        'animate'         => array(
             'local'  => JPDEVTOOLS_URL . 'assets/css/animate.min.css',
             'remote' => '//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css',
             'ver'    => '3.5.2',
             'media'  => 'screen',
         ),
-        'hover'        => array(
+        'hover'           => array(
             'local'  => JPDEVTOOLS_URL . 'assets/css/hover.min.css',
             'remote' => '//cdnjs.cloudflare.com/ajax/libs/hover.css/2.0.2/css/hover-min.css',
             'ver'    => '2.0.2',
             'media'  => 'screen',
         ),
-        'jpdevtools'   => array(
+        'jpdevtools'      => array(
             'local'    => JPDEVTOOLS_URL . 'assets/css/public.css',
             'ver'      => '0.1.0',
             'autoload' => true
+        ),
+        'frontend-helper' => array(
+            'local'    => JPDEVTOOLS_URL . 'assets/css/frontend-helper.css',
+            'ver'      => '0.1.0',
+            'media'    => 'screen',
+            'autoload' => $this->setting_group->get_bool_option( 'frontend-helper-enabled', false )
         ),
     );
 
@@ -588,6 +594,19 @@ class PublicInit extends Singleton {
     echo "\n<!-- Facebook -->\n";
     foreach ( $meta_tags as $attributes ) {
       echo Html::tag( 'meta', false, $attributes );
+    }
+  }
+
+  /**
+   * Shows Frontend helper
+   *
+   * @since 0.1.0
+   */
+  public function frontend_helper() {
+    $enabled = $this->setting_group->get_bool_option( 'frontend-helper-enabled', false );
+
+    if ( $enabled ) {
+      include_once JPDEVTOOLS_DIR . '/partials/frontend-helper.php';
     }
   }
 

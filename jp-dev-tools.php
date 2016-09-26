@@ -8,7 +8,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Plugin Name:    JP WordPress Dev Tools
+ * Plugin Name:    JP WordPress Development Tools
  * Description:    A Microframework for WordPress
  * Version:        0.1.0-dev
  * Author:         Javier Prieto
@@ -40,7 +40,7 @@ require_once JPDEVTOOLS_DIR . '/public/init.php';
  * @since 0.1.0
  */
 register_activation_hook( __FILE__, function() {
-  require_once JPDEVTOOLS_DIR . '/includes/core/class-activator.php';
+  require_once JPDEVTOOLS_DIR . '/includes/class-activator.php';
   JPDevTools\Core\Activator::activate();
 } );
 
@@ -49,6 +49,6 @@ register_activation_hook( __FILE__, function() {
  * @since 0.1.0
  */
 register_activation_hook( __FILE__, function() {
-  require_once JPDEVTOOLS_DIR . '/includes/core/class-activator.php';
+  require_once JPDEVTOOLS_DIR . '/includes/class-activator.php';
   JPDevTools\Core\Activator::deactivate();
 } );
