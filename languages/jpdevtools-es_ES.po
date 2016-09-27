@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JP WordPress Dev Tools\n"
-"POT-Creation-Date: 2016-09-23 15:32-0400\n"
-"PO-Revision-Date: 2016-09-23 15:32-0400\n"
+"POT-Creation-Date: 2016-09-27 09:46-0400\n"
+"PO-Revision-Date: 2016-09-27 09:46-0400\n"
 "Last-Translator: Javier Prieto <jprieton@gmail.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -22,35 +22,35 @@ msgstr ""
 msgid "Advanced"
 msgstr "Avanzado"
 
-#: ../admin/class-advanced-settings.php:44
+#: ../admin/class-advanced-settings.php:45
 msgid "Cleanup"
 msgstr "Limpieza"
 
-#: ../admin/class-advanced-settings.php:60
+#: ../admin/class-advanced-settings.php:61
 msgid "Erase content"
 msgstr "Borrar contenido"
 
-#: ../admin/class-advanced-settings.php:101
+#: ../admin/class-advanced-settings.php:102
 msgid "Development"
 msgstr "Desarrollo"
 
-#: ../admin/class-advanced-settings.php:103
+#: ../admin/class-advanced-settings.php:104
 msgid "Post Type Enabled"
 msgstr "Post types habilitados"
 
-#: ../admin/class-advanced-settings.php:108 ../includes/post-types/slide.php:15
+#: ../admin/class-advanced-settings.php:110 ../includes/post-types/slide.php:15
 #: ../includes/post-types/slide.php:16 ../includes/post-types/slide.php:17
 #: ../includes/post-types/slide.php:43
 msgid "Carousel"
 msgstr "Carrusel"
 
-#: ../admin/class-advanced-settings.php:112
+#: ../admin/class-advanced-settings.php:114
 #: ../includes/post-types/service.php:16 ../includes/post-types/service.php:18
 #: ../includes/post-types/service.php:43
 msgid "Service"
 msgstr "Servicio"
 
-#: ../admin/class-advanced-settings.php:116
+#: ../admin/class-advanced-settings.php:118
 #: ../includes/post-types/portfolio.php:15
 #: ../includes/post-types/portfolio.php:16
 #: ../includes/post-types/portfolio.php:17
@@ -59,11 +59,31 @@ msgstr "Servicio"
 msgid "Portfolio"
 msgstr "Portafolio"
 
-#: ../admin/class-advanced-settings.php:120
+#: ../admin/class-advanced-settings.php:122
 #: ../includes/post-types/product.php:16 ../includes/post-types/product.php:18
 #: ../includes/post-types/product.php:43
 msgid "Product"
 msgstr "Producto"
+
+#: ../admin/class-advanced-settings.php:127
+msgid "Helpers"
+msgstr ""
+
+#: ../admin/class-advanced-settings.php:133
+msgid "Frontend Helper"
+msgstr ""
+
+#: ../admin/class-advanced-settings.php:140
+msgid "Performance"
+msgstr ""
+
+#: ../admin/class-advanced-settings.php:148
+msgid "Enable CDN"
+msgstr ""
+
+#: ../admin/class-advanced-settings.php:149
+msgid "Enable use of CDN in local registered scripts and styles."
+msgstr "Habilita el uso de CDN para scripts y estilos registrados."
 
 #: ../admin/class-general-settings.php:34
 msgid "General Settings"
@@ -661,6 +681,9 @@ msgstr "Página %d"
 msgid "Search results for &ldquo;%s&rdquo;"
 msgstr "Resultados de búsqueda para &ldquo;%s&rdquo;"
 
-#: ../public/class-public-init.php:381
+#: ../public/class-public-init.php:387
 msgid "Image not available"
 msgstr "Imagen no disponible"
+
+#~ msgid "Enable use of CDN in local registered scripts/styles."
+#~ msgstr "Habilita el uso de CDN para scripts y estilos registrados."

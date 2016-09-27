@@ -131,7 +131,7 @@ class PublicInit extends Singleton {
         'autoload'  => false
     );
 
-    $use_cdn = $this->setting_group->get_bool_option( 'enable-cdn' );
+    $use_cdn = $this->setting_group->get_bool_option( 'cdn-enabled' );
 
     foreach ( $scripts as $handle => $script ) {
       $script = wp_parse_args( $script, $defaults );
@@ -230,7 +230,7 @@ class PublicInit extends Singleton {
         'autoload' => false
     );
 
-    $use_cdn = $this->setting_group->get_bool_option( 'enable-cdn' );
+    $use_cdn = $this->setting_group->get_bool_option( 'cdn-enabled' );
 
     foreach ( $styles as $handle => $style ) {
       $style = wp_parse_args( $style, $defaults );
@@ -254,6 +254,18 @@ class PublicInit extends Singleton {
         /* Enqueue styles if autolad in enabled */
         wp_enqueue_style( $handle );
       }
+    }
+  }
+
+  /**
+   * Shows Facebook Pixel Code
+   *
+   * @since 0.1.0
+   */
+  public function facebook_pixel_code() {
+    $facebook_pixel_code = $this->setting_group->get_option( 'facebook_pixel_code', '' );
+    if ( !empty( $facebook_pixel_code ) ) {
+      echo (string) $facebook_pixel_code;
     }
   }
 
@@ -318,6 +330,54 @@ class PublicInit extends Singleton {
   }
 
   /**
+   * Remove the EditURI/RSD link and Windows Live Writer manifest link.
+   *
+   * @since 0.1.0
+   */
+  public function remove_rsd_link() {
+    if ( !$this->setting_group->get_bool_option( 'remove-rsd-link' ) ) {
+      return;
+    }
+
+    // Remove the EditURI/RSD link from head
+    remove_action( 'wp_head', 'rsd_link' );
+    // Remove the Windows Live Writer manifest link from head
+    remove_action( 'wp_head', 'wlwmanifest_link' );
+  }
+
+  /**
+   * Disable XML-RCP/Pingback.
+   *
+   * @since 0.1.0
+   */
+  public function disable_xmlrpc() {
+    if ( $this->setting_group->get_bool_option( 'xmlrpc-all-disabled' ) ) {
+      // Disable XML-RCP
+      add_filter( 'xmlrpc_enabled', '__return_false' );
+
+      // Disable all XML-RCP methods
+      add_filter( 'xmlrpc_methods', '__return_empty_array' );
+
+      return;
+    }
+
+    if ( $this->setting_group->get_bool_option( 'xmlrpc-pingback-disabled' ) ) {
+      // Remove Pingback methods
+      add_filter( 'xmlrpc_methods', function ( $methods ) {
+        unset( $methods['pingback.ping'] );
+        unset( $methods['pingback.extensions.getPingbacks'] );
+        return $methods;
+      } );
+
+      // Remove Pingback header
+      add_filter( 'wp_headers', function ( $headers ) {
+        unset( $headers['X-Pingback'] );
+        return $headers;
+      } );
+    }
+  }
+
+  /**
    * Remove WordPress Version Number from header and feeds
    *
    * @since 0.1.0
@@ -330,14 +390,10 @@ class PublicInit extends Singleton {
     remove_action( 'wp_head', 'wp_generator' );
     add_filter( 'the_generator', '__return_empty_string' );
 
-    $remove_version = function ( $src, $handle ) {
+    $remove_version = function ( $src ) {
       $src = remove_query_arg( 'ver', $src );
       return $src;
     };
-
-    if ( !$this->setting_group->get_bool_option( 'remove-wordpress-version-all' ) ) {
-      return;
-    }
 
     add_filter( 'style_loader_src', $remove_version, 10, 2 );
     add_filter( 'script_loader_src', $remove_version, 10, 2 );
@@ -559,6 +615,21 @@ class PublicInit extends Singleton {
     foreach ( $meta_tags as $attributes ) {
       echo Html::tag( 'meta', false, $attributes );
     }
+  }
+
+  public function xmlrpc_methods( $methods ) {
+    if ( $this->setting_group->get_bool_option( 'xmlrpc-pingback-disabled' ) ) {
+      unset( $methods['pingback.ping'] );
+      unset( $methods['pingback.extensions.getPingbacks'] );
+    }
+    return $methods;
+  }
+
+  public function wp_headers( $headers ) {
+    if ( $this->setting_group->get_bool_option( 'xmlrpc_all_disabled' ) ) {
+      unset( $headers['X-Pingback'] );
+    }
+    return $headers;
   }
 
   /**

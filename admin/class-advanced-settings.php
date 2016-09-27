@@ -33,6 +33,8 @@ class AdvancedSettings extends SettingsPage {
     $this->add_submenu_page( __( 'Advanced', JPDEVTOOLS_TEXTDOMAIN ), __( 'Advanced', JPDEVTOOLS_TEXTDOMAIN ), 'administrator' );
     $this->add_development_setting_section();
     $this->add_cleanup_settings_section();
+    $this->add_security_setting_section();
+    $this->add_others_setting_section();
   }
 
   /**
@@ -70,10 +72,9 @@ class AdvancedSettings extends SettingsPage {
    * @since   0.1.0
    *
    * @param   array     $new_value
-   * @param   array     $old_value
    * @return  array
    */
-  public function pre_update_cleanup( $new_value, $old_value ) {
+  public function pre_update_cleanup( $new_value ) {
     $post_types = get_post_types();
     foreach ( $new_value as $key => $setting ) {
       if ( strpos( $key, 'clean-post-type-' ) === false ) {
@@ -102,7 +103,7 @@ class AdvancedSettings extends SettingsPage {
     $this->add_field( array(
         'name'    => __( 'Post Type Enabled', JPDEVTOOLS_TEXTDOMAIN ),
         'type'    => 'checkbox',
-        'id' => 'post-types-enabled',
+        'id'      => 'post-types-enabled',
         'options' => array(
             array(
                 'id'    => 'slide-post-type-enabled',
@@ -125,11 +126,67 @@ class AdvancedSettings extends SettingsPage {
     $this->add_field( array(
         'name'    => __( 'Helpers', JPDEVTOOLS_TEXTDOMAIN ),
         'type'    => 'checkbox',
-        'id' => 'helpers-enabled',
+        'id'      => 'helpers-enabled',
         'options' => array(
             array(
                 'id'    => 'frontend-helper-enabled',
                 'label' => __( 'Frontend Helper', JPDEVTOOLS_TEXTDOMAIN ),
+            ),
+        ),
+    ) );
+  }
+
+  private function add_security_setting_section() {
+    $this->add_setting_section( 'jpdevtools_advanced_section_security', __( 'Security', JPDEVTOOLS_TEXTDOMAIN ) );
+
+    $this->add_field( array(
+        'name'    => __( 'Header', JPDEVTOOLS_TEXTDOMAIN ),
+        'type'    => 'checkbox',
+        'id'      => 'security-header',
+        'options' => array(
+            array(
+                'id'    => 'remove-wordpress-version',
+                'label' => __( 'Remove WordPress version number', JPDEVTOOLS_TEXTDOMAIN ),
+                'desc'  => __( 'Remove WordPress version number from header, feed, styles and scripts.', JPDEVTOOLS_TEXTDOMAIN ),
+            ),
+            array(
+                'id'    => 'remove-rsd-link',
+                'label' => __( 'Remove EditURI link', JPDEVTOOLS_TEXTDOMAIN ),
+                'desc'  => __( 'Remove the EditURI/RSD link from your header. This option also removes the <b>Windows Live Writer</b> manifest link.', JPDEVTOOLS_TEXTDOMAIN ),
+            ),
+        ),
+    ) );
+
+    $this->add_field( array(
+        'name'    => 'XML-RPC',
+        'type'    => 'checkbox',
+        'id'      => 'security-xmlrcp',
+        'options' => array(
+            array(
+                'id'    => 'xmlrpc-pingback-disabled',
+                'label' => 'Disable XML-RPC Pingback',
+                'desc'  => __( 'If you uses XML-RPC in your theme/plugins check this for disable only pingback method.', JPDEVTOOLS_TEXTDOMAIN ),
+            ),
+            array(
+                'id'    => 'xmlrpc-pingback-disabled',
+                'label' => 'Completely disable XML-RPC',
+                'desc'  => __( 'Disable XML-RPC completely. This setting implies the <b>Disable XML-RPC Pingback</b> and <b>Remove EditURI link</b>. <a href="https://www.littlebizzy.com/blog/disable-xml-rpc" target="_blank">More info</a>.', JPDEVTOOLS_TEXTDOMAIN ),
+            ),
+        ),
+    ) );
+  }
+
+  private function add_others_setting_section() {
+    $this->add_setting_section( 'jpdevtools_advanced_settings_section_others', __( 'Others', JPDEVTOOLS_TEXTDOMAIN ) );
+
+    $this->add_field( array(
+        'name'    => 'General',
+        'type'    => 'checkbox',
+        'options' => array(
+            array(
+                'id'    => 'cdn-enabled',
+                'label' => __( 'Enable CDN', JPDEVTOOLS_TEXTDOMAIN ),
+                'desc'  => __( 'Enable use of CDN in local registered scripts and styles.', JPDEVTOOLS_TEXTDOMAIN ),
             ),
         ),
     ) );

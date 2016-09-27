@@ -27,6 +27,18 @@ add_action( 'init', function() {
    * @since 0.1.0
    */
   $init->remove_wordpress_version();
+
+  /**
+   * Remove the EditURI/RSD link and Windows Live Writer manifest link.
+   * @since 0.1.0
+   */
+  $init->remove_rsd_link();
+
+  /**
+   * Disable XML-RCP/Pingback.
+   * @since 0.1.0
+   */
+  $init->disable_xmlrpc();
 } );
 
 add_action( 'wp_enqueue_scripts', function() {
@@ -84,6 +96,12 @@ add_action( 'wp_footer', function() {
 add_action( 'before_main_content', function() {
 
   $init = PublicInit::get_instance();
+
+  /**
+   * Shows Facebook Pixel Code
+   * @since 0.1.0
+   */
+  $init->facebook_pixel_code();
 
   /**
    * Shows Google Tag Manager script

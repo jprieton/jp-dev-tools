@@ -33,6 +33,7 @@ class SeoSettings extends SettingsPage {
     $this->add_submenu_page( __( 'Analytics &amp; SEO', JPDEVTOOLS_TEXTDOMAIN ), __( 'Analytics &amp; SEO', JPDEVTOOLS_TEXTDOMAIN ) );
     $this->add_google_settings_section();
     $this->add_bing_settings_section();
+    $this->add_facebook_pixel_settings_section();
     $this->add_other_settings_section();
   }
 
@@ -79,6 +80,22 @@ class SeoSettings extends SettingsPage {
         'type'  => 'text',
         'class' => 'large-text code',
         'desc'  => '<code>&lt;meta  name="msvalidate.01" content="<b>{' . _x( 'verification-code', 'settings', JPDEVTOOLS_TEXTDOMAIN ) . '}</b>"&gt;</code>',
+    ) );
+  }
+
+  /**
+   * Add Facebook Pixel Code settings section
+   *
+   * @since   0.1.0
+   */
+  private function add_facebook_pixel_settings_section() {
+    $this->add_setting_section( 'jpdevtools_seo_settings_section_facebook', 'Facebook' );
+    $this->add_field( array(
+        'name'  => 'Facebook Pixel Code',
+        'id'    => 'facebook-pixel-code',
+        'type'  => 'textarea',
+        'rows'  => 6,
+        'class' => 'large-text code',
     ) );
   }
 
