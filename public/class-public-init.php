@@ -349,6 +349,8 @@ class PublicInit extends Singleton {
    * Disable XML-RCP/Pingback.
    *
    * @since 0.1.0
+   *
+   * @see https://www.littlebizzy.com/blog/disable-xml-rpc
    */
   public function disable_xmlrpc() {
     if ( $this->setting_group->get_bool_option( 'xmlrpc-all-disabled' ) ) {

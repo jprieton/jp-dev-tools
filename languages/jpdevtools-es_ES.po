@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JP WordPress Dev Tools\n"
-"POT-Creation-Date: 2016-09-27 09:46-0400\n"
-"PO-Revision-Date: 2016-09-27 09:46-0400\n"
+"POT-Creation-Date: 2016-09-27 11:20-0400\n"
+"PO-Revision-Date: 2016-09-27 11:21-0400\n"
 "Last-Translator: Javier Prieto <jprieton@gmail.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -22,11 +22,11 @@ msgstr ""
 msgid "Advanced"
 msgstr "Avanzado"
 
-#: ../admin/class-advanced-settings.php:45
+#: ../admin/class-advanced-settings.php:46
 msgid "Cleanup"
 msgstr "Limpieza"
 
-#: ../admin/class-advanced-settings.php:61
+#: ../admin/class-advanced-settings.php:62
 msgid "Erase content"
 msgstr "Borrar contenido"
 
@@ -74,14 +74,55 @@ msgid "Frontend Helper"
 msgstr ""
 
 #: ../admin/class-advanced-settings.php:140
-msgid "Performance"
-msgstr ""
+msgid "Security"
+msgstr "Seguridad"
 
-#: ../admin/class-advanced-settings.php:148
-msgid "Enable CDN"
-msgstr ""
+#: ../admin/class-advanced-settings.php:143
+msgid "Header"
+msgstr "Cabecera"
 
 #: ../admin/class-advanced-settings.php:149
+msgid "Remove WordPress version number"
+msgstr "Remover la versión de WordPress"
+
+#: ../admin/class-advanced-settings.php:150
+msgid "Remove WordPress version number from header, feed, styles and scripts."
+msgstr ""
+"Elimina el número de versión de WordPress de la cabecera, feed, estilos y "
+"scripts."
+
+#: ../admin/class-advanced-settings.php:154
+msgid "Remove EditURI link"
+msgstr ""
+
+#: ../admin/class-advanced-settings.php:155
+msgid ""
+"Remove the EditURI/RSD link from your header. This option also removes the "
+"<b>Windows Live Writer</b> manifest link."
+msgstr ""
+
+#: ../admin/class-advanced-settings.php:168
+msgid ""
+"If you uses XML-RPC in your theme/plugins check this for disable only "
+"pingback method."
+msgstr ""
+
+#: ../admin/class-advanced-settings.php:173
+msgid ""
+"Disable XML-RPC completely. This setting implies the <b>Disable XML-RPC "
+"Pingback</b> and <b>Remove EditURI link</b>. <a href=\"https://www."
+"littlebizzy.com/blog/disable-xml-rpc\" target=\"_blank\">More info</a>."
+msgstr ""
+
+#: ../admin/class-advanced-settings.php:180 ../admin/class-seo-settings.php:108
+msgid "Others"
+msgstr "Otros"
+
+#: ../admin/class-advanced-settings.php:188
+msgid "Enable CDN"
+msgstr "Habilitar CDN"
+
+#: ../admin/class-advanced-settings.php:189
 msgid "Enable use of CDN in local registered scripts and styles."
 msgstr "Habilita el uso de CDN para scripts y estilos registrados."
 
@@ -93,18 +134,14 @@ msgstr "Ajustes generales"
 msgid "Analytics &amp; SEO"
 msgstr "Analítica y SEO"
 
-#: ../admin/class-seo-settings.php:61 ../admin/class-seo-settings.php:77
+#: ../admin/class-seo-settings.php:62 ../admin/class-seo-settings.php:78
 msgid "Site Verification Code"
 msgstr "Código de Verificación"
 
-#: ../admin/class-seo-settings.php:65 ../admin/class-seo-settings.php:81
+#: ../admin/class-seo-settings.php:66 ../admin/class-seo-settings.php:82
 msgctxt "settings"
 msgid "verification-code"
 msgstr "código-de-verificación"
-
-#: ../admin/class-seo-settings.php:86
-msgid "Others"
-msgstr "Otros"
 
 #: ../admin/class-social-settings.php:33
 msgid "Social Networks"
@@ -681,7 +718,7 @@ msgstr "Página %d"
 msgid "Search results for &ldquo;%s&rdquo;"
 msgstr "Resultados de búsqueda para &ldquo;%s&rdquo;"
 
-#: ../public/class-public-init.php:387
+#: ../public/class-public-init.php:445
 msgid "Image not available"
 msgstr "Imagen no disponible"
 

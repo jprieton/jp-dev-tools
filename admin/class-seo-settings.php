@@ -99,6 +99,11 @@ class SeoSettings extends SettingsPage {
     ) );
   }
 
+  /**
+   * Add other settings section
+   *
+   * @since   0.1.0
+   */
   private function add_other_settings_section() {
     $this->add_setting_section( 'jpdevtools_seo_settings_section_other', __( 'Others', JPDEVTOOLS_TEXTDOMAIN ) );
     $this->add_field( array(
