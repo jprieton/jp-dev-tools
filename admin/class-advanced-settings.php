@@ -34,6 +34,7 @@ class AdvancedSettings extends SettingsPage {
     $this->add_development_setting_section();
     $this->add_cleanup_settings_section();
     $this->add_security_setting_section();
+    $this->add_cache_setting_section();
     $this->add_others_setting_section();
   }
 
@@ -173,6 +174,18 @@ class AdvancedSettings extends SettingsPage {
                 'desc'  => __( 'Disable XML-RPC completely. This setting implies the <b>Disable XML-RPC Pingback</b> and <b>Remove EditURI link</b>. <a href="https://www.littlebizzy.com/blog/disable-xml-rpc" target="_blank">More info</a>.', JPDEVTOOLS_TEXTDOMAIN ),
             ),
         ),
+    ) );
+  }
+
+  private function add_cache_setting_section() {
+    $this->add_setting_section( 'jpdevtools_advanced_settings_section_cache', __( 'Cache', JPDEVTOOLS_TEXTDOMAIN ) );
+
+    $this->add_field( array(
+        'name'        => __( 'Favorite Cache', JPDEVTOOLS_TEXTDOMAIN ),
+        'id'          => 'favorite-timeout-cache',
+        'type'        => 'text',
+        'class'       => 'regular-text code',
+        'placeholder' => 60 * MINUTE_IN_SECONDS
     ) );
   }
 

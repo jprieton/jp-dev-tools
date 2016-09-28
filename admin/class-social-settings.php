@@ -102,19 +102,27 @@ class SocialSettings extends SettingsPage {
   private function add_instagram_section() {
     $this->add_setting_section( 'jpdevtools_social_settings_section_instagram', 'Instagram' );
 
-    $fields = array(
-        'instagram-client-id' => 'Client ID',
-        'instagram-token'     => 'Token',
-    );
+    $this->add_field( array(
+        'name'  => 'Client ID',
+        'id'    => 'instagram-client-id',
+        'type'  => 'text',
+        'class' => 'regular-text code',
+    ) );
 
-    foreach ( $fields as $key => $label ) {
-      $this->add_field( array(
-          'name'  => $label,
-          'id'    => $key,
-          'type'  => 'text',
-          'class' => 'regular-text code',
-      ) );
-    }
+    $this->add_field( array(
+        'name'  => 'Token',
+        'id'    => 'instagram-token',
+        'type'  => 'text',
+        'class' => 'regular-text code',
+    ) );
+
+    $this->add_field( array(
+        'name'        => __('Cache', JPDEVTOOLS_TEXTDOMAIN),
+        'id'          => 'instagram-timeout-cache',
+        'type'        => 'text',
+        'class'       => 'regular-text code',
+        'placeholder' => 60 * MINUTE_IN_SECONDS
+    ) );
   }
 
 }

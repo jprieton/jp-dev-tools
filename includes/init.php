@@ -14,6 +14,7 @@ require_once __DIR__ . '/abstracts/abstract-singleton.php';
 require_once __DIR__ . '/abstracts/abstract-settings-page.php';
 require_once __DIR__ . '/class-setting-group.php';
 require_once __DIR__ . '/factory/class-setting-factory.php';
+require_once __DIR__ . '/class-user-favorite-posts.php';
 
 /**
  * Helpers

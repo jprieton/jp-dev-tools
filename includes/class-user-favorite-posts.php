@@ -9,25 +9,31 @@ if ( !defined( 'ABSPATH' ) ) {
   die( 'Direct access is forbidden.' );
 }
 
+use JPDevTools\Abstracts\Singleton;
 use wpdb;
 
 /**
- * FavoritePost class
+ * UserFavoritePosts class
  *
  * @package        Core
  *
  * @since          0.1.0
  * @author         Javier Prieto <jprieton@gmail.com>
  */
-class FavoritePosts {
+class UserFavoritePosts extends Singleton {
 
   /**
-   * Favorite table name.
+   * UserFavoritePosts table name.
    *
    * @since   0.1.0
    * @var     string
    */
-  private $table = 'favorite_posts';
+  private $table = 'user_favorite_posts';
+
+  /**
+   * @var type UserFavoritePosts
+   */
+  static $instance;
 
   /**
    * OptionGroup object.
@@ -35,7 +41,7 @@ class FavoritePosts {
    * @since   0.1.0
    * @var SettingGroup
    */
-  private $option_group;
+  private $setting_group;
 
   /**
    * Constructor
@@ -44,7 +50,7 @@ class FavoritePosts {
    */
   public function __construct() {
     $this->_create_table();
-    $this->option_group = new SettingGroup( 'jpdevtools' );
+    $this->setting_group = new SettingGroup( 'jpdevtools' );
   }
 
   /**
@@ -54,7 +60,7 @@ class FavoritePosts {
    * @return  true
    */
   public function __destruct() {
-    unset( $this->option_group );
+    unset( $this->setting_group );
     return true;
   }
 
@@ -103,7 +109,7 @@ class FavoritePosts {
     $current_timestamp  = time();
     $diff               = $current_timestamp - $favorite_timestamp;
 
-    $favorite_timeout_cache = $this->option_group->get_int_option( 'favorite_timeout_cache', 60 * MINUTE_IN_SECONDS );
+    $favorite_timeout_cache = $this->setting_group->get_int_option( 'favorite-timeout-cache', 60 * MINUTE_IN_SECONDS );
 
     if ( $diff > $favorite_timeout_cache ) {
       $favorite_count = $this->_update_post_favorite_count( $post_id );
@@ -145,11 +151,11 @@ class FavoritePosts {
    *
    * @return  boolean
    */
-  public function is_favorite_post( $post_id = null ) {
-    $user_id = get_current_user_id();
+  public function is_favorite_post( $post_id = null, $user_id = null ) {
     $post_id = (int) $post_id ?: get_the_ID();
+    $user_id = (int) $user_id ?: get_current_user_id();
 
-    if ( !$user_id && !$post_id ) {
+    if ( !$user_id || !$post_id ) {
       return false;
     }
 
@@ -163,31 +169,33 @@ class FavoritePosts {
   /**
    * Add post to favorites
    *
-   * @since   0.1.0
+   * @since 0.1.0
    *
-   * @global  wpdb           $wpdb
-   * @param   type           $post_id
+   * @global wpdb           $wpdb
    */
-  public function add_favorite_post( $post_id ) {
+  private function _add_post( $post_id ) {
     global $wpdb;
     $user_id = get_current_user_id();
-    $wpdb->insert( "{$wpdb->prefix}{$this->table}", compact( 'post_id', 'user_id' ) );
-    $this->_update_post_favorite_count( $post_id );
+    if ( $user_id ) {
+      $wpdb->insert( "{$wpdb->prefix}{$this->table}", compact( 'post_id', 'user_id' ) );
+      $this->_update_post_favorite_count( $post_id );
+    }
   }
 
   /**
-   * Remove post from favorites
+   * Remove posts from favorites
    *
-   * @since   0.1.0
+   * @since 0.1.0
    *
-   * @global  wpdb           $wpdb
-   * @param   type           $post_id
+   * @global wpdb           $wpdb
    */
-  public function remove_favorite_post( $post_id ) {
+  private function _remove_post( $post_id ) {
     global $wpdb;
     $user_id = get_current_user_id();
-    $wpdb->delete( "{$wpdb->prefix}{$this->table}", compact( 'post_id', 'user_id' ) );
-    $this->_update_post_favorite_count( $post_id );
+    if ( $user_id ) {
+      $wpdb->delete( "{$wpdb->prefix}{$this->table}", compact( 'post_id', 'user_id' ) );
+      $this->_update_post_favorite_count( $post_id );
+    }
   }
 
   /**
@@ -195,16 +203,16 @@ class FavoritePosts {
    *
    * @since   0.1.0
    *
-   * @param   type           $post_id
-   * @return  type
+   * @param   int           $post_id
+   * @return  boolean
    */
   public function toggle_favorite_post( $post_id ) {
     $is_favorite = $this->is_favorite_post( $post_id );
 
     if ( $is_favorite ) {
-      $this->remove_favorite_post( $post_id );
+      $this->_add_post( $post_id );
     } else {
-      $this->add_favorite_post( $post_id );
+      $this->_remove_post( $post_id );
     }
 
     return !$is_favorite;

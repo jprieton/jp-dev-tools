@@ -47,4 +47,4 @@ $args    = array(
     'show_tagcloud'     => true,
     'rewrite'           => $rewrite,
 );
-register_taxonomy( 'product_cat', array( 'product' ), $args );
+register_taxonomy( 'product_tag', array( 'product' ), $args );
