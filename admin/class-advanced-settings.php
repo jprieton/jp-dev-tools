@@ -10,6 +10,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 use JPDevTools\Abstracts\SettingsPage;
+use WP_Roles;
 
 /**
  * AdvancedSettings class
@@ -174,6 +175,31 @@ class AdvancedSettings extends SettingsPage {
                 'desc'  => __( 'Disable XML-RPC completely. This setting implies the <b>Disable XML-RPC Pingback</b> and <b>Remove EditURI link</b>. <a href="https://www.littlebizzy.com/blog/disable-xml-rpc" target="_blank">More info</a>.', JPDEVTOOLS_TEXTDOMAIN ),
             ),
         ),
+    ) );
+
+    global $wp_roles;
+
+    if ( !isset( $wp_roles ) ) {
+      $wp_roles = new WP_Roles();
+    }
+
+    $_roles = $wp_roles->get_names();
+
+    $options = array();
+    foreach ( $_roles as $key => $label ) {
+      $options[] = array(
+          'id'    => 'admin-bar-disabled-roles-' . $key,
+          'label' => $label,
+          'value' => $key,
+          'name'  => 'admin-bar-disabled-roles[]'
+      );
+    }
+
+    $this->add_field( array(
+        'name'    => 'Admin Bar Disable',
+        'type'    => 'checkbox',
+        'id'      => 'admin-bar-disabled',
+        'options' => $options,
     ) );
   }
 

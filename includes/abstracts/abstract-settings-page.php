@@ -301,7 +301,7 @@ abstract class SettingsPage {
     foreach ( $options as $item ) {
       $item['type']  = 'checkbox';
       $item['id']    = ArrayHelper::get( $item, 'id' );
-      $item['name']  = sprintf( "{$this->option_group}[%s]", $item['id'] );
+      $item['name']  = isset( $item['name'] ) ? $item['name'] : sprintf( "{$this->option_group}[%s]", $item['id'] );
       $item['value'] = ArrayHelper::get( $item, 'value', 'yes' );
 
       $label = ArrayHelper::extract( $item, 'label', false );
