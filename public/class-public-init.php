@@ -68,7 +68,7 @@ class PublicInit extends Singleton {
    * @since 0.1.0
    */
   public function disable_admin_bar_by_role() {
-    $disabled_roles = (array) $this->setting_group->get_option( 'admin-bar-disabled-roles', array() );
+    $disabled_roles = (array) $this->setting_group->get_option( 'admin-bar-disabled', array() );
     $user           = wp_get_current_user();
 
     // By default is enabled in all roles.

@@ -129,14 +129,35 @@ class SettingGroup {
    * @param   array     $old_value
    * @return  array
    */
-  public function pre_update_option( $new_value, $old_value ) {
+  public function pre_update_option( $new_value ) {
     if ( is_serialized( $new_value ) ) {
       $new_value = unserialize( $new_value );
     }
 
     $this->options = array_merge( $this->options, (array) $new_value );
-
+    $this->options = $this->_clean_options( $this->options );
     return $this->options;
+  }
+
+  /**
+   * Clean empty or _unset_ options
+   *
+   * @since   0.1.0
+   *
+   * @param   array     $new_value
+   * @return  array
+   */
+  private function _clean_options( $new_value ) {
+    foreach ( $new_value as $key => $value ) {
+      if ( is_array( $value ) ) {
+        $new_value[$key] = $this->_clean_options( $value );
+      }
+
+      if ( empty( $value ) || $value == '_unset_' ) {
+        unset( $new_value[$key] );
+      }
+    }
+    return $new_value;
   }
 
   /**

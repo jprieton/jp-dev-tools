@@ -300,9 +300,17 @@ abstract class SettingsPage {
 
     foreach ( $options as $item ) {
       $item['type']  = 'checkbox';
-      $item['id']    = ArrayHelper::get( $item, 'id' );
-      $item['name']  = isset( $item['name'] ) ? $item['name'] : sprintf( "{$this->option_group}[%s]", $item['id'] );
+      $item['id']    = ArrayHelper::get( $item, 'id', false );
+      $item['name']  = ArrayHelper::get( $item, 'name', false );
       $item['value'] = ArrayHelper::get( $item, 'value', 'yes' );
+
+      if ( $is_multiple && !$item['id'] && !$item['name'] ) {
+        $item['id']   = $field['id'] . '-' . substr( md5( $item['value'] ), 0, 8 );
+        $item['name'] = sprintf( "{$this->option_group}[%s][]", $field['id'] );
+      } else {
+        $is_multiple  = false;
+        $item['name'] = sprintf( "{$this->option_group}[%s]", $item['id'] );
+      }
 
       $label = ArrayHelper::extract( $item, 'label', false );
       if ( $label ) {
@@ -319,12 +327,18 @@ abstract class SettingsPage {
         $desc = '<br />';
       }
 
-      if ( $this->setting_group->get_bool_option( $item['id'] ) ) {
+      if ( $is_multiple ) {
+        $options = (array) $this->setting_group->get_option( $field['id'], array() );
+      } else {
+        $options = (bool) $this->setting_group->get_bool_option( $item['id'] );
+      }
+
+      if ( (is_bool( $options ) && $options) || (is_array( $options ) && in_array( $item['value'], $options )) ) {
         $item['checked'] = 'checked';
       }
 
       $label = Form::label( $item['id'], $label );
-      $input = Form::hidden( $item['name'], 'no' ) . Form::checkbox( $item['name'], 'yes', $item );
+      $input = Form::hidden( $item['name'], '_unset_' ) . Form::checkbox( $item['name'], 'yes', $item );
 
       echo sprintf( $label, $input ) . $desc;
     }

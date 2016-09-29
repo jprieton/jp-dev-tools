@@ -10,6 +10,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 use JPDevTools\Abstracts\SettingsPage;
+use JPDevTools\Helpers\ArrayHelper;
 use WP_Roles;
 
 /**
@@ -52,10 +53,7 @@ class AdvancedSettings extends SettingsPage {
 
     foreach ( $post_types as $post_type ) {
       $options[] = array(
-          'id'    => "clean-post-type-{$post_type->name}",
           'label' => $post_type->label,
-          'class' => 'clean-post-types dummy-checkbox',
-          'name'  => false,
           'value' => $post_type->name,
       );
     }
@@ -63,6 +61,7 @@ class AdvancedSettings extends SettingsPage {
     $this->add_field( array(
         'name'    => __( 'Erase content', JPDEVTOOLS_TEXTDOMAIN ),
         'type'    => 'checkbox',
+        'id'      => 'clean-post-type',
         'options' => $options
     ) );
     add_action( 'pre_update_option_jpdevtools-settings', array( $this, 'pre_update_cleanup' ), 20, 2 );
@@ -77,26 +76,24 @@ class AdvancedSettings extends SettingsPage {
    * @return  array
    */
   public function pre_update_cleanup( $new_value ) {
+    $clean_post_type = ArrayHelper::extract( $new_value, 'clean-post-type', array() );
+
+    if ( empty( $clean_post_type ) ) {
+      return $new_value;
+    }
+
     $post_types = get_post_types();
-    foreach ( $new_value as $key => $setting ) {
-      if ( strpos( $key, 'clean-post-type-' ) === false ) {
+    foreach ( $clean_post_type as $post_type ) {
+      if ( !in_array( $post_type, $post_types ) ) {
         continue;
       }
 
-      if ( $setting == 'no' || !in_array( $setting, $post_types ) ) {
-        unset( $new_value[$key] );
-        continue;
-      }
-
-      $_posts = get_posts( array( 'post_type' => $setting, 'posts_per_page' => -1, 'fields' => 'ids', ) );
+      $_posts = get_posts( array( 'post_type' => $post_type, 'posts_per_page' => -1, 'fields' => 'ids', ) );
 
       foreach ( $_posts as $id ) {
         wp_delete_post( $id );
       }
-
-      unset( $new_value[$key] );
     }
-
     return $new_value;
   }
 
@@ -188,18 +185,17 @@ class AdvancedSettings extends SettingsPage {
     $options = array();
     foreach ( $_roles as $key => $label ) {
       $options[] = array(
-          'id'    => 'admin-bar-disabled-roles-' . $key,
           'label' => $label,
           'value' => $key,
-          'name'  => 'admin-bar-disabled-roles[]'
       );
     }
 
     $this->add_field( array(
-        'name'    => 'Admin Bar Disable',
-        'type'    => 'checkbox',
-        'id'      => 'admin-bar-disabled',
-        'options' => $options,
+        'name'     => 'Admin Bar Disable',
+        'type'     => 'checkbox',
+        'id'       => 'admin-bar-disabled',
+        'multiple' => true,
+        'options'  => $options,
     ) );
   }
 
