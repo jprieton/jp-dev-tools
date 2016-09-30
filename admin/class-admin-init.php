@@ -158,4 +158,36 @@ class AdminInit extends Singleton {
 
   }
 
+  /**
+   * Disable Yoast for specific roles.
+   *
+   * @since 0.1.0
+   */
+  public function yoast_disabled_roles() {
+    // If isn't Yoast active do nothing;
+    if ( !defined( 'WPSEO_VERSION' ) ) {
+      return;
+    }
+
+    $disabled_roles = $this->setting_group->get_option( 'yoast-disabled' );
+    $user           = wp_get_current_user();
+    $disabled       = false;
+
+    foreach ( $user->roles as $user_rol ) {
+      if ( in_array( $user_rol, $disabled_roles ) ) {
+        $disabled = true;
+        break;
+      }
+    }
+    if ( $disabled ) {
+      // Remove page analysis columns from post lists, also SEO status on post editor
+      add_filter( 'wpseo_use_page_analysis', '__return_false' );
+      // Remove Yoast meta boxes
+      add_action( 'add_meta_boxes', function () {
+        remove_meta_box( 'wpseo_meta', 'post', 'normal' );
+        remove_meta_box( 'wpseo_meta', 'page', 'normal' );
+      }, 100000 );
+    }
+  }
+
 }

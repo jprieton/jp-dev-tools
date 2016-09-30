@@ -80,6 +80,12 @@ add_action( 'wp_head', function() {
    * @since 0.1.0
    */
   $init->google_universal_analytics();
+
+  /**
+   * Shows Facebook Pixel Code
+   * @since 0.1.0
+   */
+  $init->facebook_pixel_code();
 }, 99 );
 
 add_action( 'wp_footer', function() {
@@ -98,18 +104,11 @@ add_action( 'before_main_content', function() {
   $init = PublicInit::get_instance();
 
   /**
-   * Shows Facebook Pixel Code
-   * @since 0.1.0
-   */
-  $init->facebook_pixel_code();
-
-  /**
    * Shows Google Tag Manager script
    * @since 0.1.0
    */
   $init->google_tag_manager();
 } );
-
 
 // Register Theme Features
 add_action( 'after_setup_theme', function () {

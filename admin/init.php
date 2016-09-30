@@ -22,6 +22,17 @@ add_action( 'admin_menu', function () {
   $init->admin_menu();
 } );
 
+add_action( 'admin_init', function () {
+
+  $init = AdminInit::get_instance();
+
+  /**
+   * Disable Yoast for specific roles.
+   * @since 0.1.0
+   */
+  $init->yoast_disabled_roles();
+} );
+
 add_action( 'admin_enqueue_scripts', function() {
 
   $init = AdminInit::get_instance();

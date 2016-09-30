@@ -10,6 +10,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 use JPDevTools\Abstracts\SettingsPage;
+use WP_Roles;
 
 /**
  * SeoSettings class
@@ -120,6 +121,31 @@ class SeoSettings extends SettingsPage {
             ),
         ),
     ) );
+
+    if ( defined( 'WPSEO_VERSION' ) ) {
+      global $wp_roles;
+
+      if ( !isset( $wp_roles ) ) {
+        $wp_roles = new WP_Roles();
+      }
+
+      $_roles = $wp_roles->get_names();
+
+      $options = array();
+      foreach ( $_roles as $key => $label ) {
+        $options[] = array(
+            'label' => $label,
+            'value' => $key,
+        );
+      }
+
+      $this->add_field( array(
+          'name'    => 'Yoast Disabled Roles',
+          'type'    => 'checkbox',
+          'id'      => 'yoast-disabled',
+          'options' => $options,
+      ) );
+    }
   }
 
 }
