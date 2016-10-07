@@ -1,4 +1,4 @@
-JP WordPress Dev Tools
+JP WordPress Development Tools
 ==========
 
 A Microframework for WordPress rewrite from JP Theme Tools
@@ -9,8 +9,8 @@ A Microframework for WordPress rewrite from JP Theme Tools
 * Settings
 
 ### Helpers
-* HtmlHelper
-* FormHelper
+* HtmlBuilder
+* FormBuilder
 
 ### Vendors Helpers
 * Bootstrap 3.x
