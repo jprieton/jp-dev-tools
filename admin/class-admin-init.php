@@ -13,6 +13,7 @@ use JPDevTools\Abstracts\Singleton;
 use JPDevTools\Core\Factory\SettingFactory;
 use JPDevTools\Core\Settings\GeneralSettings;
 use JPDevTools\Core\Settings\SocialSettings;
+use JPDevTools\Core\Settings\FormSettings;
 use JPDevTools\Core\Settings\SeoSettings;
 use JPDevTools\Core\Settings\AdvancedSettings;
 use JPDevTools\Core\Settings\SupportSettings;
@@ -58,6 +59,7 @@ class AdminInit extends Singleton {
     // Load dependencies
     require_once JPDEVTOOLS_DIR . '/admin/class-general-settings.php';
     require_once JPDEVTOOLS_DIR . '/admin/class-social-settings.php';
+    require_once JPDEVTOOLS_DIR . '/admin/class-form-settings.php';
     require_once JPDEVTOOLS_DIR . '/admin/class-seo-settings.php';
     require_once JPDEVTOOLS_DIR . '/admin/class-advanced-settings.php';
     require_once JPDEVTOOLS_DIR . '/admin/class-support-settings.php';
@@ -75,6 +77,7 @@ class AdminInit extends Singleton {
     new GeneralSettings();
     new SeoSettings();
     new SocialSettings();
+    new FormSettings();
     new AdvancedSettings();
     new SupportSettings();
   }
