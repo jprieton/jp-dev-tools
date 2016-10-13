@@ -17,6 +17,7 @@ use JPDevTools\Core\Settings\FormSettings;
 use JPDevTools\Core\Settings\SeoSettings;
 use JPDevTools\Core\Settings\AdvancedSettings;
 use JPDevTools\Core\Settings\SupportSettings;
+use JPDevTools\Core\Settings\SettingsImporter;
 
 /**
  * AdminInit class
@@ -158,7 +159,7 @@ class AdminInit extends Singleton {
    * @since   0.1.0
    */
   public function enqueue_styles() {
-
+    
   }
 
   /**
@@ -191,6 +192,41 @@ class AdminInit extends Singleton {
         remove_meta_box( 'wpseo_meta', 'page', 'normal' );
       }, 100000 );
     }
+  }
+
+  public function register_settings_importer() {
+    $id          = 'jpdevtools_settings_json';
+    $name        = __( 'JP WordPress Development Tools', JPDEVTOOLS_TEXTDOMAIN );
+    $description = __( 'Import/Export settings via a json file.', JPDEVTOOLS_TEXTDOMAIN );
+    $callback    = function() {
+      // Load Importer API
+      require_once ABSPATH . 'wp-admin/includes/class-wp-importer.php';
+
+      // Load dependencies
+      require_once __DIR__ . '/class-settings-importer.php';
+
+      // Dispatch
+      $importer = new SettingsImporter();
+      $importer->dispatch();
+    };
+
+    register_importer( $id, $name, $description, $callback );
+  }
+
+  public function export_settings() {
+    if ( !is_admin() ) {
+      die( '0' );
+    }
+    $options = json_encode( (array) get_option( 'jpdevtools-settings', array() ) );
+    header( 'Content-Description: File Transfer' );
+    header( 'Content-Type: application/octet-stream' );
+    header( 'Content-Disposition: attachment; filename=jpdevtools-settings.json' );
+    header( 'Content-Transfer-Encoding: binary' );
+    header( 'Connection: Keep-Alive' );
+    header( 'Expires: 0' );
+    header( 'Cache-Control: must-revalidate, post-check=0, pre-check=0' );
+    header( 'Pragma: public' );
+    die( $options );
   }
 
 }
