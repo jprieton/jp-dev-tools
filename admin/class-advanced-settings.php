@@ -68,7 +68,7 @@ class AdvancedSettings extends SettingsPage {
   }
 
   /**
-   * Send all posts in post type to recicle bin
+   * Delete all post types selected
    *
    * @since   0.1.0
    *
@@ -91,9 +91,10 @@ class AdvancedSettings extends SettingsPage {
       $_posts = get_posts( array( 'post_type' => $post_type, 'posts_per_page' => -1, 'fields' => 'ids', ) );
 
       foreach ( $_posts as $id ) {
-        wp_delete_post( $id );
+        wp_delete_post( $id, true );
       }
     }
+    wp_delete_auto_drafts();
     return $new_value;
   }
 
