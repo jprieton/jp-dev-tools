@@ -29,7 +29,7 @@ class SettingsImporter {
    * @since   0.1.0
    */
   public function __construct() {
-    
+
   }
 
   /**
@@ -122,7 +122,7 @@ class SettingsImporter {
     update_option( 'jpdevtools-settings', (array) $settings, false );
     wp_delete_attachment( $id, true );
 
-    echo '<p>' . __( 'All done!', JPDEVTOOLS_TEXDOMAIN ) . '</p>';
+    echo '<p>' . __( 'All done!', JPDEVTOOLS_TEXTDOMAIN ) . '</p>';
     do_action( 'import_end' );
   }
 
