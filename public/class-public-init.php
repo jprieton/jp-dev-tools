@@ -648,7 +648,7 @@ class PublicInit extends Singleton {
     $meta_tags = array();
 
     $facebook_admins = $this->setting_group->get_option( 'facebook-admins', null );
-    $fb_explode      = (array) explode( ',', $facebook_admins );
+    $fb_explode      = empty( $facebook_admins ) ? array() : (array) explode( ',', $facebook_admins );
     foreach ( $fb_explode as $admin ) {
       $meta_tags[] = array(
           'property' => 'fb:admins',
