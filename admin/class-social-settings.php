@@ -32,8 +32,7 @@ class SocialSettings extends SettingsPage {
     parent::__construct( 'jpdevtools-settings', 'jpdevtools_settings', 'jpdevtools_social_settings' );
     $this->add_submenu_page( __( 'Social Networks', JPDEVTOOLS_TEXTDOMAIN ), __( 'Social Networks', JPDEVTOOLS_TEXTDOMAIN ) );
     $this->add_social_links_section();
-    $this->add_facebook_section();
-    $this->add_instagram_section();
+    $this->add_facebook_settings_section();
   }
 
   /**
@@ -76,7 +75,7 @@ class SocialSettings extends SettingsPage {
    *
    * @since   0.1.0
    */
-  private function add_facebook_section() {
+  private function add_facebook_settings_section() {
     $this->add_setting_section( 'jpdevtools_social_settings_section_facebook', 'Facebook' );
 
     $fields = array(
@@ -92,37 +91,6 @@ class SocialSettings extends SettingsPage {
           'class' => 'regular-text code',
       ) );
     }
-  }
-
-  /**
-   * Add Instagram API Section
-   *
-   * @since   0.1.0
-   */
-  private function add_instagram_section() {
-    $this->add_setting_section( 'jpdevtools_social_settings_section_instagram', 'Instagram' );
-
-    $this->add_field( array(
-        'name'  => 'Client ID',
-        'id'    => 'instagram-client-id',
-        'type'  => 'text',
-        'class' => 'regular-text code',
-    ) );
-
-    $this->add_field( array(
-        'name'  => 'Token',
-        'id'    => 'instagram-token',
-        'type'  => 'text',
-        'class' => 'regular-text code',
-    ) );
-
-    $this->add_field( array(
-        'name'        => __('Cache', JPDEVTOOLS_TEXTDOMAIN),
-        'id'          => 'instagram-timeout-cache',
-        'type'        => 'text',
-        'class'       => 'regular-text code',
-        'placeholder' => 60 * MINUTE_IN_SECONDS
-    ) );
   }
 
 }

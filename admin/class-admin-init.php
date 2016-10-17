@@ -15,6 +15,7 @@ use JPDevTools\Core\Settings\GeneralSettings;
 use JPDevTools\Core\Settings\SocialSettings;
 use JPDevTools\Core\Settings\FormSettings;
 use JPDevTools\Core\Settings\SeoSettings;
+use JPDevTools\Core\Settings\ApiSettings;
 use JPDevTools\Core\Settings\AdvancedSettings;
 use JPDevTools\Core\Settings\SupportSettings;
 use JPDevTools\Core\Settings\SettingsImporter;
@@ -62,6 +63,7 @@ class AdminInit extends Singleton {
     require_once JPDEVTOOLS_DIR . '/admin/class-social-settings.php';
     require_once JPDEVTOOLS_DIR . '/admin/class-form-settings.php';
     require_once JPDEVTOOLS_DIR . '/admin/class-seo-settings.php';
+    require_once JPDEVTOOLS_DIR . '/admin/class-api-settings.php';
     require_once JPDEVTOOLS_DIR . '/admin/class-advanced-settings.php';
     require_once JPDEVTOOLS_DIR . '/admin/class-support-settings.php';
 
@@ -78,6 +80,7 @@ class AdminInit extends Singleton {
     new GeneralSettings();
     new SeoSettings();
     new SocialSettings();
+    new ApiSettings();
     new FormSettings();
     new AdvancedSettings();
     new SupportSettings();
@@ -159,7 +162,7 @@ class AdminInit extends Singleton {
    * @since   0.1.0
    */
   public function enqueue_styles() {
-    
+
   }
 
   /**
