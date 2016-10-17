@@ -32,6 +32,7 @@ class ApiSettings extends SettingsPage {
     parent::__construct( 'jpdevtools-settings', 'jpdevtools_settings', 'jpdevtools_api_settings' );
     $this->add_submenu_page( __( 'API Settings', JPDEVTOOLS_TEXTDOMAIN ), __( 'API Settings', JPDEVTOOLS_TEXTDOMAIN ) );
     $this->add_envialosimple_settings_section();
+    $this->add_mailchimp_settings_section();
     $this->add_instagram_settings_section();
   }
 
@@ -48,12 +49,20 @@ class ApiSettings extends SettingsPage {
         'type'  => 'text',
         'class' => 'large-text code',
     ) );
+  }
+
+  /**
+   * Add MailChimp settings section
+   *
+   * @since   0.5.0
+   */
+  private function add_mailchimp_settings_section() {
+    $this->add_setting_section( 'jpdevtools_api_settings_section_mailchimp', 'MailChimp' );
     $this->add_field( array(
-        'name'        => __( 'BaseURL', JPDEVTOOLS_TEXTDOMAIN ),
-        'id'          => 'envialosimple-url',
-        'type'        => 'text',
-        'class'       => 'large-text code',
-        'placeholder' => 'https://app.envialosimple.com'
+        'name'  => __( 'API Key', JPDEVTOOLS_TEXTDOMAIN ),
+        'id'    => 'mailchimp-apikey',
+        'type'  => 'text',
+        'class' => 'large-text code',
     ) );
   }
 
