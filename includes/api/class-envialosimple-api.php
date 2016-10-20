@@ -11,6 +11,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 use JPDevTools\Abstracts\Singleton;
 use JPDevTools\Core\Factory\SettingFactory;
+use JPDevTools\Core\SettingGroup;
 
 /**
  * EnvialoSimpleApi class
@@ -28,9 +29,14 @@ class EnvialoSimpleApi extends Singleton {
   static $instance;
 
   /**
-   * @var string API Key
+   * @var SettingGroup
    */
-  private $apikey;
+  private $setting_group;
+
+  /**
+   * @var mixed
+   */
+  private $body;
 
   /**
    * Constructor
@@ -41,8 +47,49 @@ class EnvialoSimpleApi extends Singleton {
     parent::__construct();
 
     // API settings
-    $setting_group = SettingFactory::setting_group( 'jpdevtools-settings' );
-    $this->apikey  = $setting_group->get_option( 'envialosimple-apikey' );
+    $this->setting_group = SettingFactory::setting_group( 'jpdevtools-settings' );
+  }
+
+  /**
+   * HTTP API EnvialoSimple member module
+   *
+   * @since   0.1.0
+   * @see     http://envialosimple.com/es/api-http-modulo-member
+   *
+   * @param   array     $params
+   * @return  bool
+   */
+  public function member( $action, $params ) {
+    $response = false;
+    switch ( $action ) {
+      case 'edit':
+        $response = $this->member_edit( $params );
+        break;
+    }
+  }
+
+  /**
+   * Add or uptade contact info
+   *
+   * @since   0.1.0
+   * @see     http://envialosimple.com/es/api-http-modulo-member
+   *
+   * @param   array     $params
+   * @return  bool
+   */
+  public function member_edit( $params ) {
+    // Defaults
+    $APIKey       = $this->setting_group->get_option( 'envialosimple-apikey' );
+    $MailListID   = $this->setting_group->get_int_option( 'envialosimple-default-list-id', 1 );
+    // Params
+    $params       = wp_parse_args( $params, compact( 'APIKey', 'MailListID' ) );
+    $params       = apply_filters( 'envialosimple-api-params', $params );
+    // Request to server
+    $raw_response = wp_remote_get( $this->base_url . '/member/edit/format/json', $params );
+    // Response
+    $this->body   = json_decode( $raw_response['body'] );
+    // Successful?
+    return (isset( $body->root->ajaxResponse->success ) && $body->root->ajaxResponse->success);
   }
 
 }
