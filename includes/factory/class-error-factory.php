@@ -44,4 +44,16 @@ class ErrorFactory {
     return $error;
   }
 
+  /**
+   * Shorthand to logged_out error
+   *
+   * @since 0.1.0
+   *
+   * @return WP_Error
+   */
+  public static function invalid_data( $data = '' ) {
+    $error = new WP_Error( 'invalid_data', __( 'The data that you entered is invalid.', JPDEVTOOLS_TEXTDOMAIN ), $data );
+    return $error;
+  }
+
 }
