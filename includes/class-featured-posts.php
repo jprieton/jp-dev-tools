@@ -12,7 +12,6 @@ if ( !defined( 'ABSPATH' ) ) {
 use JPDevTools\Abstracts\Singleton;
 use JPDevTools\Core\Factory\SettingFactory;
 use JPDevTools\Core\SettingGroup;
-use JPDevTools\Helpers\HtmlBuilder as Html;
 use JPDevTools\Core\Factory\ErrorFactory;
 
 /**
