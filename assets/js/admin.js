@@ -19,7 +19,7 @@
     var postId = $(this).data('id');
     var item = this;
     $(item).addClass('hidden').removeClass('dashicons-star-empty dashicons-star-filled');
-    $.post(SMGDevTools.ajaxUrl, {action: 'toggle_featured_post', post_id: postId}, function (response) {
+    $.post(JPDevTools.ajaxUrl, {action: 'toggle_featured_post', post_id: postId}, function (response) {
       if (response.data.featured) {
         $(item).addClass('dashicons-star-filled').removeClass('hidden');
       } else {
