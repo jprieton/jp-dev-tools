@@ -12,4 +12,20 @@
   });
   $('a.nav-tab-active').trigger('click');
 
+
+  /** Toggle featured posts */
+  $('.toggle-featured').click(function (e) {
+    e.preventDefault();
+    var postId = $(this).data('id');
+    var item = this;
+    $(item).addClass('hidden').removeClass('dashicons-star-empty dashicons-star-filled');
+    $.post(SMGDevTools.ajaxUrl, {action: 'toggle_featured_post', post_id: postId}, function (response) {
+      if (response.data.featured) {
+        $(item).addClass('dashicons-star-filled').removeClass('hidden');
+      } else {
+        $(item).addClass('dashicons-star-empty').removeClass('hidden');
+      }
+    });
+  });
+
 })(jQuery);

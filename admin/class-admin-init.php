@@ -11,6 +11,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
 use JPDevTools\Abstracts\Singleton;
 use JPDevTools\Core\Factory\SettingFactory;
+use JPDevTools\Core\FeaturedPosts;
 use JPDevTools\Core\Settings\GeneralSettings;
 use JPDevTools\Core\Settings\SocialSettings;
 use JPDevTools\Core\Settings\FormSettings;
@@ -76,7 +77,6 @@ class AdminInit extends Singleton {
    * @since   0.1.0
    */
   public function admin_menu() {
-
     new GeneralSettings();
     new SeoSettings();
     new SocialSettings();
@@ -162,7 +162,67 @@ class AdminInit extends Singleton {
    * @since   0.1.0
    */
   public function enqueue_styles() {
+    /**
+     * Plugin styles
+     *
+     * @since 0.5.0
+     */
+    /**
+     * Plugin styles
+     *
+     * @since 0.5.0
+     */
+    $styles = array(
+        'jpdevtools' => array(
+            'local'    => JPDEVTOOLS_URL . 'assets/css/admin.css',
+            'ver'      => '0.5.0',
+            'media'    => 'screen',
+            'autoload' => true
+        ),
+    );
 
+    /**
+     * Filter styles
+     *
+     * @since   0.5.0
+     * @param   array   $styles
+     */
+    $styles = apply_filters( 'jpdevtools_admin_register_styles', $styles );
+
+    $defaults = array(
+        'local'    => '',
+        'remote'   => '',
+        'deps'     => array(),
+        'ver'      => null,
+        'media'    => 'all',
+        'autoload' => false
+    );
+
+    $use_cdn = $this->setting_group->get_bool_option( 'cdn-enabled' );
+
+    foreach ( $styles as $handle => $style ) {
+      $style = wp_parse_args( $style, $defaults );
+
+      if ( ($use_cdn && !empty( $style['remote'] )) || empty( $style['local'] ) ) {
+        $src = $style['remote'];
+      } elseif ( (!$use_cdn && !empty( $style['local'] )) || empty( $style['remote'] ) ) {
+        $src = $style['local'];
+      } else {
+        continue;
+  }
+
+      $deps  = $style['deps'];
+      $ver   = $style['ver'];
+      $media = $style['media'];
+
+      /* Register styles */
+      wp_register_style( $handle, $src, (array) $deps, $ver, $media );
+
+      if ( $style['autoload'] ) {
+        /* Enqueue styles if autolad in enabled */
+        wp_enqueue_style( $handle );
+      }
+    }
   }
 
   /**
@@ -216,6 +276,11 @@ class AdminInit extends Singleton {
     register_importer( $id, $name, $description, $callback );
   }
 
+  /**
+   * Generates a JSON file to export plugin settings
+   *
+   * @since 0.1.0
+   */
   public function export_settings() {
     if ( !is_admin() ) {
       die( '0' );
@@ -230,6 +295,24 @@ class AdminInit extends Singleton {
     header( 'Cache-Control: must-revalidate, post-check=0, pre-check=0' );
     header( 'Pragma: public' );
     die( $options );
+  }
+
+  /**
+   * Init featured posts backend funcionality
+   *
+   * @since 0.1.0
+   */
+  public function featured_posts() {
+    if ( $this->setting_group->get_bool_option( 'featured-posts-enabled', false ) ) {
+      require_once JPDEVTOOLS_DIR . '/includes/class-featured-posts.php';
+
+      $featured_posts = FeaturedPosts::get_instance();
+      add_action( 'wp_ajax_toggle_featured_post', array( $featured_posts, 'wp_ajax_toggle_featured_post' ) );
+      add_action( 'manage_posts_custom_column', array( $featured_posts, 'manage_custom_columns' ), 10, 2 );
+      add_action( 'manage_pages_custom_column', array( $featured_posts, 'manage_custom_columns' ), 10, 2 );
+      add_action( 'manage_posts_columns', array( $featured_posts, 'manage_columns' ), 10, 2 );
+      add_action( 'manage_pages_columns', array( $featured_posts, 'manage_columns' ), 10, 2 );
+    }
   }
 
 }

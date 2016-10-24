@@ -101,6 +101,17 @@ class AdvancedSettings extends SettingsPage {
   private function add_development_setting_section() {
     $this->add_setting_section( 'jpdevtools_advanced_settings_section_development', __( 'Development', JPDEVTOOLS_TEXTDOMAIN ) );
     $this->add_field( array(
+        'name'    => __( 'Posts', JPDEVTOOLS_TEXTDOMAIN ),
+        'type'    => 'checkbox',
+        'id'      => 'featured-posts-enabled',
+        'options' => array(
+            array(
+                'id'    => 'featured-posts-enabled',
+                'label' => __( 'Featured posts enabled', JPDEVTOOLS_TEXTDOMAIN ),
+            ),
+        ),
+    ) );
+    $this->add_field( array(
         'name'    => __( 'Post Type Enabled', JPDEVTOOLS_TEXTDOMAIN ),
         'type'    => 'checkbox',
         'id'      => 'post-types-enabled',

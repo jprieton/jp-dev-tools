@@ -10,6 +10,7 @@ if ( !defined( 'ABSPATH' ) ) {
 require_once JPDEVTOOLS_DIR . '/admin/class-admin-init.php';
 
 use JPDevTools\Core\Init\AdminInit;
+use JPDevTools\Core\FeaturedPosts;
 
 add_action( 'admin_menu', function () {
 
@@ -36,6 +37,12 @@ add_action( 'admin_init', function () {
    * @since 0.1.0
    */
   $init->register_settings_importer();
+
+  /**
+   * Init featured posts backend funcionality
+   * @since 0.1.0
+   */
+  $init->featured_posts();
 } );
 
 add_action( 'admin_enqueue_scripts', function() {

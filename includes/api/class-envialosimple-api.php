@@ -70,7 +70,7 @@ class EnvialoSimpleApi extends Singleton {
   }
 
   /**
-   * Add or uptade contact info
+   * Add/update contact info
    *
    * @since   0.1.0
    * @see     http://envialosimple.com/es/api-http-modulo-member
