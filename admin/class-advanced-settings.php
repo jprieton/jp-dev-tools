@@ -72,6 +72,7 @@ class AdvancedSettings extends SettingsPage {
    *
    * @since   0.1.0
    *
+   * @global  wpdb      $wpdb
    * @param   array     $new_value
    * @return  array
    */
@@ -82,18 +83,29 @@ class AdvancedSettings extends SettingsPage {
       return $new_value;
     }
 
+    global $wpdb;
+
     $post_types = get_post_types();
     foreach ( $clean_post_type as $post_type ) {
       if ( !in_array( $post_type, $post_types ) ) {
         continue;
       }
 
-      $_posts = get_posts( array( 'post_type' => $post_type, 'posts_per_page' => -1, 'fields' => 'ids', ) );
+      if ( 'attachment' == $post_type ) {
+        $_posts = get_posts( array( 'post_type' => $post_type, 'posts_per_page' => -1, 'fields' => 'ids', 'post_status' => 'any' ) );
 
-      foreach ( $_posts as $id ) {
-        wp_delete_post( $id, true );
+        foreach ( $_posts as $id ) {
+          wp_delete_post( $id, true );
+        }
+      } else {
+        $wpdb->query( "DELETE FROM {$wpdb->posts} WHERE post_type = '{$post_type}'" );
       }
     }
+
+
+    $wpdb->query( "DELETE FROM {$wpdb->postmeta} WHERE post_id NOT IN (SELECT ID as post_id FROM {$wpdb->posts})" );
+    $wpdb->query( "DELETE FROM {$wpdb->term_relationships} WHERE object_id NOT IN (SELECT ID as object_id FROM {$wpdb->posts})" );
+
     wp_delete_auto_drafts();
     return $new_value;
   }
